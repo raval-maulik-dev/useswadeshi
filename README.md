@@ -1,61 +1,209 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🌍 Local First Portal
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A platform that promotes **local products and services** while helping users reduce reliance on foreign goods.  
+First showcased at **Fashion Anantaa Women Expo (Mahesana)**.
 
-## About Laravel
+## 🚀 Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- 🛍️ **Explore Local Products & Services** - Discover quality local alternatives
+- 🔄 **Find Alternatives** - Get recommendations for foreign product substitutes  
+- ✍️ **Take the Pledge** - Commit to supporting local economy with digital certificate
+- 🎮 **Interactive Games** - Local vs foreign quiz and usage calculator
+- 🏪 **Vendor Profiles** - Comprehensive listings for local businesses
+- 📰 **Educational Content** - Articles and blogs to spread awareness
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🏗️ Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend**: Laravel 11 (PHP 8.2+)
+- **Database**: MySQL 8.0+
+- **Frontend**: Blade Templates + TailwindCSS
+- **Assets**: Vite for modern build tooling
+- **Future Ready**: Vue.js/React integration ready
 
-## Learning Laravel
+## 📂 Project Structure
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```
+local-first-portal/
+├── app/
+│   ├── Http/Controllers/     # Application controllers
+│   ├── Models/              # Eloquent models
+│   └── Providers/           # Service providers
+├── database/
+│   ├── migrations/          # Database migrations
+│   └── seeders/            # Database seeders
+├── resources/
+│   ├── views/              # Blade templates
+│   ├── css/                # Stylesheets
+│   └── js/                 # JavaScript assets
+├── routes/
+│   ├── web.php             # Web routes
+│   └── api.php             # API routes
+├── public/                 # Public assets
+├── storage/                # File storage
+├── docs/                   # Documentation
+└── README.md              # This file
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🗄️ Database Schema Overview
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Core Tables
+- **users** → Platform users (admin, vendor, customer)
+- **vendors** → Vendor business profiles and details
+- **brands** → Product brands with origin country tracking
+- **categories** → Hierarchical product categorization
+- **products** → All products (distinguished by `product_type`)
 
-## Laravel Sponsors
+### Feature Tables
+- **product_alternatives** → Maps foreign products to local alternatives
+- **pledges** → User commitments to support local products
+- **pledge_certificates** → Digital certificates for pledges
+- **games** → Game definitions (quiz, calculator, etc.)
+- **game_questions** → Quiz questions for events
+- **game_results** → User scores and game performance
+- **articles** → Educational content and awareness blogs
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## ⚡ Quick Start
 
-### Premium Partners
+### Prerequisites
+- PHP 8.2 or higher
+- Composer
+- Node.js & npm
+- MySQL 8.0+
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Installation
 
-## Contributing
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/local-first-portal.git
+   cd local-first-portal
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. **Install PHP dependencies**
+   ```bash
+   composer install
+   ```
 
-## Code of Conduct
+3. **Install Node dependencies**
+   ```bash
+   npm install
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. **Environment setup**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-## Security Vulnerabilities
+5. **Configure your `.env` file**
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=local_first_portal
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+6. **Run database migrations**
+   ```bash
+   php artisan migrate
+   ```
 
-## License
+7. **Build assets**
+   ```bash
+   npm run dev
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+8. **Start the development server**
+   ```bash
+   php artisan serve
+   ```
+
+Visit `http://localhost:8000` to access the application.
+
+## 🔧 Development
+
+### Running in Development Mode
+```bash
+# Start Laravel server
+php artisan serve
+
+# Watch for asset changes
+npm run dev
+```
+
+### Database Operations
+```bash
+# Create new migration
+php artisan make:migration create_table_name
+
+# Run migrations
+php artisan migrate
+
+# Rollback migrations
+php artisan migrate:rollback
+
+# Seed database
+php artisan db:seed
+```
+
+## 📈 Roadmap
+
+- [x] **Phase 1**: Project setup and database design
+- [x] **Phase 2**: User authentication system
+- [ ] **Phase 3**: Vendor onboarding module
+- [ ] **Phase 4**: Product catalog and listings
+- [ ] **Phase 5**: Alternative products mapping
+- [ ] **Phase 6**: Pledge system with certificate generation
+- [ ] **Phase 7**: Interactive games module
+- [ ] **Phase 8**: Content management for articles
+- [ ] **Phase 9**: Expo integration and launch event
+- [ ] **Phase 10**: Mobile optimization and PWA features
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Here's how you can help:
+
+1. **Fork the repository**
+2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
+3. **Make your changes**
+4. **Commit your changes** (`git commit -m 'Add some amazing feature'`)
+5. **Push to the branch** (`git push origin feature/amazing-feature`)
+6. **Open a Pull Request**
+
+### Coding Standards
+- Follow PSR-12 PHP coding standards
+- Write meaningful commit messages
+- Add tests for new features
+- Update documentation as needed
+
+## 📝 Documentation
+
+Additional documentation can be found in the `docs/` directory:
+- Database schema diagrams
+- API documentation
+- Deployment guides
+- Development notes
+
+## 🐛 Issues & Support
+
+If you encounter any issues or have questions:
+1. Check existing [Issues](https://github.com/yourusername/local-first-portal/issues)
+2. Create a new issue with detailed information
+3. Use appropriate labels for categorization
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Fashion Anantaa Women Expo (Mahesana)** for the platform launch opportunity
+- Local businesses and vendors for their support
+- The Laravel and open-source community
+
+---
+
+**Made with ❤️ for promoting local businesses and reducing dependency on foreign goods.**
+
+*Join the movement - Support Local, Think Global! 🇮🇳*
