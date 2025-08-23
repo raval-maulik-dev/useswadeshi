@@ -14,11 +14,12 @@ First showcased at **Fashion Anantaa Women Expo (Mahesana)**.
 
 ## 🏗️ Tech Stack
 
-- **Backend**: Laravel 11 (PHP 8.2+)
+- **Backend**: Laravel 12.0 (PHP 8.2+)
 - **Database**: MySQL 8.0+
-- **Frontend**: Blade Templates + TailwindCSS
+- **Frontend**: Blade Templates
 - **Assets**: Vite for modern build tooling
-- **Future Ready**: Vue.js/React integration ready
+- **Future Ready**: Livewire
+- **Admin Panel**: Filament
 
 ## 📂 Project Structure
 
