@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -13,16 +12,13 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        // Create parent categories
+        // 🎯 Core focus categories (easy to connect with audience)
         $parentCategories = [
-            'Electronics',
-            'Automotive',
+            'Fashion & Apparel',
             'Food & Beverages',
-            'Fashion',
-            'Home & Garden',
-            'Sports',
-            'Books',
-            'Health & Beauty',
+            'Personal Care & Wellness',
+            'Home & Lifestyle',
+            'Stationery & Toys',
         ];
 
         $parentIds = [];
@@ -31,19 +27,44 @@ class CategorySeeder extends Seeder
                 'name' => $categoryName,
                 'parent_id' => null,
             ]);
-            $parentIds[] = $category->id;
+            $parentIds[$categoryName] = $category->id;
         }
 
-        // Create sub-categories
+        // Sub-categories aligned with local-first movement
         $subCategories = [
-            'Electronics' => ['Smartphones', 'Laptops', 'TVs', 'Audio Devices'],
-            'Automotive' => ['Cars', 'Motorcycles', 'Auto Parts', 'Accessories'],
-            'Food & Beverages' => ['Dairy Products', 'Snacks', 'Beverages', 'Organic Food'],
-            'Fashion' => ['Clothing', 'Footwear', 'Accessories', 'Jewelry'],
-            'Home & Garden' => ['Furniture', 'Kitchen Appliances', 'Garden Tools', 'Decor'],
-            'Sports' => ['Fitness Equipment', 'Outdoor Sports', 'Indoor Games', 'Sports Wear'],
-            'Books' => ['Fiction', 'Non-Fiction', 'Educational', 'Children Books'],
-            'Health & Beauty' => ['Personal Care', 'Cosmetics', 'Health Supplements', 'Medical Devices'],
+            'Fashion & Apparel' => [
+                'Women’s Ethnic Wear',
+                'Men’s Ethnic Wear',
+                'Handloom & Fabrics',
+                'Footwear',
+                'Jewelry & Accessories',
+            ],
+            'Food & Beverages' => [
+                'Snacks & Namkeen',
+                'Dairy Products',
+                'Spices & Condiments',
+                'Beverages (Tea, Coffee, Herbal)',
+                'Organic & Healthy Foods',
+            ],
+            'Personal Care & Wellness' => [
+                'Herbal Skincare',
+                'Hair Care (Oils, Shampoos)',
+                'Ayurvedic Products',
+                'Cosmetics (Made in India)',
+                'Fitness & Yoga Essentials',
+            ],
+            'Home & Lifestyle' => [
+                'Handicrafts & Decor',
+                'Kitchenware (Steel, Copper, Clay)',
+                'Home Linens',
+                'Cleaning Supplies (Local)',
+            ],
+            'Stationery & Toys' => [
+                'Notebooks & Art Supplies',
+                'Educational Toys',
+                'Wooden & Handmade Toys',
+                'Kids’ Books (Local Language)',
+            ],
         ];
 
         foreach ($subCategories as $parentName => $subCats) {
@@ -57,8 +78,5 @@ class CategorySeeder extends Seeder
                 }
             }
         }
-
-        // Create additional random categories
-        Category::factory(15)->create();
     }
 }
