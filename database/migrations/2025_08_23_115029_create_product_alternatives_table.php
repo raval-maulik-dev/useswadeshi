@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('product_alternatives', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('foreign_product_id')->constrained('products')->onDelete('cascade');
-            $table->foreignId('local_product_id')->constrained('products')->onDelete('cascade');
-            $table->string('note', 500)->nullable();
+            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->decimal('price', 10, 2)->nullable();
+            $table->string('image')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

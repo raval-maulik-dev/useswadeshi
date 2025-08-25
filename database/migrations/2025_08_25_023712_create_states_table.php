@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('states', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('country_id')->constrained()->cascadeOnDelete();
             $table->string('name');
+            $table->string('code', 10)->nullable();
+            $table->foreignId('country_id')->constrained()->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->index('country_id');

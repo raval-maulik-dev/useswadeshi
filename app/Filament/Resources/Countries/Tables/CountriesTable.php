@@ -15,24 +15,20 @@ class CountriesTable
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label('Country Name')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('iso_code')
-                    ->label('ISO Code')
+                TextColumn::make('code')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('states_count')
-                    ->label('States')
-                    ->counts('states')
-                    ->sortable(),
+                TextColumn::make('phone_code')
+                    ->searchable(),
+                TextColumn::make('currency')
+                    ->searchable(),
                 TextColumn::make('created_at')
-                    ->label('Created')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
-                    ->label('Updated')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Game;
-use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,29 +19,29 @@ class GameQuestionFactory extends Factory
     {
         return [
             'game_id' => Game::factory(),
-            'product_id' => Product::factory(),
-            'question_text' => fake()->sentence() . ' Is this product local or foreign?',
-            'correct_answer' => fake()->randomElement(['local', 'foreign']),
+            'question' => fake()->sentence().' Is this a Swadeshi product?',
+            'options' => json_encode(['Yes', 'No']),
+            'correct_answer' => fake()->randomElement(['Yes', 'No']),
         ];
     }
 
     /**
-     * Indicate that the correct answer is local.
+     * Indicate that the correct answer is Yes (Swadeshi).
      */
-    public function localAnswer(): static
+    public function swadeshiAnswer(): static
     {
         return $this->state(fn (array $attributes) => [
-            'correct_answer' => 'local',
+            'correct_answer' => 'Yes',
         ]);
     }
 
     /**
-     * Indicate that the correct answer is foreign.
+     * Indicate that the correct answer is No (Foreign).
      */
     public function foreignAnswer(): static
     {
         return $this->state(fn (array $attributes) => [
-            'correct_answer' => 'foreign',
+            'correct_answer' => 'No',
         ]);
     }
 }

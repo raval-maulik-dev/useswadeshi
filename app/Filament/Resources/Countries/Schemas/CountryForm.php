@@ -12,18 +12,20 @@ class CountryForm
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->label('Country Name')
                     ->required()
-                    ->maxLength(255)
-                    ->unique(ignoreRecord: true)
-                    ->placeholder('Enter country name'),
-                TextInput::make('iso_code')
-                    ->label('ISO Code')
+                    ->maxLength(255),
+                TextInput::make('code')
                     ->required()
-                    ->maxLength(3)
-                    ->unique(ignoreRecord: true)
-                    ->uppercase()
-                    ->placeholder('Enter ISO code (e.g., IND)'),
+                    ->maxLength(2)
+                    ->minLength(2)
+                    ->regex('/^[A-Z]{2}$/')
+                    ->unique(ignoreRecord: true),
+                TextInput::make('phone_code')
+                    ->maxLength(10),
+                TextInput::make('currency')
+                    ->maxLength(10),
+                TextInput::make('currency_symbol')
+                    ->maxLength(5),
             ]);
     }
 }

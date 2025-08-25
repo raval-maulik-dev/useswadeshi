@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Game;
 use App\Models\GameQuestion;
-use App\Models\Product;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class GameQuestionSeeder extends Seeder
@@ -15,21 +13,21 @@ class GameQuestionSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create questions for existing games and products
+        // Create questions for existing games
         $games = Game::all();
-        $products = Product::all();
 
         foreach ($games as $game) {
             // Create 5-10 questions per game
             $questionCount = rand(5, 10);
-            $randomProducts = $products->random($questionCount);
 
-            foreach ($randomProducts as $product) {
+            for ($i = 0; $i < $questionCount; $i++) {
+                $isSwadeshi = fake()->boolean(70); // 70% chance of being swadeshi
+
                 GameQuestion::create([
                     'game_id' => $game->id,
-                    'product_id' => $product->id,
-                    'question_text' => "Is {$product->name} a local or foreign product?",
-                    'correct_answer' => $product->product_type,
+                    'question' => fake()->sentence().' Is this a Swadeshi product?',
+                    'options' => json_encode(['Yes', 'No']),
+                    'correct_answer' => $isSwadeshi ? 'Yes' : 'No',
                 ]);
             }
         }

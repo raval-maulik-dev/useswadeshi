@@ -22,21 +22,22 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->words(3, true),
             'description' => fake()->paragraph(),
-            'product_type' => fake()->randomElement(['local', 'foreign']),
+            'price' => fake()->randomFloat(2, 10, 1000),
+            'image' => fake()->imageUrl(400, 300, 'products'),
             'brand_id' => Brand::factory(),
             'category_id' => Category::factory(),
             'vendor_id' => Vendor::factory(),
-            'image_url' => fake()->imageUrl(640, 480, 'products'),
+            'is_swadeshi' => fake()->boolean(70), // 70% chance of being swadeshi
         ];
     }
 
     /**
-     * Indicate that the product is local.
+     * Indicate that the product is swadeshi (local).
      */
-    public function local(): static
+    public function swadeshi(): static
     {
         return $this->state(fn (array $attributes) => [
-            'product_type' => 'local',
+            'is_swadeshi' => true,
         ]);
     }
 
@@ -46,7 +47,7 @@ class ProductFactory extends Factory
     public function foreign(): static
     {
         return $this->state(fn (array $attributes) => [
-            'product_type' => 'foreign',
+            'is_swadeshi' => false,
         ]);
     }
 }

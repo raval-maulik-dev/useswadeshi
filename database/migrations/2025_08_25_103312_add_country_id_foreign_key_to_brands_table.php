@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('games', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('image')->nullable();
-            $table->softDeletes();
-            $table->timestamps();
+        Schema::table('brands', function (Blueprint $table) {
+            $table->foreign('country_id')->references('id')->on('countries')->nullOnDelete();
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('games');
+        Schema::table('brands', function (Blueprint $table) {
+            $table->dropForeign(['country_id']);
+        });
     }
 };

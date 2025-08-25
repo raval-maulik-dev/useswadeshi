@@ -26,7 +26,10 @@ class CountryFactory extends Factory
     {
         return [
             'name' => fake()->unique()->country(),
-            'iso_code' => fake()->unique()->countryCode(),
+            'code' => fake()->unique()->countryCode(),
+            'phone_code' => fake()->numberBetween(1, 999),
+            'currency' => fake()->currencyCode(),
+            'currency_symbol' => fake()->randomElement(['$', '€', '£', '¥', '₹']),
         ];
     }
 }

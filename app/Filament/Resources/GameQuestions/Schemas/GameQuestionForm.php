@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\GameQuestions\Schemas;
 
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -11,16 +12,20 @@ class GameQuestionForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
-            ->components([
+            ->schema([
                 Select::make('game_id')
                     ->relationship('game', 'name')
+                    ->searchable()
                     ->required(),
-                Select::make('product_id')
-                    ->relationship('product', 'name')
+                Textarea::make('question')
+                    ->required()
+                    ->columnSpanFull(),
+                TextInput::make('options')
+                    ->label('Options (JSON format: ["Option 1", "Option 2"])')
+                    ->placeholder('["Yes", "No"]')
                     ->required(),
-                TextInput::make('question_text'),
                 Select::make('correct_answer')
-                    ->options(['local' => 'Local', 'foreign' => 'Foreign'])
+                    ->options(['Yes' => 'Yes', 'No' => 'No'])
                     ->required(),
             ]);
     }

@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources\GameQuestions\Tables;
 
-use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class GameQuestionsTable
@@ -15,12 +15,19 @@ class GameQuestionsTable
         return $table
             ->columns([
                 TextColumn::make('game.name')
+                    ->label('Game')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('question')
+                    ->limit(50)
                     ->searchable(),
-                TextColumn::make('product.name')
-                    ->searchable(),
-                TextColumn::make('question_text')
-                    ->searchable(),
-                TextColumn::make('correct_answer'),
+                TextColumn::make('options')
+                    ->label('Options')
+                    ->limit(30)
+                    ->toggleable(),
+                TextColumn::make('correct_answer')
+                    ->label('Correct Answer')
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -31,15 +38,15 @@ class GameQuestionsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('game_id')
+                    ->label('Game')
+                    ->relationship('game', 'name'),
             ])
-            ->recordActions([
+            ->actions([
                 EditAction::make(),
             ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+            ->bulkActions([
+                DeleteBulkAction::make(),
             ]);
     }
 }

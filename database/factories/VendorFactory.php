@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,12 +17,12 @@ class VendorFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'business_name' => fake()->company(),
-            'address' => fake()->address(),
-            'phone' => fake()->phoneNumber(),
+            'name' => fake()->company(),
+            'description' => fake()->sentence(),
+            'logo' => fake()->imageUrl(100, 100, 'business'),
             'website' => fake()->url(),
-            'verified' => fake()->boolean(80), // 80% chance of being verified
+            'contact_email' => fake()->email(),
+            'contact_phone' => fake()->phoneNumber(),
         ];
     }
 

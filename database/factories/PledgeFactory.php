@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,9 +19,9 @@ class PledgeFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'product_id' => Product::factory(),
-            'message' => fake()->paragraph(),
-            'certificate_url' => fake()->optional()->url(),
+            'pledge_text' => fake()->paragraph(),
+            'status' => fake()->randomElement(['pending', 'approved', 'rejected']),
+            'admin_notes' => fake()->optional()->paragraph(),
         ];
     }
 }

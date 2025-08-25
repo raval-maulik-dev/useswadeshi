@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Product;
 use App\Models\ProductAlternative;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ProductAlternativeSeeder extends Seeder
@@ -15,19 +14,21 @@ class ProductAlternativeSeeder extends Seeder
     public function run(): void
     {
         // Create alternatives for existing products
-        $foreignProducts = Product::where('product_type', 'foreign')->get();
-        $localProducts = Product::where('product_type', 'local')->get();
+        $foreignProducts = Product::where('is_swadeshi', false)->get();
+        $localProducts = Product::where('is_swadeshi', true)->get();
 
         // Create alternatives for each foreign product
         foreach ($foreignProducts as $foreignProduct) {
             // Find a local alternative in the same category
             $localAlternative = $localProducts->where('category_id', $foreignProduct->category_id)->first();
-            
+
             if ($localAlternative) {
                 ProductAlternative::create([
-                    'foreign_product_id' => $foreignProduct->id,
-                    'local_product_id' => $localAlternative->id,
-                    'note' => "Local alternative to {$foreignProduct->name}",
+                    'product_id' => $foreignProduct->id,
+                    'name' => "Local alternative to {$foreignProduct->name}",
+                    'description' => "A swadeshi alternative to {$foreignProduct->name}",
+                    'price' => fake()->randomFloat(2, 10, 1000),
+                    'image' => fake()->imageUrl(400, 300, 'products'),
                 ]);
             }
         }

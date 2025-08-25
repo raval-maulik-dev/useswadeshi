@@ -20,6 +20,8 @@ class ProductAlternativeResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static \UnitEnum|string|null $navigationGroup = 'Product Management';
+
     public static function form(Schema $schema): Schema
     {
         return ProductAlternativeForm::configure($schema);

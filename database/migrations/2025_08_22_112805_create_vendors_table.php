@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('business_name');
-            $table->text('address')->nullable();
-            $table->string('phone', 20)->nullable();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->string('logo')->nullable();
             $table->string('website')->nullable();
-            $table->boolean('verified')->default(false);
+            $table->string('contact_email')->nullable();
+            $table->string('contact_phone')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -2,13 +2,11 @@
 
 namespace App\Filament\Resources\Products\Tables;
 
-use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
@@ -18,7 +16,7 @@ class ProductsTable
     {
         return $table
             ->columns([
-                ImageColumn::make('image_url')
+                ImageColumn::make('image')
                     ->label('Image')
                     ->circular()
                     ->size(40),
@@ -26,6 +24,9 @@ class ProductsTable
                     ->searchable()
                     ->sortable()
                     ->weight('bold'),
+                TextColumn::make('price')
+                    ->money('INR')
+                    ->sortable(),
                 TextColumn::make('brand.name')
                     ->label('Brand')
                     ->searchable()
@@ -34,14 +35,15 @@ class ProductsTable
                     ->label('Category')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('vendor.business_name')
-                    ->label('Vendor')
+                TextColumn::make('vendor.name')
                     ->searchable()
                     ->sortable(),
-                BadgeColumn::make('product_type')
+                BadgeColumn::make('is_swadeshi')
+                    ->label('Type')
+                    ->formatStateUsing(fn (bool $state): string => $state ? 'Swadeshi' : 'Foreign')
                     ->colors([
-                        'success' => 'local',
-                        'warning' => 'foreign',
+                        'success' => true,
+                        'warning' => false,
                     ])
                     ->sortable(),
                 TextColumn::make('created_at')
@@ -54,10 +56,11 @@ class ProductsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                SelectFilter::make('product_type')
+                SelectFilter::make('is_swadeshi')
+                    ->label('Product Type')
                     ->options([
-                        'local' => 'Local',
-                        'foreign' => 'Foreign',
+                        '1' => 'Swadeshi',
+                        '0' => 'Foreign',
                     ]),
                 SelectFilter::make('brand_id')
                     ->label('Brand')
@@ -67,15 +70,13 @@ class ProductsTable
                     ->relationship('category', 'name'),
                 SelectFilter::make('vendor_id')
                     ->label('Vendor')
-                    ->relationship('vendor', 'business_name'),
+                    ->relationship('vendor', 'name'),
             ])
-            ->recordActions([
+            ->actions([
                 EditAction::make(),
             ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+            ->bulkActions([
+                DeleteBulkAction::make(),
             ])
             ->defaultSort('created_at', 'desc');
     }

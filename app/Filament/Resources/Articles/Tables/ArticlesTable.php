@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Articles\Tables;
 
-use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -14,6 +14,16 @@ class ArticlesTable
     {
         return $table
             ->columns([
+                TextColumn::make('title')
+                    ->searchable()
+                    ->sortable()
+                    ->weight('bold'),
+                TextColumn::make('content')
+                    ->limit(100)
+                    ->searchable(),
+                ImageColumn::make('image')
+                    ->circular()
+                    ->size(40),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -26,13 +36,11 @@ class ArticlesTable
             ->filters([
                 //
             ])
-            ->recordActions([
+            ->actions([
                 EditAction::make(),
             ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+            ->bulkActions([
+                DeleteBulkAction::make(),
             ]);
     }
 }

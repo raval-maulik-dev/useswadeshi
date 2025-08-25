@@ -5,7 +5,7 @@ namespace App\Filament\Resources\Vendors\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\BadgeColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
@@ -16,28 +16,20 @@ class VendorsTable
     {
         return $table
             ->columns([
-                TextColumn::make('user.name')
-                    ->label('User')
-                    ->searchable()
-                    ->sortable()
-                    ->weight('bold'),
-                TextColumn::make('business_name')
+                TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('phone')
+                TextColumn::make('description')
                     ->searchable()
-                    ->copyable(),
+                    ->limit(50),
+                ImageColumn::make('logo')
+                    ->circular(),
                 TextColumn::make('website')
+                    ->searchable()
                     ->url()
-                    ->openUrlInNewTab()
-                    ->copyable(),
-                BadgeColumn::make('verified')
-                    ->boolean()
-                    ->colors([
-                        'success' => true,
-                        'danger' => false,
-                    ])
-                    ->sortable(),
+                    ->openUrlInNewTab(),
+                TextColumn::make('contact_email')
+                    ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -20,13 +20,13 @@ class GameResultFactory extends Factory
     {
         $totalQuestions = fake()->numberBetween(5, 20);
         $score = fake()->numberBetween(0, $totalQuestions);
-        
+
         return [
             'user_id' => User::factory(),
             'game_id' => Game::factory(),
             'score' => $score,
             'total_questions' => $totalQuestions,
-            'result_summary' => [
+            'answers' => [
                 'correct_answers' => $score,
                 'incorrect_answers' => $totalQuestions - $score,
                 'percentage' => round(($score / $totalQuestions) * 100, 2),
@@ -42,7 +42,7 @@ class GameResultFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'score' => $attributes['total_questions'],
-            'result_summary' => [
+            'answers' => [
                 'correct_answers' => $attributes['total_questions'],
                 'incorrect_answers' => 0,
                 'percentage' => 100,

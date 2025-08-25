@@ -18,9 +18,11 @@ class ProductAlternativeFactory extends Factory
     public function definition(): array
     {
         return [
-            'foreign_product_id' => Product::factory()->foreign(),
-            'local_product_id' => Product::factory()->local(),
-            'note' => fake()->optional()->sentence(),
+            'product_id' => Product::factory(),
+            'name' => fake()->words(3, true),
+            'description' => fake()->sentence(),
+            'price' => fake()->randomFloat(2, 10, 1000),
+            'image' => fake()->imageUrl(400, 300, 'products'),
         ];
     }
 }

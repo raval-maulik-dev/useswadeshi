@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('pledges', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('product_id')->nullable()->constrained('products')->nullOnDelete();
-            $table->text('message')->nullable();
-            $table->string('certificate_url', 500)->nullable();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->text('pledge_text');
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->text('admin_notes')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

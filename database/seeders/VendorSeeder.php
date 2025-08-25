@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Vendor;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class VendorSeeder extends Seeder
@@ -16,15 +15,15 @@ class VendorSeeder extends Seeder
     {
         // Create vendors for existing users with vendor role
         $vendorUsers = User::where('role', 'vendor')->get();
-        
+
         foreach ($vendorUsers as $user) {
             Vendor::create([
-                'user_id' => $user->id,
-                'business_name' => fake()->company(),
-                'address' => fake()->address(),
-                'phone' => fake()->phoneNumber(),
+                'name' => fake()->company(),
+                'description' => fake()->sentence(),
+                'logo' => fake()->imageUrl(100, 100, 'business'),
                 'website' => fake()->url(),
-                'verified' => true,
+                'contact_email' => fake()->email(),
+                'contact_phone' => fake()->phoneNumber(),
             ]);
         }
 

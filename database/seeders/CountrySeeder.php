@@ -13,21 +13,21 @@ class CountrySeeder extends Seeder
     public function run(): void
     {
         $countries = [
-            ['name' => 'India', 'iso_code' => 'IND'],
-            ['name' => 'United States', 'iso_code' => 'USA'],
-            ['name' => 'United Kingdom', 'iso_code' => 'GBR'],
-            ['name' => 'Canada', 'iso_code' => 'CAN'],
-            ['name' => 'Australia', 'iso_code' => 'AUS'],
-            ['name' => 'Germany', 'iso_code' => 'DEU'],
-            ['name' => 'France', 'iso_code' => 'FRA'],
-            ['name' => 'Japan', 'iso_code' => 'JPN'],
-            ['name' => 'China', 'iso_code' => 'CHN'],
-            ['name' => 'Brazil', 'iso_code' => 'BRA'],
+            ['name' => 'India', 'code' => 'IN'],
+            ['name' => 'United States', 'code' => 'US'],
+            ['name' => 'United Kingdom', 'code' => 'GB'],
+            ['name' => 'Canada', 'code' => 'CA'],
+            ['name' => 'Australia', 'code' => 'AU'],
+            ['name' => 'Germany', 'code' => 'DE'],
+            ['name' => 'France', 'code' => 'FR'],
+            ['name' => 'Japan', 'code' => 'JP'],
+            ['name' => 'China', 'code' => 'CN'],
+            ['name' => 'Brazil', 'code' => 'BR'],
         ];
 
         foreach ($countries as $country) {
             Country::firstOrCreate(
-                ['iso_code' => $country['iso_code']],
+                ['code' => $country['code']],
                 $country
             );
         }
