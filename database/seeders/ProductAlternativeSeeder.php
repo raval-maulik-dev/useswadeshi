@@ -27,13 +27,26 @@ class ProductAlternativeSeeder extends Seeder
                     'product_id' => $foreignProduct->id,
                     'name' => "Local alternative to {$foreignProduct->name}",
                     'description' => "A swadeshi alternative to {$foreignProduct->name}",
-                    'price' => fake()->randomFloat(2, 10, 1000),
-                    'image' => fake()->imageUrl(400, 300, 'products'),
+                    'price' => $localAlternative->price * 0.9, // Slightly cheaper alternative
+                    'image' => null,
                 ]);
             }
         }
 
-        // Create additional random alternatives
-        ProductAlternative::factory(20)->create();
+        // Create additional alternatives using existing products
+        $additionalForeignProducts = Product::where('is_swadeshi', false)->take(10)->get();
+        $additionalLocalProducts = Product::where('is_swadeshi', true)->take(10)->get();
+
+        foreach ($additionalForeignProducts as $foreignProduct) {
+            $localAlternative = $additionalLocalProducts->random();
+
+            ProductAlternative::create([
+                'product_id' => $foreignProduct->id,
+                'name' => "Local alternative to {$foreignProduct->name}",
+                'description' => "A swadeshi alternative to {$foreignProduct->name}",
+                'price' => $localAlternative->price * 0.9, // Slightly cheaper alternative
+                'image' => null,
+            ]);
+        }
     }
 }
