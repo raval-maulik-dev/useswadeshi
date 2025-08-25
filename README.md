@@ -54,6 +54,11 @@ local-first-portal/
 - **categories** → Hierarchical product categorization
 - **products** → All products (distinguished by `product_type`)
 
+### Location Management Tables
+- **countries** → Countries with ISO codes and unique names
+- **states** → States/provinces linked to countries with cascade delete
+- **cities** → Cities linked to states with cascade delete
+
 ### Feature Tables
 - **product_alternatives** → Maps foreign products to local alternatives
 - **pledges** → User commitments to support local products
@@ -180,8 +185,9 @@ We welcome contributions from the community! Here's how you can help:
 
 ## 📝 Documentation
 
-Additional documentation can be found in the `_documents/` directory:
+Additional documentation can be found in the `_Documents/` directory:
 - [AI Generated Files Summary](_Documents/AI_GENERATED_FILES_SUMMARY.md)
+- [Country, State, and City Management Implementation](_Documents/COUNTRY_STATE_CITY_IMPLEMENTATION.md) - Comprehensive guide for the location management system
 - Database schema diagrams
 - API documentation
 - Deployment guides
