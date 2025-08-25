@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
         // Seed in order to maintain foreign key relationships
         $this->call([
             UserSeeder::class,
+            CountrySeeder::class,
+            StateSeeder::class,
+            CitySeeder::class,
             BrandSeeder::class,
             CategorySeeder::class,
             VendorSeeder::class,
