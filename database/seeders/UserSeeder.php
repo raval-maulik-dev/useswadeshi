@@ -23,6 +23,15 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
+        User::create([
+            'name' => 'Admin User',
+            'email' => 'hittu9173@gmail.com',
+            'phone' => '+91-9054966947',
+            'role' => 'admin',
+            'password' => Hash::make('Reset@123'),
+            'email_verified_at' => now(),
+        ]);
+
         // Create vendor user
         User::create([
             'name' => 'Vendor User',
