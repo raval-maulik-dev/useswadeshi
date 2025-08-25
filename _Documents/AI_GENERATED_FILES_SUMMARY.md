@@ -245,3 +245,4 @@ The seeders created:
 - Tables include search, sort, and filter capabilities
 
 The project is now ready for development with a complete admin panel and sample data for testing!
+

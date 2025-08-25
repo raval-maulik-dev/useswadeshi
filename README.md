@@ -180,7 +180,8 @@ We welcome contributions from the community! Here's how you can help:
 
 ## 📝 Documentation
 
-Additional documentation can be found in the `docs/` directory:
+Additional documentation can be found in the `_documents/` directory:
+- [AI Generated Files Summary](_Documents/AI_GENERATED_FILES_SUMMARY.md)
 - Database schema diagrams
 - API documentation
 - Deployment guides
