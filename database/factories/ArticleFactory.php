@@ -17,8 +17,9 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
-            // Currently only timestamps are available
-            // Add more fields when migration is updated
+            'title' => fake()->sentence(),
+            'content' => fake()->paragraphs(3, true),
+            'image' => fake()->optional()->imageUrl(800, 600, 'business'),
         ];
     }
 }

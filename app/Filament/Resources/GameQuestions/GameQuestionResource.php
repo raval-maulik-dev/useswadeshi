@@ -20,6 +20,8 @@ class GameQuestionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static \UnitEnum|string|null $navigationGroup = 'Gaming';
+
     public static function form(Schema $schema): Schema
     {
         return GameQuestionForm::configure($schema);

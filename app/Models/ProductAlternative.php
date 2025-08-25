@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProductAlternative extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -16,24 +17,18 @@ class ProductAlternative extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'foreign_product_id',
-        'local_product_id',
-        'note',
+        'product_id',
+        'name',
+        'description',
+        'price',
+        'image',
     ];
 
     /**
-     * Get the foreign product.
+     * Get the product that this is an alternative for.
      */
-    public function foreignProduct(): BelongsTo
+    public function product(): BelongsTo
     {
-        return $this->belongsTo(Product::class, 'foreign_product_id');
-    }
-
-    /**
-     * Get the local product.
-     */
-    public function localProduct(): BelongsTo
-    {
-        return $this->belongsTo(Product::class, 'local_product_id');
+        return $this->belongsTo(Product::class);
     }
 }

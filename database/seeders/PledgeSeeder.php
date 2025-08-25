@@ -3,9 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Pledge;
-use App\Models\Product;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PledgeSeeder extends Seeder
@@ -15,21 +13,19 @@ class PledgeSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create pledges for existing users and products
+        // Create pledges for existing users
         $users = User::where('role', 'user')->get();
-        $products = Product::all();
 
         foreach ($users as $user) {
             // Create 1-3 pledges per user
             $pledgeCount = rand(1, 3);
-            $randomProducts = $products->random($pledgeCount);
 
-            foreach ($randomProducts as $product) {
+            for ($i = 0; $i < $pledgeCount; $i++) {
                 Pledge::create([
                     'user_id' => $user->id,
-                    'product_id' => $product->id,
-                    'message' => fake()->paragraph(),
-                    'certificate_url' => fake()->optional()->url(),
+                    'pledge_text' => fake()->paragraph(),
+                    'status' => fake()->randomElement(['pending', 'approved', 'rejected']),
+                    'admin_notes' => fake()->optional()->paragraph(),
                 ]);
             }
         }

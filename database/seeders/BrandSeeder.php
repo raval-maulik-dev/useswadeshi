@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Brand;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Country;
 use Illuminate\Database\Seeder;
 
 class BrandSeeder extends Seeder
@@ -13,6 +13,9 @@ class BrandSeeder extends Seeder
      */
     public function run(): void
     {
+        $india = Country::where('code', 'IN')->first();
+        $foreignCountries = Country::whereNot('code', 'IN')->get();
+
         // Create Indian brands
         $indianBrands = [
             'Amul',
@@ -30,28 +33,31 @@ class BrandSeeder extends Seeder
         foreach ($indianBrands as $brandName) {
             Brand::create([
                 'name' => $brandName,
-                'origin_country' => 'India',
+                'description' => 'Leading Indian brand in their respective industry',
+                'country_id' => $india?->id,
             ]);
         }
 
         // Create foreign brands
         $foreignBrands = [
-            'Apple' => 'USA',
-            'Samsung' => 'South Korea',
-            'Nike' => 'USA',
-            'Adidas' => 'Germany',
-            'Toyota' => 'Japan',
-            'Honda' => 'Japan',
-            'BMW' => 'Germany',
-            'Mercedes' => 'Germany',
-            'Sony' => 'Japan',
-            'LG' => 'South Korea',
+            'Apple' => 'US',
+            'Samsung' => 'KR',
+            'Nike' => 'US',
+            'Adidas' => 'DE',
+            'Toyota' => 'JP',
+            'Honda' => 'JP',
+            'BMW' => 'DE',
+            'Mercedes' => 'DE',
+            'Sony' => 'JP',
+            'LG' => 'KR',
         ];
 
-        foreach ($foreignBrands as $brandName => $country) {
+        foreach ($foreignBrands as $brandName => $countryCode) {
+            $country = $foreignCountries->where('code', $countryCode)->first();
             Brand::create([
                 'name' => $brandName,
-                'origin_country' => $country,
+                'description' => "International brand from {$countryCode}",
+                'country_id' => $country?->id,
             ]);
         }
 

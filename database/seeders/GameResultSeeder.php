@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Game;
 use App\Models\GameResult;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class GameResultSeeder extends Seeder
@@ -33,7 +32,7 @@ class GameResultSeeder extends Seeder
                     'game_id' => $game->id,
                     'score' => $score,
                     'total_questions' => $totalQuestions,
-                    'result_summary' => [
+                    'answers' => [
                         'correct_answers' => $score,
                         'incorrect_answers' => $totalQuestions - $score,
                         'percentage' => round(($score / $totalQuestions) * 100, 2),

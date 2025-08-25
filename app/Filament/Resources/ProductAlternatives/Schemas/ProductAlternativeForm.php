@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\ProductAlternatives\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -11,14 +13,22 @@ class ProductAlternativeForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
-            ->components([
-                Select::make('foreign_product_id')
-                    ->relationship('foreignProduct', 'name')
+            ->schema([
+                Select::make('product_id')
+                    ->relationship('product', 'name')
+                    ->searchable()
                     ->required(),
-                Select::make('local_product_id')
-                    ->relationship('localProduct', 'name')
-                    ->required(),
-                TextInput::make('note'),
+                TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                Textarea::make('description')
+                    ->columnSpanFull(),
+                TextInput::make('price')
+                    ->numeric()
+                    ->prefix('₹'),
+                FileUpload::make('image')
+                    ->image()
+                    ->directory('product-alternatives'),
             ]);
     }
 }

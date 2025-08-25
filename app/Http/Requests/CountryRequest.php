@@ -28,17 +28,31 @@ class CountryRequest extends FormRequest
             'name' => [
                 'required',
                 'string',
-                'min:2',
                 'max:255',
                 Rule::unique('countries', 'name')->ignore($countryId),
             ],
-            'iso_code' => [
+            'code' => [
                 'required',
                 'string',
                 'min:2',
-                'max:3',
-                'regex:/^[A-Z]{2,3}$/',
-                Rule::unique('countries', 'iso_code')->ignore($countryId),
+                'max:2',
+                'regex:/^[A-Z]{2}$/',
+                Rule::unique('countries', 'code')->ignore($countryId),
+            ],
+            'phone_code' => [
+                'nullable',
+                'string',
+                'max:10',
+            ],
+            'currency' => [
+                'nullable',
+                'string',
+                'max:10',
+            ],
+            'currency_symbol' => [
+                'nullable',
+                'string',
+                'max:5',
             ],
         ];
     }
@@ -53,11 +67,11 @@ class CountryRequest extends FormRequest
             'name.unique' => 'This country name already exists.',
             'name.min' => 'Country name must be at least 2 characters.',
             'name.max' => 'Country name cannot exceed 255 characters.',
-            'iso_code.required' => 'ISO code is required.',
-            'iso_code.unique' => 'This ISO code already exists.',
-            'iso_code.min' => 'ISO code must be at least 2 characters.',
-            'iso_code.max' => 'ISO code cannot exceed 3 characters.',
-            'iso_code.regex' => 'ISO code must contain only uppercase letters.',
+            'code.required' => 'ISO code is required.',
+            'code.unique' => 'This ISO code already exists.',
+            'code.min' => 'ISO code must be at least 2 characters.',
+            'code.max' => 'ISO code cannot exceed 3 characters.',
+            'code.regex' => 'ISO code must contain only uppercase letters.',
         ];
     }
 }

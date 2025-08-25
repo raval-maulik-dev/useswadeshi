@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('game_questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('game_id')->constrained('games')->onDelete('cascade');
-            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->string('question_text', 500)->nullable();
-            $table->enum('correct_answer', ['local','foreign']);
+            $table->foreignId('game_id')->constrained()->cascadeOnDelete();
+            $table->text('question');
+            $table->json('options');
+            $table->string('correct_answer');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

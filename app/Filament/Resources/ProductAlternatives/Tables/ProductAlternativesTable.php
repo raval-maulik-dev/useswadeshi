@@ -2,10 +2,11 @@
 
 namespace App\Filament\Resources\ProductAlternatives\Tables;
 
-use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class ProductAlternativesTable
@@ -14,12 +15,22 @@ class ProductAlternativesTable
     {
         return $table
             ->columns([
-                TextColumn::make('foreignProduct.name')
+                TextColumn::make('product.name')
+                    ->label('Product')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('description')
+                    ->limit(50)
                     ->searchable(),
-                TextColumn::make('localProduct.name')
-                    ->searchable(),
-                TextColumn::make('note')
-                    ->searchable(),
+                TextColumn::make('price')
+                    ->money('INR')
+                    ->sortable(),
+                ImageColumn::make('image')
+                    ->circular()
+                    ->size(40),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -30,15 +41,15 @@ class ProductAlternativesTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('product_id')
+                    ->label('Product')
+                    ->relationship('product', 'name'),
             ])
-            ->recordActions([
+            ->actions([
                 EditAction::make(),
             ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+            ->bulkActions([
+                DeleteBulkAction::make(),
             ]);
     }
 }

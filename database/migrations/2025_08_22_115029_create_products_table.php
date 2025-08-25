@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->enum('product_type', ['local','foreign']);
-            $table->foreignId('brand_id')->nullable()->constrained('brands')->nullOnDelete();
-            $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
-            $table->foreignId('vendor_id')->nullable()->constrained('vendors')->nullOnDelete();
-            $table->string('image_url', 500)->nullable();
+            $table->decimal('price', 10, 2);
+            $table->string('image')->nullable();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('brand_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('vendor_id')->constrained()->cascadeOnDelete();
+            $table->boolean('is_swadeshi')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

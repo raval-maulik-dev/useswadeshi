@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Country;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,18 +18,21 @@ class BrandFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->unique()->company(),
-            'origin_country' => fake()->country(),
+            'name' => fake()->company(),
+            'description' => fake()->sentence(),
+            'logo' => fake()->imageUrl(100, 100, 'business'),
+            'country_id' => Country::inRandomOrder()->first()?->id,
         ];
     }
 
     /**
-     * Indicate that the brand is Indian (local).
+     * Indicate that the brand is Indian.
      */
     public function indian(): static
     {
         return $this->state(fn (array $attributes) => [
-            'origin_country' => 'India',
+            'description' => 'Leading Indian brand in their respective industry',
+            'country_id' => Country::where('code', 'IN')->first()?->id,
         ]);
     }
 
@@ -38,7 +42,8 @@ class BrandFactory extends Factory
     public function foreign(): static
     {
         return $this->state(fn (array $attributes) => [
-            'origin_country' => fake()->randomElement(['USA', 'China', 'Germany', 'Japan', 'South Korea', 'France', 'Italy', 'UK']),
+            'description' => 'International brand from '.fake()->randomElement(['USA', 'China', 'Germany', 'Japan', 'South Korea', 'France', 'Italy', 'UK']),
+            'country_id' => Country::whereNot('code', 'IN')->inRandomOrder()->first()?->id,
         ]);
     }
 }

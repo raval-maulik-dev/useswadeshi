@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pledge extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -17,9 +18,9 @@ class Pledge extends Model
      */
     protected $fillable = [
         'user_id',
-        'product_id',
-        'message',
-        'certificate_url',
+        'pledge_text',
+        'status',
+        'admin_notes',
     ];
 
     /**

@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class GameQuestion extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -17,8 +18,8 @@ class GameQuestion extends Model
      */
     protected $fillable = [
         'game_id',
-        'product_id',
-        'question_text',
+        'question',
+        'options',
         'correct_answer',
     ];
 
@@ -31,10 +32,11 @@ class GameQuestion extends Model
     }
 
     /**
-     * Get the product that owns the question.
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
      */
-    public function product(): BelongsTo
-    {
-        return $this->belongsTo(Product::class);
-    }
+    protected $casts = [
+        'options' => 'array',
+    ];
 }

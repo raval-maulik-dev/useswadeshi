@@ -13,7 +13,7 @@ class StateSeeder extends Seeder
      */
     public function run(): void
     {
-        $india = Country::where('iso_code', 'IND')->first();
+        $india = Country::where('code', 'IN')->first();
 
         if (! $india) {
             $this->command->error('India not found in countries table. Please run CountrySeeder first.');

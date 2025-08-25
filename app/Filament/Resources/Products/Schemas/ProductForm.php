@@ -2,13 +2,11 @@
 
 namespace App\Filament\Resources\Products\Schemas;
 
-use App\Models\Brand;
-use App\Models\Category;
-use App\Models\Vendor;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
 class ProductForm
@@ -16,46 +14,38 @@ class ProductForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
-            ->components([
+            ->schema([
                 TextInput::make('name')
                     ->required()
-                    ->maxLength(255)
-                    ->placeholder('Enter product name'),
+                    ->maxLength(255),
                 Textarea::make('description')
                     ->rows(3)
-                    ->placeholder('Enter product description'),
-                Select::make('product_type')
-                    ->options([
-                        'local' => 'Local',
-                        'foreign' => 'Foreign',
-                    ])
-                    ->required()
-                    ->searchable()
-                    ->placeholder('Select product type'),
-                Select::make('brand_id')
-                    ->label('Brand')
-                    ->relationship('brand', 'name')
-                    ->searchable()
-                    ->placeholder('Select brand'),
+                    ->columnSpanFull(),
+                TextInput::make('price')
+                    ->numeric()
+                    ->prefix('₹')
+                    ->required(),
+                FileUpload::make('image')
+                    ->image()
+                    ->directory('products'),
                 Select::make('category_id')
                     ->label('Category')
                     ->relationship('category', 'name')
                     ->searchable()
-                    ->placeholder('Select category')->options(
-                        \App\Models\Category::query()
-                            ->limit(5) // preload when nothing is typed
-                            ->pluck('name', 'id')
-                            ->toArray()
-                    ),
+                    ->required(),
+                Select::make('brand_id')
+                    ->label('Brand')
+                    ->relationship('brand', 'name')
+                    ->searchable()
+                    ->required(),
                 Select::make('vendor_id')
                     ->label('Vendor')
-                    ->relationship('vendor', 'business_name')
+                    ->relationship('vendor', 'name')
                     ->searchable()
-                    ->placeholder('Select vendor'),
-                TextInput::make('image_url')
-                    ->label('Image URL')
-                    ->url()
-                    ->placeholder('Enter image URL'),
+                    ->required(),
+                Toggle::make('is_swadeshi')
+                    ->label('Is Swadeshi')
+                    ->default(true),
             ]);
     }
 }

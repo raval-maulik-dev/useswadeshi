@@ -6,7 +6,6 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Vendor;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
@@ -21,59 +20,39 @@ class ProductSeeder extends Seeder
         $categories = Category::all();
         $vendors = Vendor::all();
 
-        // Sample local products
-        $localProducts = [
-            'Amul Butter' => 'Dairy Products',
-            'Tata Salt' => 'Food & Beverages',
-            'Bajaj Pulsar' => 'Motorcycles',
-            'Hero Splendor' => 'Motorcycles',
-            'Maruti Swift' => 'Cars',
-            'HCL Laptop' => 'Laptops',
-            'Wipro Soap' => 'Personal Care',
-            'Reliance Jio Phone' => 'Smartphones',
-        ];
-
-        foreach ($localProducts as $productName => $categoryName) {
-            $category = $categories->where('name', $categoryName)->first();
-            $brand = $brands->where('origin_country', 'India')->random();
+        // Create Indian products (first 10 brands)
+        for ($i = 0; $i < 20; $i++) {
+            $category = $categories->random();
+            $brand = $brands->take(10)->random();
             $vendor = $vendors->random();
 
             Product::create([
-                'name' => $productName,
+                'name' => fake()->words(3, true),
                 'description' => fake()->paragraph(),
-                'product_type' => 'local',
+                'price' => fake()->randomFloat(2, 10, 1000),
+                'image' => fake()->imageUrl(400, 300, 'products'),
+                'category_id' => $category->id,
                 'brand_id' => $brand->id,
-                'category_id' => $category ? $category->id : $categories->random()->id,
                 'vendor_id' => $vendor->id,
-                'image_url' => fake()->imageUrl(640, 480, 'products'),
+                'is_swadeshi' => true,
             ]);
         }
 
-        // Sample foreign products
-        $foreignProducts = [
-            'iPhone 15' => 'Smartphones',
-            'Samsung Galaxy' => 'Smartphones',
-            'Nike Air Max' => 'Footwear',
-            'Adidas Ultraboost' => 'Footwear',
-            'Toyota Camry' => 'Cars',
-            'Honda Civic' => 'Cars',
-            'Sony Bravia TV' => 'TVs',
-            'LG Refrigerator' => 'Kitchen Appliances',
-        ];
-
-        foreach ($foreignProducts as $productName => $categoryName) {
-            $category = $categories->where('name', $categoryName)->first();
-            $brand = $brands->where('origin_country', '!=', 'India')->random();
+        // Create foreign products (remaining brands)
+        for ($i = 0; $i < 10; $i++) {
+            $category = $categories->random();
+            $brand = $brands->skip(10)->random();
             $vendor = $vendors->random();
 
             Product::create([
-                'name' => $productName,
+                'name' => fake()->words(3, true),
                 'description' => fake()->paragraph(),
-                'product_type' => 'foreign',
+                'price' => fake()->randomFloat(2, 10, 1000),
+                'image' => fake()->imageUrl(400, 300, 'products'),
+                'category_id' => $category->id,
                 'brand_id' => $brand->id,
-                'category_id' => $category ? $category->id : $categories->random()->id,
                 'vendor_id' => $vendor->id,
-                'image_url' => fake()->imageUrl(640, 480, 'products'),
+                'is_swadeshi' => false,
             ]);
         }
 
