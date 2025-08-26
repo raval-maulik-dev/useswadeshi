@@ -17,7 +17,6 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin User',
             'email' => 'maulik.raval@bacancy.com',
-            'phone' => '+91-9876543210',
             'role' => 'admin',
             'password' => Hash::make('Reset@123'),
             'email_verified_at' => now(),
@@ -26,7 +25,6 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin User',
             'email' => 'hittu9173@gmail.com',
-            'phone' => '+91-9054966947',
             'role' => 'admin',
             'password' => Hash::make('Reset@123'),
             'email_verified_at' => now(),
@@ -51,8 +49,5 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
         ]);
-
-        // Create additional users
-        //        User::factory(10)->create();
     }
 }
