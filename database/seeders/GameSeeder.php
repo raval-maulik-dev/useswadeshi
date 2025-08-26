@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Game;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class GameSeeder extends Seeder
@@ -13,7 +12,6 @@ class GameSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create sample games
         $games = [
             [
                 'name' => 'Swadeshi Challenge',
@@ -31,13 +29,74 @@ class GameSeeder extends Seeder
                 'name' => 'Local vs Global',
                 'description' => 'Compare local and global products',
             ],
+            [
+                'name' => 'Swadeshi Quiz Marathon',
+                'description' => 'Answer a series of timed questions about local businesses and culture',
+            ],
+            [
+                'name' => 'Usage Impact Calculator',
+                'description' => 'Calculate the impact of switching from foreign to local products',
+            ],
+            [
+                'name' => 'Festival Special Quiz',
+                'description' => 'A limited-time quiz based on Indian festivals and local traditions',
+            ],
+            [
+                'name' => 'Guess the Local Brand',
+                'description' => 'Identify logos and slogans of local brands',
+            ],
+            [
+                'name' => 'Local Hero Spotlight',
+                'description' => 'Learn about inspiring Indian entrepreneurs and their brands',
+            ],
+            [
+                'name' => 'Eco-Friendly Choices',
+                'description' => 'Select eco-friendly local alternatives to common foreign products',
+            ],
+            [
+                'name' => 'Supply Chain Explorer',
+                'description' => 'Trace the journey of a product from raw material to consumer and identify local vs foreign dependencies',
+            ],
+            [
+                'name' => 'Local Treasure Hunt (Digital)',
+                'description' => 'Unlock clues about famous Indian products and brands',
+            ],
+            [
+                'name' => 'Sustainable Switch',
+                'description' => 'Choose eco-friendly local alternatives and earn points',
+            ],
+            [
+                'name' => 'Make in India Memory Match',
+                'description' => 'Match Indian brands with their products in a memory card game',
+            ],
+            [
+                'name' => 'Local Startups Quiz',
+                'description' => 'Identify upcoming Indian startups and their innovations',
+            ],
+            [
+                'name' => 'Price Comparison Challenge',
+                'description' => 'Guess whether local or foreign products are more affordable',
+            ],
+            [
+                'name' => 'Swadeshi Crossword',
+                'description' => 'Solve a crossword featuring Indian brands and entrepreneurs',
+            ],
+            [
+                'name' => 'Impact Meter',
+                'description' => 'See the impact of your purchases by choosing local over foreign',
+            ],
+            [
+                'name' => 'Guess the Origin',
+                'description' => 'Identify the country of origin for famous brands',
+            ],
+            [
+                'name' => 'Local Legends Trivia',
+                'description' => 'Test your knowledge about historic Indian brands and founders',
+            ],
         ];
 
         foreach ($games as $game) {
-            Game::create($game);
+            Game::firstOrCreate(['name' => $game['name']], $game);
         }
-
-        // Create additional random games
-        Game::factory(5)->create();
     }
 }
