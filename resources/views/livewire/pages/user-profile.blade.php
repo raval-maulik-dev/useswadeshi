@@ -289,7 +289,7 @@
 
                 <!-- Certificates Tab -->
                 @if($activeTab === 'certificates')
-                <div>
+<div>
                     <h3 class="text-lg font-medium text-gray-900 mb-6">Certificates</h3>
                     
                     @if($this->userResults->whereNotNull('certificate_id')->count() > 0)

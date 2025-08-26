@@ -7,6 +7,7 @@ use App\Filament\Resources\GameResults\Pages\EditGameResult;
 use App\Filament\Resources\GameResults\Pages\ListGameResults;
 use App\Filament\Resources\GameResults\Schemas\GameResultForm;
 use App\Filament\Resources\GameResults\Tables\GameResultsTable;
+use App\Filament\Resources\GameResults\Widgets\GameResultStatsWidget;
 use App\Models\GameResult;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -36,6 +37,13 @@ class GameResultResource extends Resource
     {
         return [
             //
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            GameResultStatsWidget::class,
         ];
     }
 
