@@ -19,7 +19,21 @@ Route::post('logout', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/quiz', \App\Livewire\Pages\Quiz::class)->name('quiz');
     Route::get('/quiz/start/{game}', \App\Livewire\Pages\QuizStart::class)->name('quiz.start');
-    Route::get('/quiz/result/{score}/{total}/{game}', \App\Livewire\Pages\QuizResult::class)->name('quiz.result');
+    Route::get('/quiz/result/{result}', \App\Livewire\Pages\QuizResult::class)->name('quiz.result');
+
+    // User Profile Routes
+    Route::get('/profile', \App\Livewire\Pages\UserProfile::class)->name('user.profile');
+
+    // Certificate Routes
+    Route::get('/certificate/download/{result}', function ($result) {
+        // This would handle certificate download
+        return response()->json(['message' => 'Certificate download initiated']);
+    })->name('certificate.download');
+
+    Route::get('/certificate/share/{result}', function ($result) {
+        // This would handle certificate sharing
+        return response()->json(['message' => 'Certificate share initiated']);
+    })->name('certificate.share');
 });
 
 // Public Routes
