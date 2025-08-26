@@ -13,8 +13,9 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
+        // Commented out factory code to prevent generating fake data
         // Currently only timestamps are available
         // Create basic articles when migration is updated
-        Article::factory(10)->create();
+        // Article::factory(10)->create();
     }
 }

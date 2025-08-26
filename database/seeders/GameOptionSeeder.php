@@ -19,9 +19,6 @@ class GameOptionSeeder extends Seeder
         foreach ($questions as $question) {
             $this->createOptionsForQuestion($question);
         }
-
-        // Create additional random options
-        GameOption::factory(100)->create();
     }
 
     /**
@@ -80,6 +77,8 @@ class GameOptionSeeder extends Seeder
             return $index === 0 ? 'True' : 'False';
         }
 
+        // Commented out factory code to prevent generating fake data
+        /*
         // Generate random option text for other types
         $options = [
             'Samsung', 'Apple', 'Tata', 'Reliance', 'Mahindra', 'Maruti',
@@ -89,5 +88,16 @@ class GameOptionSeeder extends Seeder
         ];
 
         return fake()->randomElement($options);
+        */
+        
+        // Return a default option text instead
+        $options = [
+            'Samsung', 'Apple', 'Tata', 'Reliance', 'Mahindra', 'Maruti',
+            'Amul', 'Nike', 'Adidas', 'Coca-Cola', 'Pepsi', 'Honda',
+            'Toyota', 'Hyundai', 'Ford', 'BMW', 'Mercedes', 'Audi',
+            'Volkswagen', 'Skoda', 'Kia', 'MG', 'Jaguar', 'Land Rover',
+        ];
+
+        return $options[$index % count($options)];
     }
 }

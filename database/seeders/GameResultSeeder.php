@@ -18,6 +18,8 @@ class GameResultSeeder extends Seeder
         $users = User::all();
         $games = Game::all();
 
+        // Commented out factory code to prevent generating fake data
+        /*
         foreach ($users as $user) {
             // Create 1-5 results per user
             $resultCount = rand(1, 5);
@@ -41,8 +43,10 @@ class GameResultSeeder extends Seeder
                 ]);
             }
         }
+        */
 
         // Create additional random results
+        // Commented out factory code to prevent generating fake data
         // GameResult::factory(50)->create();
     }
 }

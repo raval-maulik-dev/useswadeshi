@@ -28,28 +28,6 @@ class GameQuestionSeeder extends Seeder
 
         // Create questions with mixed option types
         $this->createSwadeshiQuestions($swadeshiGame);
-
-        // Create additional random questions for other games
-        $games = Game::where('id', '!=', $swadeshiGame->id)->get();
-
-        foreach ($games as $game) {
-            // Create 5-10 questions per game
-            $questionCount = rand(5, 10);
-
-            for ($i = 0; $i < $questionCount; $i++) {
-                $question = GameQuestion::factory()->create([
-                    'game_id' => $game->id,
-                ]);
-
-                // Create 4 options per question
-                $this->createRandomOptions($question);
-            }
-        }
-
-        // Create additional random questions
-        GameQuestion::factory(30)->create()->each(function ($question) {
-            $this->createRandomOptions($question);
-        });
     }
 
     /**

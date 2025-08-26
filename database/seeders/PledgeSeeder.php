@@ -16,6 +16,8 @@ class PledgeSeeder extends Seeder
         // Create pledges for existing users
         $users = User::where('role', 'user')->get();
 
+        // Commented out factory code to prevent generating fake data
+        /*
         foreach ($users as $user) {
             // Create 1-3 pledges per user
             $pledgeCount = rand(1, 3);
@@ -29,8 +31,10 @@ class PledgeSeeder extends Seeder
                 ]);
             }
         }
+        */
 
         // Create additional random pledges
+        // Commented out factory code to prevent generating fake data
         // Pledge::factory(20)->create();
     }
 }
