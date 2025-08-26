@@ -26,7 +26,7 @@ class GameQuestionSeeder extends Seeder
                 GameQuestion::create([
                     'game_id' => $game->id,
                     'question' => fake()->sentence().' Is this a Swadeshi product?',
-                    'options' => json_encode(['Yes', 'No']),
+                    'options' => ['Yes', 'No'],
                     'correct_answer' => $isSwadeshi ? 'Yes' : 'No',
                 ]);
             }

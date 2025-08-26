@@ -20,10 +20,14 @@ class Vendor extends Model
     protected $fillable = [
         'name',
         'description',
+        'business_type',
         'logo',
         'website',
         'contact_email',
         'contact_phone',
+        'city_id',
+        'address',
+        'verified',
     ];
 
     /**
@@ -49,5 +53,21 @@ class Vendor extends Model
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    /**
+     * Get the city that owns the vendor.
+     */
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    /**
+     * Get the state through the city relationship.
+     */
+    public function state()
+    {
+        return $this->hasOneThrough(State::class, City::class, 'id', 'id', 'city_id', 'state_id');
     }
 }

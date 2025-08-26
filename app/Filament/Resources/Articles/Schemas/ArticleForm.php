@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Articles\Schemas;
 
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -22,6 +23,9 @@ class ArticleForm
                 FileUpload::make('image')
                     ->image()
                     ->directory('articles'),
+                Checkbox::make('is_featured')
+                    ->label('Featured Article')
+                    ->helperText('Mark this article as featured to display it prominently'),
             ]);
     }
 }
