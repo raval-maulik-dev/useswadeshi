@@ -43,6 +43,6 @@ class GameResultSeeder extends Seeder
         }
 
         // Create additional random results
-        GameResult::factory(50)->create();
+        // GameResult::factory(50)->create();
     }
 }

@@ -33,6 +33,6 @@ class GameQuestionSeeder extends Seeder
         }
 
         // Create additional random questions
-        GameQuestion::factory(30)->create();
+        // GameQuestion::factory(30)->create();
     }
 }
