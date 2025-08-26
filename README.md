@@ -12,6 +12,11 @@ First showcased at **Fashion Anantaa Women Expo (Mahesana)**.
 - 🏪 **Vendor Profiles** - Comprehensive listings for local businesses
 - 📰 **Educational Content** - Articles and blogs to spread awareness
 
+## 🌱 Why Local First?
+- Strengthen the local economy
+- Reduce carbon footprint by minimizing imports
+- Empower small businesses and artisans
+
 ## 🏗️ Tech Stack
 
 - **Backend**: Laravel 12.0 (PHP 8.2+)
