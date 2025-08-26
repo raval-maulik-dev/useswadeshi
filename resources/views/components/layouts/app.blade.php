@@ -85,6 +85,7 @@
                     <a href="{{ route('articles') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Articles</a>
                     @auth
                         <a href="{{ route('dashboard') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Dashboard</a>
+                        <a href="{{ route('user.profile') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Profile</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Logout</button>
@@ -124,6 +125,7 @@
                     <a href="{{ route('articles') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Articles</a>
                     @auth
                         <a href="{{ route('dashboard') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Dashboard</a>
+                        <a href="{{ route('user.profile') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Profile</a>
                         <form method="POST" action="{{ route('logout') }}" class="w-full">
                             @csrf
                             <button type="submit" class="w-full text-left px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Logout</button>
