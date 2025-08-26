@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             GameSeeder::class,
             PledgeSeeder::class,
             GameQuestionSeeder::class,
+            GameOptionSeeder::class,
             GameResultSeeder::class,
             ProductAlternativeSeeder::class,
             ArticleSeeder::class,

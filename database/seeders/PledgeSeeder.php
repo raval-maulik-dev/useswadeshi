@@ -31,6 +31,6 @@ class PledgeSeeder extends Seeder
         }
 
         // Create additional random pledges
-        Pledge::factory(20)->create();
+        // Pledge::factory(20)->create();
     }
 }

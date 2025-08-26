@@ -26,7 +26,7 @@ class VendorsTable
                     ->circular(),
                 TextColumn::make('website')
                     ->searchable()
-                    ->url()
+                    ->url(fn ($record) => $record->website, true)
                     ->openUrlInNewTab(),
                 TextColumn::make('contact_email')
                     ->searchable(),

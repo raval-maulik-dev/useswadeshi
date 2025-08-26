@@ -17,31 +17,81 @@ class GameQuestionFactory extends Factory
      */
     public function definition(): array
     {
+        $types = ['mcq', 'multi_select', 'true_false'];
+        $difficulties = ['easy', 'medium', 'hard'];
+
         return [
             'game_id' => Game::factory(),
             'question' => fake()->sentence().' Is this a Swadeshi product?',
-            'options' => ['Yes', 'No'],
-            'correct_answer' => fake()->randomElement(['Yes', 'No']),
+            'type' => fake()->randomElement($types),
+            'difficulty' => fake()->randomElement($difficulties),
+            'points' => fake()->randomElement([5, 10, 15, 20]),
         ];
     }
 
     /**
-     * Indicate that the correct answer is Yes (Swadeshi).
+     * Create a multiple choice question.
      */
-    public function swadeshiAnswer(): static
+    public function mcq(): static
     {
         return $this->state(fn (array $attributes) => [
-            'correct_answer' => 'Yes',
+            'type' => 'mcq',
+            'question' => fake()->sentence().' Which of the following is a Swadeshi brand?',
         ]);
     }
 
     /**
-     * Indicate that the correct answer is No (Foreign).
+     * Create a multi-select question.
      */
-    public function foreignAnswer(): static
+    public function multiSelect(): static
     {
         return $this->state(fn (array $attributes) => [
-            'correct_answer' => 'No',
+            'type' => 'multi_select',
+            'question' => fake()->sentence().' Select all Swadeshi brands from the following:',
+        ]);
+    }
+
+    /**
+     * Create a true/false question.
+     */
+    public function trueFalse(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'type' => 'true_false',
+            'question' => fake()->sentence().' Is this statement true or false?',
+        ]);
+    }
+
+    /**
+     * Create an easy difficulty question.
+     */
+    public function easy(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'difficulty' => 'easy',
+            'points' => 5,
+        ]);
+    }
+
+    /**
+     * Create a medium difficulty question.
+     */
+    public function medium(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'difficulty' => 'medium',
+            'points' => 10,
+        ]);
+    }
+
+    /**
+     * Create a hard difficulty question.
+     */
+    public function hard(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'difficulty' => 'hard',
+            'points' => 20,
         ]);
     }
 }

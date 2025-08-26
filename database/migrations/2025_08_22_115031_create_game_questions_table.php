@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('game_id')->constrained()->cascadeOnDelete();
             $table->text('question');
-            $table->json('options');
-            $table->string('correct_answer');
+            $table->string('type')->default('mcq'); // mcq, multi_select, true_false, etc.
+            $table->string('difficulty')->nullable(); // easy, medium, hard
+            $table->integer('points')->default(10);
             $table->softDeletes();
             $table->timestamps();
         });

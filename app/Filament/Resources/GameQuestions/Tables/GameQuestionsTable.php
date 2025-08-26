@@ -18,21 +18,43 @@ class GameQuestionsTable
                     ->label('Game')
                     ->searchable()
                     ->sortable(),
+
                 TextColumn::make('question')
+                    ->label('Question')
                     ->limit(50)
                     ->searchable(),
-                TextColumn::make('options')
-                    ->label('Options')
-                    ->limit(30)
-                    ->toggleable(),
-                TextColumn::make('correct_answer')
-                    ->label('Correct Answer')
+
+                TextColumn::make('type')
+                    ->label('Type')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'mcq' => 'success',
+                        'multi_select' => 'warning',
+                        'true_false' => 'info',
+                        default => 'gray',
+                    }),
+
+                TextColumn::make('difficulty')
+                    ->label('Difficulty')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'easy' => 'success',
+                        'medium' => 'warning',
+                        'hard' => 'danger',
+                        default => 'gray',
+                    }),
+
+                TextColumn::make('points')
+                    ->label('Points')
                     ->sortable(),
+
+                TextColumn::make('options_count')
+                    ->label('Options')
+                    ->counts('options')
+                    ->sortable(),
+
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
+                    ->label('Created')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -41,6 +63,22 @@ class GameQuestionsTable
                 SelectFilter::make('game_id')
                     ->label('Game')
                     ->relationship('game', 'name'),
+
+                SelectFilter::make('type')
+                    ->label('Question Type')
+                    ->options([
+                        'mcq' => 'Multiple Choice',
+                        'multi_select' => 'Multi Select',
+                        'true_false' => 'True/False',
+                    ]),
+
+                SelectFilter::make('difficulty')
+                    ->label('Difficulty')
+                    ->options([
+                        'easy' => 'Easy',
+                        'medium' => 'Medium',
+                        'hard' => 'Hard',
+                    ]),
             ])
             ->actions([
                 EditAction::make(),

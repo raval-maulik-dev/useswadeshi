@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
@@ -81,5 +82,13 @@ class Product extends Model
     public function localAlternatives(): HasMany
     {
         return $this->hasMany(ProductAlternative::class, 'local_product_id');
+    }
+
+    /**
+     * Get the game options that reference this product.
+     */
+    public function gameOptions(): MorphMany
+    {
+        return $this->morphMany(GameOption::class, 'optionable');
     }
 }
