@@ -20,7 +20,7 @@ class GameQuestionFactory extends Factory
         return [
             'game_id' => Game::factory(),
             'question' => fake()->sentence().' Is this a Swadeshi product?',
-            'options' => json_encode(['Yes', 'No']),
+            'options' => ['Yes', 'No'],
             'correct_answer' => fake()->randomElement(['Yes', 'No']),
         ];
     }

@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Articles\Tables;
 
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -24,6 +25,13 @@ class ArticlesTable
                 ImageColumn::make('image')
                     ->circular()
                     ->size(40),
+                IconColumn::make('is_featured')
+                    ->boolean()
+                    ->label('Featured')
+                    ->trueIcon('heroicon-o-star')
+                    ->falseIcon('heroicon-o-star')
+                    ->trueColor('warning')
+                    ->falseColor('gray'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

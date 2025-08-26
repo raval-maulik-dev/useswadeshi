@@ -6,16 +6,16 @@
     <meta name="description" content="Swadeshi Abhiyan Mehsana 2025 - Cultural Quiz Event">
     <meta name="keywords" content="Swadeshi, Quiz, Indian Products, Vocal for Local">
     <title>@yield('title', 'Swadeshi Abhiyan - Mehsana 2025')</title>
-    
+
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#FF6B35">
     <link rel="manifest" href="/manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
+
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -32,10 +32,10 @@
             }
         }
     </script>
-    
+
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    
+
     <!-- Custom Styles -->
     <style>
         .tricolor-gradient {
@@ -70,22 +70,27 @@
             <div class="flex items-center justify-between h-16">
                 <!-- Logo and Title -->
                 <div class="flex items-center space-x-4">
-                    <a href="#" class="block">
+                    <a href="{{ route('home') }}" wire:navigate class="block">
                         <img src="{{ asset('asset/useswadeshi-remove-bg-logo.png') }}" alt="Swadeshi Abhiyan Logo" class="w-40 h-auto hover:opacity-90 transition-opacity">
                     </a>
                 </div>
 
                 <!-- Navigation -->
                 <nav class="hidden md:flex items-center space-x-6">
-                    <a href="#" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Home</a>
-                    <a href="#" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Leaderboard</a>
+                    <a href="{{ route('home') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Home</a>
+                    <a href="{{ route('quiz') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Quiz</a>
+                    <a href="{{ route('leaderboard') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Leaderboard</a>
+                    <a href="{{ route('products') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Products</a>
+                    <a href="{{ route('vendors') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Vendors</a>
+                    <a href="{{ route('articles') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Articles</a>
                     @auth
-                        <form method="POST" action="#">
+                        <a href="{{ route('dashboard') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Dashboard</a>
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Logout</button>
                         </form>
                     @else
-                        <a href="#" class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-lg font-medium hover:from-orange-600 hover:to-red-700 transition-all">Login</a>
+                        <a href="{{ route('login') }}" wire:navigate class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-lg font-medium hover:from-orange-600 hover:to-red-700 transition-all">Login</a>
                     @endauth
                 </nav>
 
@@ -111,15 +116,20 @@
             <!-- Mobile Menu -->
             <div class="md:hidden hidden" id="mobileMenu">
                 <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t">
-                    <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Home</a>
-                    <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Leaderboard</a>
+                    <a href="{{ route('home') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Home</a>
+                    <a href="{{ route('quiz') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Quiz</a>
+                    <a href="{{ route('leaderboard') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Leaderboard</a>
+                    <a href="{{ route('products') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Products</a>
+                    <a href="{{ route('vendors') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Vendors</a>
+                    <a href="{{ route('articles') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Articles</a>
                     @auth
-                        <form method="POST" action="#" class="w-full">
+                        <a href="{{ route('dashboard') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Dashboard</a>
+                        <form method="POST" action="{{ route('logout') }}" class="w-full">
                             @csrf
                             <button type="submit" class="w-full text-left px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Logout</button>
                         </form>
                     @else
-                        <a href="#" class="block px-3 py-2 bg-orange-500 text-white rounded-md text-center">Login</a>
+                        <a href="{{ route('login') }}" class="block px-3 py-2 bg-orange-500 text-white rounded-md text-center">Login</a>
                     @endauth
                 </div>
             </div>
@@ -128,7 +138,7 @@
 
     <!-- Main Content -->
     <main>
-        @yield('content')
+        {{ $slot }}
     </main>
 
     <!-- Footer -->
@@ -136,7 +146,7 @@
         <div class="max-w-7xl mx-auto px-4">
             <!-- Four Column Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-                
+
                 <!-- Column 1: Event Info -->
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
@@ -215,7 +225,7 @@
                     <div class="text-sm text-gray-400 mb-4 md:mb-0">
                         © {{ date('Y') }} Use Swadeshi Abhiyan. All rights reserved by VELLAXY TECH PRIVATE LIMITED
                     </div>
-                    
+
                     <!-- Center: Hashtags -->
                     <div class="flex space-x-4 mb-4 md:mb-0">
 

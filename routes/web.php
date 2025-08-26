@@ -1,24 +1,42 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\QuizController;
 use App\Http\Controllers\LeaderboardController;
+use App\Http\Controllers\QuizController;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    // Static data for the welcome page
-    $stats = [
-        'total_participants' => 0,
-        'quizzes_completed' => 0,
-        'certificates_generated' => 0,
-        'top_score' => 0,
-        'average_score' => 0
-    ];
-    
-    return view('welcome', compact('stats'));
-})->name('home');
+Route::get('/', \App\Livewire\Pages\Home::class)->name('home');
+
+Route::get('login', \App\Livewire\Pages\Login::class)->name('login');
+
+// Logout Route
+Route::post('logout', function () {
+    auth()->logout();
+
+    return redirect()->route('home')->with('success', 'You have been logged out successfully.');
+})->name('logout');
+
+// Quiz Routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/quiz', \App\Livewire\Pages\Quiz::class)->name('quiz');
+    Route::get('/quiz/start/{game}', \App\Livewire\Pages\QuizStart::class)->name('quiz.start');
+    Route::get('/quiz/result/{score}/{total}/{game}', \App\Livewire\Pages\QuizResult::class)->name('quiz.result');
+});
+
+// Public Routes
+Route::get('/leaderboard', \App\Livewire\Pages\Leaderboard::class)->name('leaderboard');
+Route::get('/products', \App\Livewire\Pages\Products::class)->name('products');
+Route::get('/vendors', \App\Livewire\Pages\Vendors::class)->name('vendors');
+Route::get('/articles', \App\Livewire\Pages\Articles::class)->name('articles');
+Route::get('/articles/{article}', \App\Livewire\Pages\ArticleDetail::class)->name('articles.show');
+
+// Pledge Routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/pledges', \App\Livewire\Pages\Pledges::class)->name('pledges');
+    Route::get('/dashboard', \App\Livewire\Pages\Dashboard::class)->name('dashboard');
+});
 
 // Authentication Routes
-Auth::routes();
+// Auth::routes();
 
 // Quiz Routes (commented out for now)
 // Route::middleware(['auth'])->group(function () {
