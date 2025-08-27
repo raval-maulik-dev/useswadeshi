@@ -12,7 +12,7 @@
             <div class="w-full max-w-md">
                 <!-- Logo and Title -->
                 <div class="text-center mb-8">
-                    <div class="flex justify-center mb-6">
+                    <div class="flex justify-center -my-20">
                         <img src="{{ asset('asset/useswadeshi-remove-bg-logo.png') }}" alt="Swadeshi Abhiyan Logo" class="w-48 h-auto">
                     </div>
                     <h1 class="text-3xl font-bold text-gray-800 mb-2">Welcome to Swadeshi Abhiyan</h1>
