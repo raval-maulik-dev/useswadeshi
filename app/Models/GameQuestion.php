@@ -47,7 +47,7 @@ class GameQuestion extends Model
      */
     public function options(): HasMany
     {
-        return $this->hasMany(GameOption::class, 'question_id')->orderBy('sort_order');
+        return $this->hasMany(GameOption::class, 'question_id')->ordered();
     }
 
     /**
@@ -55,7 +55,7 @@ class GameQuestion extends Model
      */
     public function correctOptions(): HasMany
     {
-        return $this->hasMany(GameOption::class, 'question_id')->where('is_correct', true);
+        return $this->hasMany(GameOption::class, 'question_id')->correct()->ordered();
     }
 
     /**
@@ -63,6 +63,80 @@ class GameQuestion extends Model
      */
     public function incorrectOptions(): HasMany
     {
-        return $this->hasMany(GameOption::class, 'question_id')->where('is_correct', false);
+        return $this->hasMany(GameOption::class, 'question_id')->incorrect()->ordered();
+    }
+
+    /**
+     * Check if this is a single answer question.
+     */
+    public function isSingleAnswer(): bool
+    {
+        return in_array($this->type, ['mcq', 'true_false']);
+    }
+
+    /**
+     * Check if this is a multiple answer question.
+     */
+    public function isMultipleAnswer(): bool
+    {
+        return $this->type === 'multi_select';
+    }
+
+    /**
+     * Get the total number of correct options.
+     */
+    public function getCorrectOptionsCountAttribute(): int
+    {
+        return $this->correctOptions()->count();
+    }
+
+    /**
+     * Get the total number of options.
+     */
+    public function getOptionsCountAttribute(): int
+    {
+        return $this->options()->count();
+    }
+
+    /**
+     * Check if the question has the minimum required options.
+     */
+    public function hasMinimumOptions(): bool
+    {
+        return $this->options_count >= 2;
+    }
+
+    /**
+     * Check if the question has at least one correct option.
+     */
+    public function hasCorrectOption(): bool
+    {
+        return $this->correct_options_count > 0;
+    }
+
+    /**
+     * Get the question type label.
+     */
+    public function getTypeLabelAttribute(): string
+    {
+        return match ($this->type) {
+            'mcq' => 'Multiple Choice (Single Answer)',
+            'multi_select' => 'Multiple Choice (Multiple Answers)',
+            'true_false' => 'True/False',
+            default => 'Unknown',
+        };
+    }
+
+    /**
+     * Get the difficulty label.
+     */
+    public function getDifficultyLabelAttribute(): string
+    {
+        return match ($this->difficulty) {
+            'easy' => 'Easy',
+            'medium' => 'Medium',
+            'hard' => 'Hard',
+            default => 'Unknown',
+        };
     }
 }
