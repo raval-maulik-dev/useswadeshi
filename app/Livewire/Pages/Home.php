@@ -20,7 +20,9 @@ class Home extends Component
     {
         // Get real statistics from the database
         $this->stats = [
-            'total_participants' => User::count(),
+            'total_participants' => User::where(function ($q) {
+                $q->has('pledges')->orHas('gameResults');
+            })->count(),
             'quizzes_completed' => GameResult::count(),
             'certificates_generated' => GameResult::where('score', '>', 0)->count(),
             'top_score' => GameResult::max('score') ?? 0,
