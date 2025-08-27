@@ -38,7 +38,7 @@ class GameOption extends Model
             set: fn ($value) => match ($value) {
                 'product' => \App\Models\Product::class,
                 'brand'   => \App\Models\Brand::class,
-                default   => $value,
+                default   => null,
             },
         );
     }
