@@ -4,12 +4,19 @@ namespace App\Livewire\Pages;
 
 use App\Models\Game;
 use App\Models\GameResult;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
+use Livewire\Attributes\Layout as LayoutAttr;
 use Livewire\Component;
 
+#[LayoutAttr('components.layouts.app')]
 class QuizStart extends Component
 {
     public $game;
 
+    /**
+     * @var \Illuminate\Support\Collection<int, \App\Models\GameQuestion>
+     */
     public $questions = [];
 
     public $currentQuestionIndex = 0;
@@ -41,7 +48,7 @@ class QuizStart extends Component
         $this->game = Game::with(['gameQuestions.options.optionable'])->findOrFail($game);
 
         // Check if user can play this game
-        if (! $this->game->canUserPlay(auth()->id())) {
+        if (! $this->game->canUserPlay(Auth::id())) {
             $this->dispatch('notify', [
                 'type' => 'error',
                 'message' => 'You cannot play this game!',
@@ -50,7 +57,7 @@ class QuizStart extends Component
             return redirect()->route('quiz');
         }
 
-        $this->questions = $this->game->getQuestionsForGame();
+        $this->questions = collect($this->game->getQuestionsForGame());
         $this->totalQuestions = $this->questions->count();
         $this->userAnswers = array_fill(0, $this->totalQuestions, []);
         $this->answeredQuestions = array_fill(0, $this->totalQuestions, false);
@@ -58,7 +65,6 @@ class QuizStart extends Component
 
         $this->startTime = now();
         $this->questionStartTime = now();
-        $this->startTimer();
     }
 
     public function startTimer()
@@ -69,7 +75,6 @@ class QuizStart extends Component
             $this->timeLeft = 10; // Default fallback
         }
 
-        $this->dispatch('startTimer', timeLeft: $this->timeLeft);
     }
 
     public function answerQuestion($optionId)
@@ -107,7 +112,6 @@ class QuizStart extends Component
             $this->currentQuestionIndex++;
             $this->questionStartTime = now();
             $this->showNextButton = false;
-            $this->startTimer();
         } else {
             $this->completeQuiz();
         }
@@ -119,7 +123,6 @@ class QuizStart extends Component
             $this->currentQuestionIndex--;
             $this->questionStartTime = now();
             $this->showNextButton = false;
-            $this->startTimer();
         }
     }
 
@@ -188,11 +191,11 @@ class QuizStart extends Component
         $totalTimeTaken = now()->diffInSeconds($this->startTime);
 
         // Get attempt number
-        $attemptNumber = $this->game->getUserAttemptNumber(auth()->id());
+        $attemptNumber = $this->game->getUserAttemptNumber(Auth::id());
 
         // Save detailed result
         $result = GameResult::create([
-            'user_id' => auth()->id(),
+            'user_id' => Auth::id(),
             'game_id' => $this->game->id,
             'score' => $this->score,
             'total_questions' => $this->totalQuestions,
@@ -222,6 +225,29 @@ class QuizStart extends Component
         return redirect()->route('quiz.result', [
             'result' => $result->id,
         ]);
+    }
+
+    /**
+     * Accept a single client-side submission with all answers and timings
+     * to minimize server calls during the quiz.
+     *
+     * @param array{
+     *     answers: array<int, array<int>>,
+     *     questionTimes: array<int, int>,
+     *     answeredQuestions: array<int, bool>
+     * } $payload
+     */
+    public function submitResults(array $payload)
+    {
+        $this->userAnswers = $payload['answers'] ?? [];
+        $this->questionTimes = $payload['questionTimes'] ?? [];
+        $this->answeredQuestions = $payload['answeredQuestions'] ?? [];
+
+        // Derive total time from provided per-question times to avoid extra calls
+        $this->startTime = now()->subSeconds(array_sum($this->questionTimes ?? []));
+        $this->questionStartTime = now();
+
+        return $this->completeQuiz();
     }
 
     public function getCurrentQuestionProperty()
@@ -271,9 +297,8 @@ class QuizStart extends Component
         return $this->currentQuestionIndex + 1;
     }
 
-    public function render()
+    public function render(): mixed
     {
-        return view('livewire.pages.quiz-start')
-            ->layout('components.layouts.app');
+        return view('livewire.pages.quiz-start');
     }
 }
