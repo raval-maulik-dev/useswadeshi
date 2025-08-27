@@ -60,7 +60,7 @@
                     <div class="mt-auto flex flex-col gap-3 w-full">
                         @if($this->getUserGameStatus($game) === 'new')
                             <button 
-                                wire:click="startGame({{ $game->id }})"
+                                wire:click="selectGame({{ $game->id }})"
                                 class="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 
                                     text-white py-3 rounded-lg font-semibold text-center transition"
                             >
