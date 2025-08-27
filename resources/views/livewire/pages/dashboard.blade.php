@@ -79,7 +79,7 @@
                         <div class="text-3xl mb-2">🎯</div>
                         <div class="font-bold">Take Quiz</div>
                     </a>
-                    <a href="{{ route('pledges') }}" class="bg-gradient-to-r from-green-500 to-blue-600 text-white p-6 rounded-2xl text-center hover:shadow-lg transition-all">
+                    <a href="{{ route('pledges') }}" class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-2xl text-center hover:shadow-lg transition-all">
                         <div class="text-3xl mb-2">🤝</div>
                         <div class="font-bold">Make Pledge</div>
                     </a>
