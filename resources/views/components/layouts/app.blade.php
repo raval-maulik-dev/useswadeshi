@@ -76,6 +76,7 @@
                 </div>
 
                 <!-- Navigation -->
+                <!-- Navigation -->
                 <nav class="hidden md:flex items-center space-x-6">
                     <a href="{{ route('home') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Home</a>
                     <a href="{{ route('quiz') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Quiz</a>
@@ -83,18 +84,36 @@
                     <a href="{{ route('products') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Products</a>
                     <a href="{{ route('vendors') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Vendors</a>
                     <a href="{{ route('articles') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Articles</a>
+
                     @auth
-                        <a href="{{ route('dashboard') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Dashboard</a>
-                        <a href="{{ route('user.profile') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Profile</a>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Logout</button>
-                        </form>
+                        <!-- Profile Dropdown -->
+                        <div x-data="{ open: false }" class="relative">
+                            <!-- Avatar Button -->
+                            <button @click="open = !open" class="border border-2 border-danger w-10 h-10 flex items-center rounded-full justify-center text-gray-700 hover:text-orange-600 font-medium transition-colors">
+                                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                            </button>
+
+                            <!-- Dropdown Menu -->
+                            <div 
+                                x-show="open" 
+                                @click.away="open = false"
+                                class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50"
+                            >
+                                <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors">Dashboard</a>
+                                <a href="{{ route('user.profile') }}" class="block px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors">Profile</a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="w-full text-left block px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors">
+                                        Logout
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     @else
                         <a href="{{ route('login') }}" wire:navigate class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-lg font-medium hover:from-orange-600 hover:to-red-700 transition-all">Login</a>
                     @endauth
                 </nav>
-
+                
                 <!-- Language Switcher -->
                 <div class="flex items-center space-x-2">
                     <div class="relative">
@@ -225,7 +244,7 @@
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <!-- Left: Copyright -->
                     <div class="text-sm text-gray-400 mb-4 md:mb-0">
-                        © {{ date('Y') }} Use Swadeshi Abhiyan. All rights reserved by VELLAXY TECH PRIVATE LIMITED
+                        &copy; {{ date('Y') }} Use Swadeshi Abhiyan. All rights reserved by VELLAXY TECH PRIVATE LIMITED
                     </div>
 
                     <!-- Center: Hashtags -->
@@ -287,5 +306,8 @@
             });
         }
     </script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js"></script>
 </body>
 </html>

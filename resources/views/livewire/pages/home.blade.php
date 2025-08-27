@@ -14,7 +14,7 @@
 
                 <!-- Main Heading -->
                 @auth
-                    <div class="mb-6 mt-20 p-4 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg border border-orange-100">
+                    <div class="mb-6 p-4 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg border border-orange-100" style="margin-top: 17% ;">
                         <h3 class="text-2xl font-bold text-orange-600 mb-2">Welcome back, {{ auth()->user()->name }}! 👋</h3>
                         <p class="text-gray-600">Ready to test your knowledge of Indian products?</p>
                     </div>
