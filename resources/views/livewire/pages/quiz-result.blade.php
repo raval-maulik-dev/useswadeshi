@@ -74,31 +74,31 @@
                 </div>
 
                 <!-- Action Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button wire:click="showCertificate"
-                            class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
-                        📄 View Certificate
-                    </button>
-                    <!-- Removed PDF download as per requirement -->
-                    <div class="flex gap-2">
-                        <button wire:click="share('instagram')"
-                                class="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
-                            📷 Instagram
-                        </button>
-                        <button wire:click="share('whatsapp')"
-                                class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
-                            💬 WhatsApp
-                        </button>
-                        <button wire:click="share('facebook')"
-                                class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
-                            📘 Facebook
-                        </button>
-                        <button wire:click="share('twitter')"
-                                class="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
-                            🐦 Twitter
-                        </button>
-                    </div>
-                </div>
+{{--                <div class="flex flex-col sm:flex-row gap-4 justify-center">--}}
+{{--                    <button wire:click="showCertificate"--}}
+{{--                            class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">--}}
+{{--                        📄 View Certificate--}}
+{{--                    </button>--}}
+{{--                    <!-- Removed PDF download as per requirement -->--}}
+{{--                    <div class="flex gap-2">--}}
+{{--                        <button wire:click="share('instagram')"--}}
+{{--                                class="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">--}}
+{{--                            📷 Instagram--}}
+{{--                        </button>--}}
+{{--                        <button wire:click="share('whatsapp')"--}}
+{{--                                class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">--}}
+{{--                            💬 WhatsApp--}}
+{{--                        </button>--}}
+{{--                        <button wire:click="share('facebook')"--}}
+{{--                                class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">--}}
+{{--                            📘 Facebook--}}
+{{--                        </button>--}}
+{{--                        <button wire:click="share('twitter')"--}}
+{{--                                class="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">--}}
+{{--                            🐦 Twitter--}}
+{{--                        </button>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
                 <!-- Navigation Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6">
@@ -209,51 +209,51 @@
     </div>
 
     <!-- Redesigned certificate as an on-page card (no PDF/print) -->
-    <div class="max-w-4xl mx-auto mt-8">
-        <div class="bg-white border-8 border-yellow-200 rounded-3xl shadow-xl">
-            <div class="border-4 border-yellow-400 rounded-2xl p-8 md:p-12">
-                <div class="text-center">
-                    <div class="text-3xl md:text-4xl font-extrabold text-yellow-800">Certificate of Achievement</div>
-                    <div class="text-sm md:text-base text-yellow-700 mt-1">Swadeshi Abhiyan</div>
-                </div>
-                <div class="mt-8 text-center">
-                    <div class="text-gray-600">This is to certify that</div>
-                    <div class="text-2xl md:text-3xl font-semibold text-gray-900 mt-1">{{ $result->user->name }}</div>
-                    <div class="text-gray-600 mt-2">has successfully completed the quiz</div>
-                    <div class="text-xl md:text-2xl font-medium text-yellow-800 mt-1">{{ $game->name }}</div>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8">
-                    <div class="text-center">
-                        <div class="text-xs text-gray-500">Score</div>
-                        <div class="text-2xl font-bold text-gray-900">{{ $result->score }}/{{ $result->total_questions }}</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-xs text-gray-500">Accuracy</div>
-                        <div class="text-2xl font-bold text-gray-900">{{ $result->accuracy_percentage }}%</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-xs text-gray-500">Grade</div>
-                        <div class="text-2xl font-bold text-{{ $result->getPerformanceColor() }}-600">{{ $result->getPerformanceGrade() }}</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-xs text-gray-500">Date</div>
-                        <div class="text-lg font-medium text-gray-900">{{ $result->created_at->format('M d, Y') }}</div>
-                    </div>
-                </div>
-                <div class="mt-10 grid grid-cols-2 gap-6 items-end">
-                    <div class="text-center">
-                        <div class="h-12 border-b-2 border-gray-300 mx-10"></div>
-                        <div class="text-xs text-gray-500 mt-2">Signature</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="h-12 border-b-2 border-gray-300 mx-10"></div>
-                        <div class="text-xs text-gray-500 mt-2">Authorized Stamp</div>
-                    </div>
-                </div>
-                <div class="mt-6 text-xs text-gray-500 text-center">Certificate ID: {{ $result->certificate_id ?: 'Not generated yet' }}</div>
-            </div>
-        </div>
-    </div>
+{{--    <div class="max-w-4xl mx-auto mt-8">--}}
+{{--        <div class="bg-white border-8 border-yellow-200 rounded-3xl shadow-xl">--}}
+{{--            <div class="border-4 border-yellow-400 rounded-2xl p-8 md:p-12">--}}
+{{--                <div class="text-center">--}}
+{{--                    <div class="text-3xl md:text-4xl font-extrabold text-yellow-800">Certificate of Achievement</div>--}}
+{{--                    <div class="text-sm md:text-base text-yellow-700 mt-1">Swadeshi Abhiyan</div>--}}
+{{--                </div>--}}
+{{--                <div class="mt-8 text-center">--}}
+{{--                    <div class="text-gray-600">This is to certify that</div>--}}
+{{--                    <div class="text-2xl md:text-3xl font-semibold text-gray-900 mt-1">{{ $result->user->name }}</div>--}}
+{{--                    <div class="text-gray-600 mt-2">has successfully completed the quiz</div>--}}
+{{--                    <div class="text-xl md:text-2xl font-medium text-yellow-800 mt-1">{{ $game->name }}</div>--}}
+{{--                </div>--}}
+{{--                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8">--}}
+{{--                    <div class="text-center">--}}
+{{--                        <div class="text-xs text-gray-500">Score</div>--}}
+{{--                        <div class="text-2xl font-bold text-gray-900">{{ $result->score }}/{{ $result->total_questions }}</div>--}}
+{{--                    </div>--}}
+{{--                    <div class="text-center">--}}
+{{--                        <div class="text-xs text-gray-500">Accuracy</div>--}}
+{{--                        <div class="text-2xl font-bold text-gray-900">{{ $result->accuracy_percentage }}%</div>--}}
+{{--                    </div>--}}
+{{--                    <div class="text-center">--}}
+{{--                        <div class="text-xs text-gray-500">Grade</div>--}}
+{{--                        <div class="text-2xl font-bold text-{{ $result->getPerformanceColor() }}-600">{{ $result->getPerformanceGrade() }}</div>--}}
+{{--                    </div>--}}
+{{--                    <div class="text-center">--}}
+{{--                        <div class="text-xs text-gray-500">Date</div>--}}
+{{--                        <div class="text-lg font-medium text-gray-900">{{ $result->created_at->format('M d, Y') }}</div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="mt-10 grid grid-cols-2 gap-6 items-end">--}}
+{{--                    <div class="text-center">--}}
+{{--                        <div class="h-12 border-b-2 border-gray-300 mx-10"></div>--}}
+{{--                        <div class="text-xs text-gray-500 mt-2">Signature</div>--}}
+{{--                    </div>--}}
+{{--                    <div class="text-center">--}}
+{{--                        <div class="h-12 border-b-2 border-gray-300 mx-10"></div>--}}
+{{--                        <div class="text-xs text-gray-500 mt-2">Authorized Stamp</div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="mt-6 text-xs text-gray-500 text-center">Certificate ID: {{ $result->certificate_id ?: 'Not generated yet' }}</div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     <!-- Certificate Modal -->
     @if($showCertificateModal)
