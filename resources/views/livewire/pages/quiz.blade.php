@@ -83,9 +83,9 @@
                             @if($this->canReplayGame($game))
                                 <a 
                                     href="{{ route('quiz.start', ['game' => $game->id]) }}"
-                                    class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition block"
+                                    class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition block mb-2 flex justify-center items-center"
                                 >
-                                    🔄 Play Again
+                                    <span class="mx-auto">🔄 Play Again</span>
                                 </a>
                             @endif
                             <button 
