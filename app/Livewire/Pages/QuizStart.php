@@ -4,6 +4,8 @@ namespace App\Livewire\Pages;
 
 use App\Models\Game;
 use App\Models\GameResult;
+use App\Models\GameResultAnswer;
+use App\Models\GameResultQuestion;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout as LayoutAttr;
@@ -46,9 +48,14 @@ class QuizStart extends Component
     {
         // Get questions with eager loading to prevent N+1 queries
         $this->questions = $this->game->gameQuestions()
-            ->with(['options' => function ($query) {
-                $query->orderBy('sort_order');
-            }])
+            ->with([
+                'options' => function ($query) {
+                    $query->orderBy('sort_order');
+                },
+                'correctOptions' => function ($query) {
+                    $query->orderBy('sort_order');
+                },
+            ])
             ->get()
             ->shuffle();
 
@@ -73,7 +80,7 @@ class QuizStart extends Component
      * Single endpoint to submit all quiz results
      * This reduces server calls from potentially hundreds to just one
      */
-    public function submitQuizResults(array $payload): void
+    public function submitQuizResults(array $payload)
     {
         try {
             $this->isLoading = true;
@@ -92,7 +99,7 @@ class QuizStart extends Component
             $this->isQuizComplete = true;
             $this->isLoading = false;
 
-            $this->redirectRoute('quiz.result', ['result' => $result->id]);
+            return $this->redirectRoute('quiz.result', ['result' => $result->id]);
 
         } catch (\Exception $e) {
             $this->isLoading = false;
@@ -113,6 +120,7 @@ class QuizStart extends Component
         foreach ($this->questions as $index => $question) {
             $userAnswerIds = $answers[$index] ?? [];
             $correctOptionIds = $question->correctOptions->pluck('id')->toArray();
+            $optionTextById = $question->options->mapWithKeys(fn ($o) => [$o->id => $o->option_text])->toArray();
             $maxPossiblePoints += $question->points;
 
             $questionDetail = [
@@ -124,6 +132,17 @@ class QuizStart extends Component
                 'points' => $question->points,
                 'is_correct' => false,
                 'earned_points' => 0,
+                // Precomputed texts for robust rendering
+                'user_answer_texts' => collect((array) $userAnswerIds)
+                    ->map(fn ($id) => $optionTextById[$id] ?? null)
+                    ->filter()
+                    ->values()
+                    ->all(),
+                'correct_answer_texts' => collect((array) $correctOptionIds)
+                    ->map(fn ($id) => $optionTextById[$id] ?? null)
+                    ->filter()
+                    ->values()
+                    ->all(),
             ];
 
             // Check if answer is correct
@@ -169,7 +188,7 @@ class QuizStart extends Component
 
         $attemptNumber = $this->game->getUserAttemptNumber(Auth::id());
 
-        return GameResult::create([
+        $result = GameResult::create([
             'user_id' => Auth::id(),
             'game_id' => $this->game->id,
             'score' => $results['correctAnswers'],
@@ -190,6 +209,52 @@ class QuizStart extends Component
             'device_info' => request()->header('User-Agent'),
             'ip_address' => request()->ip(),
         ]);
+
+        // Persist normalized per-question rows and answers for scalability
+        foreach ($results['questionDetails'] as $index => $qd) {
+            $question = $this->questions[$index] ?? null;
+            if (! $question) {
+                continue;
+            }
+
+            $rq = GameResultQuestion::create([
+                'game_result_id' => $result->id,
+                'question_id' => $question->id,
+                'question_text' => $question->question,
+                'points' => (int) ($qd['points'] ?? $question->points ?? 0),
+                'is_correct' => (bool) ($qd['is_correct'] ?? false),
+                'earned_points' => (int) ($qd['earned_points'] ?? 0),
+                'time_taken' => (int) ($qd['time_taken'] ?? 0),
+            ]);
+
+            $optionTextById = $question->options->mapWithKeys(fn ($o) => [$o->id => $o->option_text])->toArray();
+
+            $userIds = (array) ($qd['user_answers'] ?? []);
+            foreach ($userIds as $oid) {
+                GameResultAnswer::create([
+                    'game_result_question_id' => $rq->id,
+                    'option_id' => $oid,
+                    'option_text' => $optionTextById[$oid] ?? '',
+                    'is_correct_option' => in_array($oid, (array) ($qd['correct_answers'] ?? []), true),
+                    'selected' => true,
+                ]);
+            }
+
+            // Also persist correct options snapshot not chosen by user (for full correctness audit)
+            foreach ((array) ($qd['correct_answers'] ?? []) as $oid) {
+                if (! in_array($oid, $userIds, true)) {
+                    GameResultAnswer::create([
+                        'game_result_question_id' => $rq->id,
+                        'option_id' => $oid,
+                        'option_text' => $optionTextById[$oid] ?? '',
+                        'is_correct_option' => true,
+                        'selected' => false,
+                    ]);
+                }
+            }
+        }
+
+        return $result;
     }
 
     public function render(): mixed
@@ -216,10 +281,10 @@ class QuizStart extends Component
                         'optionable_type' => $option->optionable_type,
                         'optionable' => $option->optionable ? [
                             'name' => $option->optionable->name,
-                            'type' => $option->optionable_type
-                        ] : null
+                            'type' => $option->optionable_type,
+                        ] : null,
                     ];
-                })
+                }),
             ];
         })->toArray();
     }
