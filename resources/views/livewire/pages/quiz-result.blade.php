@@ -79,14 +79,25 @@
                             class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
                         📄 View Certificate
                     </button>
-                    <button wire:click="downloadCertificate"
-                            class="bg-gradient-to-r from-red-500 to-indigo-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg">
-                        💾 Download PDF
-                    </button>
-                    <button wire:click="shareResult"
-                            class="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
-                        📤 Share Result
-                    </button>
+                    <!-- Removed PDF download as per requirement -->
+                    <div class="flex gap-2">
+                        <button wire:click="share('instagram')"
+                                class="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                            📷 Instagram
+                        </button>
+                        <button wire:click="share('whatsapp')"
+                                class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                            💬 WhatsApp
+                        </button>
+                        <button wire:click="share('facebook')"
+                                class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                            📘 Facebook
+                        </button>
+                        <button wire:click="share('twitter')"
+                                class="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                            🐦 Twitter
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Navigation Buttons -->
@@ -109,57 +120,76 @@
             </div>
 
             <!-- Performance Breakdown -->
-            @if(count($this->questionBreakdown) > 0)
-            <div class="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-orange-100 mb-8">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Question Breakdown</h3>
-                <div class="space-y-4">
-                    @foreach($this->questionBreakdown as $index => $question)
-                    <div class="bg-gray-50 rounded-xl p-4">
-                        <div class="flex items-center justify-between mb-2">
-                            <div class="flex items-center space-x-3">
-                                <span class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold
-                                    @if($question['is_correct']) bg-green-500 text-white @else bg-red-500 text-white @endif">
-                                    {{ $index + 1 }}
-                                </span>
-                                <span class="font-medium text-gray-800">{{ Str::limit($question['question_text'], 100) }}</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span class="text-sm text-gray-600">{{ $question['time_taken'] }}s</span>
-                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium
-                                    @if($question['is_correct']) bg-green-100 text-green-800 @else bg-red-100 text-red-800 @endif">
-                                    {{ $question['earned_points'] }}/{{ $question['points'] }} pts
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-            @endif
+{{--            @if(count($this->enrichedQuestionBreakdown) > 0)--}}
+{{--            <div class="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-orange-100 mb-8">--}}
+{{--                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Question Breakdown</h3>--}}
+{{--                <div class="space-y-4">--}}
+{{--                    @foreach($this->enrichedQuestionBreakdown as $index => $question)--}}
+{{--                    <div class="bg-gray-50 rounded-xl p-4">--}}
+{{--                        <div class="flex items-center justify-between mb-2">--}}
+{{--                            <div class="flex items-center space-x-3">--}}
+{{--                                <span class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold--}}
+{{--                                    @if($question['is_correct']) bg-green-500 text-white @else bg-red-500 text-white @endif">--}}
+{{--                                    {{ $index + 1 }}--}}
+{{--                                </span>--}}
+{{--                                <span class="font-medium text-gray-800">{{ \Illuminate\Support\Str::limit($question['question_text'] ?? 'Question', 140) }}</span>--}}
+{{--                            </div>--}}
+{{--                            <div class="flex items-center space-x-2">--}}
+{{--                                <span class="text-sm text-gray-600">{{ $question['time_taken'] ?? '—' }}s</span>--}}
+{{--                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium--}}
+{{--                                    @if($question['is_correct']) bg-green-100 text-green-800 @else bg-red-100 text-red-800 @endif">--}}
+{{--                                    {{ $question['earned_points'] ?? 0 }}/{{ $question['points'] ?? 0 }} pts--}}
+{{--                                </span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">--}}
+{{--                            <div class="bg-white rounded-lg p-3 border">--}}
+{{--                                <div class="text-xs text-gray-500">Your Answer</div>--}}
+{{--                                @php($userAnswers = $question['user_answer_texts'] ?? [])--}}
+{{--                                @if(count($userAnswers) > 0)--}}
+{{--                                    <ul class="list-disc list-inside text-sm font-medium @if(($question['is_correct'] ?? false)) text-green-700 @else text-red-700 @endif">--}}
+{{--                                        @foreach($userAnswers as $ua)--}}
+{{--                                            <li>{{ $ua }}</li>--}}
+{{--                                        @endforeach--}}
+{{--                                    </ul>--}}
+{{--                                @else--}}
+{{--                                    <div class="text-sm text-gray-500">No answer</div>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+{{--                            <div class="bg-white rounded-lg p-3 border">--}}
+{{--                                <div class="text-xs text-gray-500">Correct Answer</div>--}}
+{{--                                @php($correctAnswers = $question['correct_answer_texts'] ?? [])--}}
+{{--                                @if(count($correctAnswers) > 0)--}}
+{{--                                    <ul class="list-disc list-inside text-sm font-medium text-green-700">--}}
+{{--                                        @foreach($correctAnswers as $ca)--}}
+{{--                                            <li>{{ $ca }}</li>--}}
+{{--                                        @endforeach--}}
+{{--                                    </ul>--}}
+{{--                                @else--}}
+{{--                                    <div class="text-sm text-gray-500">Unavailable</div>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+{{--                            <div class="bg-white rounded-lg p-3 border">--}}
+{{--                                <div class="text-xs text-gray-500">Result</div>--}}
+{{--                                <div class="text-sm font-medium">--}}
+{{--                                    @if($question['is_correct'] ?? false)--}}
+{{--                                        ✅ Correct--}}
+{{--                                    @else--}}
+{{--                                        ❌ Incorrect--}}
+{{--                                    @endif--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    @endforeach--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            @endif--}}
 
-            <!-- Social Sharing -->
+            <!-- Social Sharing (helper block and hashtags) -->
             <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-orange-100 mb-8">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Share Your Achievement</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                    <button class="bg-gradient-to-r from-pink-500 to-purple-600 text-white p-4 rounded-2xl hover:shadow-lg transition-all">
-                        <div class="text-2xl mb-2">📷</div>
-                        <div class="font-semibold">Instagram</div>
-                    </button>
-                    <button class="bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-2xl hover:shadow-lg transition-all">
-                        <div class="text-2xl mb-2">💬</div>
-                        <div class="font-semibold">WhatsApp</div>
-                    </button>
-                    <button class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-2xl hover:shadow-lg transition-all">
-                        <div class="text-2xl mb-2">📘</div>
-                        <div class="font-semibold">Facebook</div>
-                    </button>
-                    <button class="bg-gradient-to-r from-gray-500 to-gray-600 text-white p-4 rounded-2xl hover:shadow-lg transition-all">
-                        <div class="text-2xl mb-2">🐦</div>
-                        <div class="font-semibold">Twitter</div>
-                    </button>
-                </div>
-
-                <!-- Hashtags -->
+                <p class="text-center text-gray-600 mb-4">Let your friends know about your achievement. We prepare the text for you.</p>
                 <div class="flex flex-wrap justify-center gap-2">
                     <span class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full font-semibold">#UseSwadeshi</span>
                     <span class="bg-red-100 text-red-700 px-4 py-2 rounded-full font-semibold">#SwadeshiAbhiyan</span>
@@ -178,6 +208,53 @@
         </div>
     </div>
 
+    <!-- Redesigned certificate as an on-page card (no PDF/print) -->
+    <div class="max-w-4xl mx-auto mt-8">
+        <div class="bg-white border-8 border-yellow-200 rounded-3xl shadow-xl">
+            <div class="border-4 border-yellow-400 rounded-2xl p-8 md:p-12">
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-extrabold text-yellow-800">Certificate of Achievement</div>
+                    <div class="text-sm md:text-base text-yellow-700 mt-1">Swadeshi Abhiyan</div>
+                </div>
+                <div class="mt-8 text-center">
+                    <div class="text-gray-600">This is to certify that</div>
+                    <div class="text-2xl md:text-3xl font-semibold text-gray-900 mt-1">{{ $result->user->name }}</div>
+                    <div class="text-gray-600 mt-2">has successfully completed the quiz</div>
+                    <div class="text-xl md:text-2xl font-medium text-yellow-800 mt-1">{{ $game->name }}</div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8">
+                    <div class="text-center">
+                        <div class="text-xs text-gray-500">Score</div>
+                        <div class="text-2xl font-bold text-gray-900">{{ $result->score }}/{{ $result->total_questions }}</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-xs text-gray-500">Accuracy</div>
+                        <div class="text-2xl font-bold text-gray-900">{{ $result->accuracy_percentage }}%</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-xs text-gray-500">Grade</div>
+                        <div class="text-2xl font-bold text-{{ $result->getPerformanceColor() }}-600">{{ $result->getPerformanceGrade() }}</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-xs text-gray-500">Date</div>
+                        <div class="text-lg font-medium text-gray-900">{{ $result->created_at->format('M d, Y') }}</div>
+                    </div>
+                </div>
+                <div class="mt-10 grid grid-cols-2 gap-6 items-end">
+                    <div class="text-center">
+                        <div class="h-12 border-b-2 border-gray-300 mx-10"></div>
+                        <div class="text-xs text-gray-500 mt-2">Signature</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="h-12 border-b-2 border-gray-300 mx-10"></div>
+                        <div class="text-xs text-gray-500 mt-2">Authorized Stamp</div>
+                    </div>
+                </div>
+                <div class="mt-6 text-xs text-gray-500 text-center">Certificate ID: {{ $result->certificate_id ?: 'Not generated yet' }}</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Certificate Modal -->
     @if($showCertificateModal)
     <div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50" wire:click="closeCertificateModal">
@@ -191,19 +268,19 @@
                         </svg>
                     </button>
                 </div>
-                
+
                 <div class="bg-gradient-to-br from-blue-50 to-indigo-100 border-2 border-blue-200 rounded-lg p-8 text-center">
                     <div class="mb-6">
                         <h2 class="text-3xl font-bold text-blue-900 mb-2">Certificate of Achievement</h2>
                         <p class="text-blue-700">This is to certify that</p>
                     </div>
-                    
+
                     <div class="mb-6">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-2">{{ $result->user->name }}</h3>
                         <p class="text-gray-600">has successfully completed</p>
                         <h4 class="text-xl font-medium text-blue-800 mt-2">{{ $game->name }}</h4>
                     </div>
-                    
+
                     <div class="grid grid-cols-2 gap-4 mb-6">
                         <div class="text-center">
                             <p class="text-sm text-gray-600">Score</p>
@@ -222,19 +299,19 @@
                             <p class="text-lg font-medium text-gray-900">{{ $result->created_at->format('M d, Y') }}</p>
                         </div>
                     </div>
-                    
+
                     <div class="text-sm text-gray-600">
                         <p>Certificate ID: {{ $result->certificate_id ?: 'Not generated yet' }}</p>
                     </div>
                 </div>
-                
+
                 <div class="flex justify-end space-x-3 mt-6">
-                    <button wire:click="downloadCertificate" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
-                        Download PDF
-                    </button>
-                    <button wire:click="shareResult" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700">
-                        Share
-                    </button>
+                    <!-- Removed PDF download as per requirement -->
+                    <div class="flex gap-2">
+                        <button wire:click="share('whatsapp')" class="bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-700">WhatsApp</button>
+                        <button wire:click="share('facebook')" class="bg-blue-600 text-white px-3 py-2 rounded-md hover:bg-blue-700">Facebook</button>
+                        <button wire:click="share('twitter')" class="bg-gray-700 text-white px-3 py-2 rounded-md hover:bg-gray-800">Twitter</button>
+                    </div>
                     <button wire:click="closeCertificateModal" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400">
                         Close
                     </button>
@@ -244,3 +321,37 @@
     </div>
     @endif
 </div>
+
+<script>
+document.addEventListener('livewire:init', function () {
+    // Share handler using Web Share API or fallback to platform URLs
+    Livewire.on('share', ({ platform, text, url }) => {
+        const shareData = { title: 'My Quiz Result', text, url };
+        const encodedText = encodeURIComponent(text);
+        const encodedUrl = encodeURIComponent(url);
+        const links = {
+            whatsapp: `https://wa.me/?text=${encodedText}%20${encodedUrl}`,
+            facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedText}`,
+            twitter: `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`,
+            instagram: null, // Instagram doesn't support direct text share via URL from web
+        };
+
+        if (navigator.share) {
+            navigator.share(shareData).catch(() => {
+                if (links[platform]) { window.open(links[platform], '_blank'); }
+            });
+        } else {
+            if (platform === 'instagram') {
+                alert('Instagram sharing is limited on web. Copy the text and share manually.');
+                navigator.clipboard && navigator.clipboard.writeText(`${text} ${url}`);
+                return;
+            }
+            if (links[platform]) {
+                window.open(links[platform], '_blank');
+            }
+        }
+    });
+
+    // No PDF/print required anymore
+});
+</script>

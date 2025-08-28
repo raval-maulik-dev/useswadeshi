@@ -1,5 +1,5 @@
 
-<div x-data="quizApp()" x-init="init()" wire:ignore>
+<div x-data="quizApp()" x-init="init()">
     <div class="min-h-screen bg-gradient-to-br from-orange-50 via-white to-green-50">
         <!-- Header -->
         <div class="bg-white/80 backdrop-blur-md border-b border-orange-100 sticky top-0 z-50">
@@ -256,7 +256,7 @@
 
                 // Question navigation
                 nextQuestion() {
-                    if (this.timerExpired) return;
+                    // if (this.timerExpired) return;
 
                     this.recordQuestionTime();
 
