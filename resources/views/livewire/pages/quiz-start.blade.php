@@ -145,7 +145,7 @@
                                         :disabled="timerExpired">
                                     {{ $i + 1 }}
                                 </button>
-                                <div x-show="isQuestionAnswered({{$i}})" class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full"></div>
+                                <div x-show="isQuestionAnswered({{$i}})" style="margin-left: 30px" class="absolute -top-1 w-3 h-3 bg-green-500 rounded-full"></div>
                             </div>
                         @endfor
                     </div>
