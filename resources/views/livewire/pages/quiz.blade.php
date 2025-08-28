@@ -59,13 +59,13 @@
                     <!-- Action Buttons -->
                     <div class="mt-auto flex flex-col gap-3 w-full">
                         @if($this->getUserGameStatus($game) === 'new')
-                            <button 
-                                wire:click="selectGame({{ $game->id }})"
+                            <a 
+                                href="{{ route('quiz.start', ['game' => $game->id]) }}"
                                 class="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 
-                                    text-white py-3 rounded-lg font-semibold text-center transition"
+                                    text-white py-3 rounded-lg font-semibold text-center transition block"
                             >
                                 🚀 Start Quiz
-                            </button>
+                            </a>
                         @elseif($this->getUserGameStatus($game) === 'completed' || $this->getUserGameStatus($game) === 'max_attempts_reached')
                             <button 
                                 wire:click="selectGame({{ $game->id }})"
@@ -81,12 +81,12 @@
                             </button>
                         @elseif($this->getUserGameStatus($game) === 'played' || $this->getUserGameStatus($game) === 'attempted')
                             @if($this->canReplayGame($game))
-                                <button 
-                                    wire:click="selectGame({{ $game->id }})"
-                                    class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition"
+                                <a 
+                                    href="{{ route('quiz.start', ['game' => $game->id]) }}"
+                                    class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition block"
                                 >
                                     🔄 Play Again
-                                </button>
+                                </a>
                             @endif
                             <button 
                                 wire:click="viewHistory({{ $game->id }})"

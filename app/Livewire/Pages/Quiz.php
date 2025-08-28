@@ -60,6 +60,9 @@ class Quiz extends Component
             }
         }
 
+        // Debug: Log the selected game
+        \Log::info('Selected game: '.$this->selectedGame->name.' (ID: '.$this->selectedGame->id.')');
+
         $this->startQuiz();
     }
 
@@ -92,7 +95,12 @@ class Quiz extends Component
     public function startQuiz()
     {
         if ($this->selectedGame) {
-            return redirect()->route('quiz.start', ['game' => $this->selectedGame->id]);
+            // Debug: Log the redirect URL
+            $redirectUrl = route('quiz.start', ['game' => $this->selectedGame->id]);
+            \Log::info('Redirecting to: '.$redirectUrl);
+
+            // Use JavaScript redirect as a fallback
+            $this->dispatch('redirect', url: $redirectUrl);
         }
     }
 
