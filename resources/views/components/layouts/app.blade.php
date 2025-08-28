@@ -10,28 +10,14 @@
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#FF6B35">
     <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'saffron': '#FF9933',
-                        'white': '#FFFFFF',
-                        'green': '#138808',
-                        'navy': '#000080'
-                    }
-                }
-            }
-        }
-    </script>
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
 
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -94,8 +80,8 @@
                             </button>
 
                             <!-- Dropdown Menu -->
-                            <div 
-                                x-show="open" 
+                            <div
+                                x-show="open"
                                 @click.away="open = false"
                                 class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50"
                             >
@@ -113,7 +99,7 @@
                         <a href="{{ route('login') }}" wire:navigate class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-lg font-medium hover:from-orange-600 hover:to-red-700 transition-all">Login</a>
                     @endauth
                 </nav>
-                
+
                 <!-- Language Switcher -->
                 <div class="flex items-center space-x-2">
                     <div class="relative">
@@ -307,7 +293,15 @@
         }
     </script>
 
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js"></script>
+    <!-- Alpine.js is now imported via Vite -->
+
+    <!-- Livewire Redirect Listener -->
+    <script>
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('redirect', (event) => {
+                window.location.href = event.url;
+            });
+        });
+    </script>
 </body>
 </html>
