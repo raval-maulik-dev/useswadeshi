@@ -1274,41 +1274,7 @@ class GameQuestionSeeder extends Seeder
                     ['text' => 'True', 'correct' => true],
                     ['text' => 'False', 'correct' => false],
                 ],
-            ],
-            [
-                'question' => 'Which Indian-origin brand makes affordable ceiling fans widely used daily?',
-                'type' => 'mcq',
-                'difficulty' => 'medium',
-                'points' => 10,
-                'options' => [
-                    ['text' => 'Usha', 'correct' => true],
-                    ['text' => 'Panasonic', 'correct' => false],
-                    ['text' => 'Philips', 'correct' => false],
-                    ['text' => 'Mitsubishi Electric', 'correct' => false],
-                ],
-            ],
-            [
-                'question' => 'Select all Indian cotton bedsheet/towel brands commonly used at home:',
-                'type' => 'multi_select',
-                'difficulty' => 'medium',
-                'points' => 15,
-                'options' => [
-                    ['text' => 'Bombay Dyeing', 'correct' => true],
-                    ['text' => 'Trident', 'correct' => true],
-                    ['text' => 'IKEA', 'correct' => false],
-                    ['text' => 'Martha Stewart Bedding', 'correct' => false],
-                ],
-            ],
-            [
-                'question' => 'Is Prestige/Butterfly dosa tawa a daily kitchen product from Indian brands?',
-                'type' => 'true_false',
-                'difficulty' => 'medium',
-                'points' => 10,
-                'options' => [
-                    ['text' => 'True', 'correct' => true],
-                    ['text' => 'False', 'correct' => false],
-                ],
-            ],
+            ]
         ];
 
         foreach ($dailyUseQuestions as $questionData) {
