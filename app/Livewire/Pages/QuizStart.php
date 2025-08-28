@@ -25,7 +25,7 @@ class QuizStart extends Component
     // Quiz configuration
     public int $totalQuestions = 0;
 
-    public int $perQuestionTime = 10;
+    public int $perQuestionTime = 15;
 
     public string $startTime;
 
@@ -52,12 +52,15 @@ class QuizStart extends Component
                 'options' => function ($query) {
                     $query->orderBy('sort_order');
                 },
+                'options.optionable',
                 'correctOptions' => function ($query) {
                     $query->orderBy('sort_order');
                 },
+                'correctOptions.optionable',
             ])
-            ->get()
-            ->shuffle();
+            ->inRandomOrder()
+            ->limit($this->game->total_questions)
+            ->get();
 
         $this->totalQuestions = $this->questions->count();
 
@@ -72,7 +75,7 @@ class QuizStart extends Component
             $question->setRelation('options', $question->options->shuffle());
         }
 
-        $this->perQuestionTime = $this->game->per_question_time ?: 10;
+        $this->perQuestionTime = $this->game->per_question_time ?: $this->perQuestionTime;
         $this->startTime = now()->toISOString();
     }
 
@@ -120,7 +123,7 @@ class QuizStart extends Component
         foreach ($this->questions as $index => $question) {
             $userAnswerIds = $answers[$index] ?? [];
             $correctOptionIds = $question->correctOptions->pluck('id')->toArray();
-            $optionTextById = $question->options->mapWithKeys(fn ($o) => [$o->id => $o->option_text])->toArray();
+            $optionTextById = $question->options->mapWithKeys(fn ($o) => [$o->id => $o->display_text])->toArray();
             $maxPossiblePoints += $question->points;
 
             $questionDetail = [
@@ -227,7 +230,7 @@ class QuizStart extends Component
                 'time_taken' => (int) ($qd['time_taken'] ?? 0),
             ]);
 
-            $optionTextById = $question->options->mapWithKeys(fn ($o) => [$o->id => $o->option_text])->toArray();
+            $optionTextById = $question->options->mapWithKeys(fn ($o) => [$o->id => $o->display_text])->toArray();
 
             $userIds = (array) ($qd['user_answers'] ?? []);
             foreach ($userIds as $oid) {
@@ -277,7 +280,7 @@ class QuizStart extends Component
                 'options' => $question->options->map(function ($option) {
                     return [
                         'id' => $option->id,
-                        'option_text' => $option->option_text,
+                        'option_text' => $option->display_text,
                         'optionable_type' => $option->optionable_type,
                         'optionable' => $option->optionable ? [
                             'name' => $option->optionable->name,

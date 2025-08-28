@@ -30,6 +30,7 @@ class QuizResult extends Component
             'game',
             'user',
             'resultQuestions.answers.option',
+            'resultQuestions.answers.option.optionable',
         ])->findOrFail($result);
         $this->game = $this->result->game;
 
@@ -130,6 +131,10 @@ class QuizResult extends Component
                 ? $this->getAnswerTexts($correctAnswerIds, $question['question_id'], 'correct')
                 : [];
 
+            // Handle case where user didn't answer
+            $userAnswered = !empty($userAnswerIds);
+            $userAnswerDisplay = $userAnswered ? $userAnswerTexts : ['No answer selected'];
+
             return [
                 'question_id' => (int) ($question['question_id'] ?? 0),
                 'question_text' => (string) ($question['question_text'] ?? ''),
@@ -137,8 +142,9 @@ class QuizResult extends Component
                 'earned_points' => (int) ($question['earned_points'] ?? 0),
                 'is_correct' => (bool) ($question['is_correct'] ?? false),
                 'time_taken' => (int) ($question['time_taken'] ?? 0),
-                'user_answer_texts' => $userAnswerTexts,
+                'user_answer_texts' => $userAnswerDisplay,
                 'correct_answer_texts' => $correctAnswerTexts,
+                'user_answered' => $userAnswered,
             ];
         })->all();
     }
@@ -176,19 +182,23 @@ class QuizResult extends Component
                 }
 
                 if ($type === 'user') {
-                    $answerTexts = $answers
-                        ->where('selected', true)
-                        ->pluck('option_text')
-                        ->filter()
-                        ->values()
-                        ->all();
+                    $selectedAnswers = $answers->where('selected', true);
+                    $answerTexts = $selectedAnswers->map(function ($answer) {
+                        // If option_text is empty, try to get from the option relationship
+                        if (empty($answer->option_text) && $answer->option) {
+                            return $answer->option->display_text;
+                        }
+                        return $answer->option_text;
+                    })->filter()->values()->all();
                 } else {
-                    $answerTexts = $answers
-                        ->where('is_correct_option', true)
-                        ->pluck('option_text')
-                        ->filter()
-                        ->values()
-                        ->all();
+                    $correctAnswers = $answers->where('is_correct_option', true);
+                    $answerTexts = $correctAnswers->map(function ($answer) {
+                        // If option_text is empty, try to get from the option relationship
+                        if (empty($answer->option_text) && $answer->option) {
+                            return $answer->option->display_text;
+                        }
+                        return $answer->option_text;
+                    })->filter()->values()->all();
                 }
             }
         }
@@ -209,13 +219,8 @@ class QuizResult extends Component
 
         // Method 4: Last resort - try to get from database directly
         if (empty($answerTexts)) {
-            $optionTexts = \App\Models\GameOption::whereIn('id', $answerIds)
-                ->pluck('option_text')
-                ->filter()
-                ->values()
-                ->all();
-
-            $answerTexts = $optionTexts;
+            $options = \App\Models\GameOption::whereIn('id', $answerIds)->get();
+            $answerTexts = $options->pluck('display_text')->filter()->values()->all();
         }
 
         return $answerTexts;
@@ -284,11 +289,12 @@ class QuizResult extends Component
      */
     private function buildOptionTextMap(): void
     {
-        // Load all questions and options for the game
+        // Load all questions and options for the game with polymorphic relationships
         $this->game->load([
             'gameQuestions.options' => function ($query) {
                 $query->orderBy('sort_order');
             },
+            'gameQuestions.options.optionable',
         ]);
 
         $this->optionTextById = [];
@@ -296,7 +302,7 @@ class QuizResult extends Component
         // Build mapping from game questions
         foreach ($this->game->gameQuestions as $question) {
             foreach ($question->options as $option) {
-                $this->optionTextById[$option->id] = $option->option_text;
+                $this->optionTextById[$option->id] = $option->display_text;
             }
         }
 
@@ -318,9 +324,9 @@ class QuizResult extends Component
         $missingOptionIds = array_diff($allOptionIds, array_keys($this->optionTextById));
 
         if (! empty($missingOptionIds)) {
-            $missingOptions = \App\Models\GameOption::whereIn('id', $missingOptionIds)->get();
+            $missingOptions = \App\Models\GameOption::with('optionable')->whereIn('id', $missingOptionIds)->get();
             foreach ($missingOptions as $option) {
-                $this->optionTextById[$option->id] = $option->option_text;
+                $this->optionTextById[$option->id] = $option->display_text;
             }
         }
     }

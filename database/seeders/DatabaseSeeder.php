@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             GameSeeder::class,
             PledgeSeeder::class,
-            GameQuestionSeeder::class,
-            GameOptionSeeder::class,
+            // Use the comprehensive GamesMasterSeeder instead of individual game seeders
+            \Database\Seeders\Games\GamesMasterSeeder::class,
             GameResultSeeder::class,
             ProductAlternativeSeeder::class,
             ArticleSeeder::class,

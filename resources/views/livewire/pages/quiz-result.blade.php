@@ -120,71 +120,74 @@
             </div>
 
             <!-- Performance Breakdown -->
-{{--            @if(count($this->enrichedQuestionBreakdown) > 0)--}}
-{{--            <div class="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-orange-100 mb-8">--}}
-{{--                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Question Breakdown</h3>--}}
-{{--                <div class="space-y-4">--}}
-{{--                    @foreach($this->enrichedQuestionBreakdown as $index => $question)--}}
-{{--                    <div class="bg-gray-50 rounded-xl p-4">--}}
-{{--                        <div class="flex items-center justify-between mb-2">--}}
-{{--                            <div class="flex items-center space-x-3">--}}
-{{--                                <span class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold--}}
-{{--                                    @if($question['is_correct']) bg-green-500 text-white @else bg-red-500 text-white @endif">--}}
-{{--                                    {{ $index + 1 }}--}}
-{{--                                </span>--}}
-{{--                                <span class="font-medium text-gray-800">{{ \Illuminate\Support\Str::limit($question['question_text'] ?? 'Question', 140) }}</span>--}}
-{{--                            </div>--}}
-{{--                            <div class="flex items-center space-x-2">--}}
-{{--                                <span class="text-sm text-gray-600">{{ $question['time_taken'] ?? '—' }}s</span>--}}
-{{--                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium--}}
-{{--                                    @if($question['is_correct']) bg-green-100 text-green-800 @else bg-red-100 text-red-800 @endif">--}}
-{{--                                    {{ $question['earned_points'] ?? 0 }}/{{ $question['points'] ?? 0 }} pts--}}
-{{--                                </span>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">--}}
-{{--                            <div class="bg-white rounded-lg p-3 border">--}}
-{{--                                <div class="text-xs text-gray-500">Your Answer</div>--}}
-{{--                                @php($userAnswers = $question['user_answer_texts'] ?? [])--}}
-{{--                                @if(count($userAnswers) > 0)--}}
-{{--                                    <ul class="list-disc list-inside text-sm font-medium @if(($question['is_correct'] ?? false)) text-green-700 @else text-red-700 @endif">--}}
-{{--                                        @foreach($userAnswers as $ua)--}}
-{{--                                            <li>{{ $ua }}</li>--}}
-{{--                                        @endforeach--}}
-{{--                                    </ul>--}}
-{{--                                @else--}}
-{{--                                    <div class="text-sm text-gray-500">No answer</div>--}}
-{{--                                @endif--}}
-{{--                            </div>--}}
-{{--                            <div class="bg-white rounded-lg p-3 border">--}}
-{{--                                <div class="text-xs text-gray-500">Correct Answer</div>--}}
-{{--                                @php($correctAnswers = $question['correct_answer_texts'] ?? [])--}}
-{{--                                @if(count($correctAnswers) > 0)--}}
-{{--                                    <ul class="list-disc list-inside text-sm font-medium text-green-700">--}}
-{{--                                        @foreach($correctAnswers as $ca)--}}
-{{--                                            <li>{{ $ca }}</li>--}}
-{{--                                        @endforeach--}}
-{{--                                    </ul>--}}
-{{--                                @else--}}
-{{--                                    <div class="text-sm text-gray-500">Unavailable</div>--}}
-{{--                                @endif--}}
-{{--                            </div>--}}
-{{--                            <div class="bg-white rounded-lg p-3 border">--}}
-{{--                                <div class="text-xs text-gray-500">Result</div>--}}
-{{--                                <div class="text-sm font-medium">--}}
-{{--                                    @if($question['is_correct'] ?? false)--}}
-{{--                                        ✅ Correct--}}
-{{--                                    @else--}}
-{{--                                        ❌ Incorrect--}}
-{{--                                    @endif--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    @endforeach--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            @endif--}}
+            @if(count($this->enrichedQuestionBreakdown) > 0)
+            <div class="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-orange-100 mb-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Question Breakdown</h3>
+                <div class="space-y-4">
+                    @foreach($this->enrichedQuestionBreakdown as $index => $question)
+                    <div class="bg-gray-50 rounded-xl p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold
+                                    @if($question['is_correct']) bg-green-500 text-white @elseif($question['user_answered'] ?? true) bg-red-500 text-white @else bg-orange-500 text-white @endif">
+                                    {{ $index + 1 }}
+                                </span>
+                                <span class="font-medium text-gray-800">{{ \Illuminate\Support\Str::limit($question['question_text'] ?? 'Question', 140) }}</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-sm text-gray-600">{{ $question['time_taken'] ?? '—' }}s</span>
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium
+                                    @if($question['is_correct']) bg-green-100 text-green-800 @elseif($question['user_answered'] ?? true) bg-red-100 text-red-800 @else bg-orange-100 text-orange-800 @endif">
+                                    {{ $question['earned_points'] ?? 0 }}/{{ $question['points'] ?? 0 }} pts
+                                </span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
+                            <div class="bg-white rounded-lg p-3 border">
+                                <div class="text-xs text-gray-500">Your Answer</div>
+                                @php($userAnswers = $question['user_answer_texts'] ?? [])
+                                @php($userAnswered = $question['user_answered'] ?? true)
+                                @if($userAnswered && count($userAnswers) > 0)
+                                    <ul class="list-disc list-inside text-sm font-medium @if(($question['is_correct'] ?? false)) text-green-700 @else text-red-700 @endif">
+                                        @foreach($userAnswers as $ua)
+                                            <li>{{ $ua }}</li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <div class="text-sm text-orange-600 font-medium">⏰ No answer selected</div>
+                                @endif
+                            </div>
+                            <div class="bg-white rounded-lg p-3 border">
+                                <div class="text-xs text-gray-500">Correct Answer</div>
+                                @php($correctAnswers = $question['correct_answer_texts'] ?? [])
+                                @if(count($correctAnswers) > 0)
+                                    <ul class="list-disc list-inside text-sm font-medium text-green-700">
+                                        @foreach($correctAnswers as $ca)
+                                            <li>{{ $ca }}</li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <div class="text-sm text-gray-500">Unavailable</div>
+                                @endif
+                            </div>
+                            <div class="bg-white rounded-lg p-3 border">
+                                <div class="text-xs text-gray-500">Result</div>
+                                <div class="text-sm font-medium">
+                                    @if($question['is_correct'] ?? false)
+                                        ✅ Correct
+                                    @elseif($question['user_answered'] ?? true)
+                                        ❌ Incorrect
+                                    @else
+                                        ⏰ Unanswered
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            @endif
 
             <!-- Social Sharing (helper block and hashtags) -->
             <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-orange-100 mb-8">
