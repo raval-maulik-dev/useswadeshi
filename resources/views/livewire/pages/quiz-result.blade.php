@@ -138,35 +138,40 @@
             @endif
 
             <!-- Social Sharing -->
-            <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-orange-100 mb-8">
+            <div class="bg-white rounded-3xl shadow-2xl border border-orange-100 p-8 mt-20">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Share Your Achievement</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                    <button class="bg-gradient-to-r from-pink-500 to-purple-600 text-white p-4 rounded-2xl hover:shadow-lg transition-all">
-                        <div class="text-2xl mb-2">📷</div>
-                        <div class="font-semibold">Instagram</div>
-                    </button>
-                    <button class="bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-2xl hover:shadow-lg transition-all">
-                        <div class="text-2xl mb-2">💬</div>
-                        <div class="font-semibold">WhatsApp</div>
-                    </button>
-                    <button class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-2xl hover:shadow-lg transition-all">
-                        <div class="text-2xl mb-2">📘</div>
-                        <div class="font-semibold">Facebook</div>
-                    </button>
-                    <button class="bg-gradient-to-r from-gray-500 to-gray-600 text-white p-4 rounded-2xl hover:shadow-lg transition-all">
-                        <div class="text-2xl mb-2">🐦</div>
-                        <div class="font-semibold">Twitter</div>
-                    </button>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <a href="https://www.instagram.com/use.swadeshi?igsh=MTczd3FwdHNucTU0bQ==" target="_blank" class="flex flex-col items-center p-4 bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl border border-pink-200 hover:border-pink-400 transition-all duration-300 hover:scale-105">
+                        <i class="bi bi-instagram text-3xl mb-2" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                        <span class="text-pink-700 font-semibold">Instagram</span>
+                    </a>
+                    <a href="https://wa.me/919054966947" target="_blank" class="flex flex-col items-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl border border-green-200 hover:border-green-400 transition-all duration-300 hover:scale-105">
+                        <i class="bi bi-whatsapp text-3xl mb-2" style="color: #25D366"></i>
+                        <span class="text-green-700 font-semibold">WhatsApp</span>
+                    </a>
+                    <a href="https://www.facebook.com/" target="_blank" class="flex flex-col items-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border border-blue-200 hover:border-blue-400 transition-all duration-300 hover:scale-105">
+                        <i class="bi bi-facebook text-3xl mb-2" style="color: #1877F2"></i>
+                        <span class="text-blue-700 font-semibold">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/" target="_blank" class="flex flex-col items-center p-4 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl border border-gray-200 hover:border-gray-400 transition-all duration-300 hover:scale-105">
+                        <i class="bi bi-twitter-x text-3xl mb-2" style="color: #1DA1F2"></i>
+                        <span class="text-gray-700 font-semibold">Twitter/X</span>
+                    </a>
                 </div>
 
-                <!-- Hashtags -->
-                <div class="flex flex-wrap justify-center gap-2">
-                    <span class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full font-semibold">#UseSwadeshi</span>
-                    <span class="bg-red-100 text-red-700 px-4 py-2 rounded-full font-semibold">#SwadeshiAbhiyan</span>
-                    <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full font-semibold">#VocalForLocal</span>
-                    <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full font-semibold">#MadeInIndia</span>
+                <div class="text-center">
+                    <p class="text-gray-600 mb-4">Use these hashtags when sharing:</p>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-semibold">#UseSwadeshi</span>
+                        <span class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-semibold">#SwadeshiAbhiyan</span>
+                        <span class="bg-pink-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">#VocalForLocal</span>
+                        <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold">#MadeInIndia</span>
+                        <span class="bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold">#SwadeshiWarrior</span>
+                    </div>
                 </div>
             </div>
+
 
             <!-- Navigation -->
             <div class="text-center mt-8">

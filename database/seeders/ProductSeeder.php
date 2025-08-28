@@ -22,9 +22,22 @@ class ProductSeeder extends Seeder
 
         // Get brands by category
         $fashionBrands = Brand::whereIn('name', ['Fabindia', 'Biba', 'W for Woman', 'Manyavar', 'Raymond', 'Bata', 'Khadi', 'Taneira', 'Nike', 'Adidas', 'Zara', 'H&M', 'Uniqlo', 'Gucci', 'Louis Vuitton'])->get();
-        $foodBrands = Brand::whereIn('name', ['Amul', 'Britannia', 'Parle', 'Haldirams', 'Dabur', 'Tata Tea', 'Mother Dairy', 'Nestle India', 'Coca-Cola', 'PepsiCo', 'Kraft Heinz', 'Unilever', 'Danone', 'Ferrero'])->get();
-        $personalCareBrands = Brand::whereIn('name', ['Himalaya', 'Patanjali', 'Biotique', 'Forest Essentials', 'Kama Ayurveda', 'Nykaa', 'Lakme', 'Emami', 'L\'Oreal', 'Procter & Gamble', 'Johnson & Johnson', 'Estee Lauder', 'Shiseido'])->get();
-        $homeBrands = Brand::whereIn('name', ['Godrej', 'Asian Paints', 'Berger Paints', 'Havells', 'Crompton', 'Bajaj Electricals', 'Prestige', 'Butterfly', 'IKEA', 'Philips', 'Samsung', 'LG', 'Bosch', 'Whirlpool'])->get();
+        $foodBrands = Brand::whereIn('name', [
+            'Amul','Britannia','Parle','Haldirams','Dabur','Tata Tea','Mother Dairy','Nestle India',
+            'Fortune','Saffola','Paper Boat','Tata Salt','Aashirvaad','India Gate','Yogabar','Parry’s Sugar',
+            'iD Fresh','Tata Sampann','24 Mantra Organic','Pachranga','Mother’s Recipe','Lijjat','Bikaji','Balaji Wafers','Bisleri',
+            'Coca-Cola','PepsiCo','Kraft Heinz','Unilever','Danone','Ferrero'
+        ])->get();
+        $personalCareBrands = Brand::whereIn('name', [
+            'Himalaya','Patanjali','Biotique','Forest Essentials','Kama Ayurveda','Nykaa','Lakme','Emami',
+            'Vicco','Boroline','Santoor','Nirma','Ghadi','Goodknight','Maxo','Park Avenue','Bombay Shaving Company','Ustraa','Fogg','Godrej Expert','Nua','Paree',
+            'L\'Oreal','Procter & Gamble','Johnson & Johnson','Estee Lauder','Shiseido'
+        ])->get();
+        $homeBrands = Brand::whereIn('name', [
+            'Godrej','Asian Paints','Berger Paints','Havells','Crompton','Bajaj Electricals','Prestige','Butterfly',
+            'Hawkins','Milton','Borosil','Nilkamal','Cello','Pigeon','Agaro','Usha','Symphony','Eveready','Syska','Gainda','Cycle Pure','Mangaldeep','Zed Black','Indian Art Villa',
+            'IKEA','Philips','Samsung','LG','Bosch','Whirlpool'
+        ])->get();
         $stationeryBrands = Brand::whereIn('name', ['Cello', 'Reynolds', 'Camlin', 'Natraj', 'Apsara', 'Funskool', 'Hamleys India', 'Chumbak', 'LEGO', 'Mattel', 'Hasbro', 'Faber-Castell', 'Staedtler', 'Pilot'])->get();
 
         // Fashion & Apparel Products
@@ -106,11 +119,11 @@ class ProductSeeder extends Seeder
         $beverages = $subcategories->where('name', 'Beverages (Tea, Coffee, Herbal)')->first();
         $this->createProducts($beverages, $brands, $vendors, [
             ['name' => 'Tata Tea Premium', 'price' => 150, 'description' => 'Premium quality tea'],
+            ['name' => 'Paper Boat Aam Panna', 'price' => 35, 'description' => 'Refreshing traditional drink'],
+            ['name' => 'RoohAfza Syrup', 'price' => 180, 'description' => 'Classic summer cooler syrup'],
             ['name' => 'Green Tea', 'price' => 200, 'description' => 'Organic green tea'],
-            ['name' => 'Coffee Beans', 'price' => 300, 'description' => 'Fresh coffee beans'],
-            ['name' => 'Herbal Tea', 'price' => 180, 'description' => 'Ayurvedic herbal tea'],
             ['name' => 'Masala Chai', 'price' => 100, 'description' => 'Traditional masala chai'],
-        ], ['Tata Tea', 'Dabur', 'Coca-Cola', 'PepsiCo']);
+        ], ['Tata Tea', 'Dabur', 'Paper Boat', 'Hamdard']);
     }
 
     private function seedPersonalCareProducts($category, $brands, $vendors): void
@@ -155,12 +168,12 @@ class ProductSeeder extends Seeder
         // Kitchenware
         $kitchenware = $subcategories->where('name', 'Kitchenware (Steel, Copper, Clay)')->first();
         $this->createProducts($kitchenware, $brands, $vendors, [
-            ['name' => 'Stainless Steel Cookware Set', 'price' => 1500, 'description' => 'Complete stainless steel cookware set'],
-            ['name' => 'Copper Water Bottle', 'price' => 800, 'description' => 'Traditional copper water bottle'],
-            ['name' => 'Clay Cooking Pot', 'price' => 400, 'description' => 'Traditional clay cooking pot'],
-            ['name' => 'Steel Tiffin Box', 'price' => 600, 'description' => 'Stainless steel tiffin box'],
-            ['name' => 'Copper Vessel Set', 'price' => 1200, 'description' => 'Traditional copper vessel set'],
-        ], ['Prestige', 'Butterfly', 'Godrej']);
+            ['name' => 'Hawkins Pressure Cooker', 'price' => 2200, 'description' => 'Durable pressure cooker'],
+            ['name' => 'Prestige Clip-On Cooker', 'price' => 2800, 'description' => 'Multi-utility cooker'],
+            ['name' => 'Milton Thermosteel Flask', 'price' => 900, 'description' => 'Keeps beverages hot or cold'],
+            ['name' => 'Borosil Glass Bowl Set', 'price' => 750, 'description' => 'Microwave-safe glassware'],
+            ['name' => 'Indian Art Villa Copper Bottle', 'price' => 950, 'description' => 'Pure copper water bottle'],
+        ], ['Hawkins', 'Prestige', 'Milton', 'Borosil', 'Indian Art Villa']);
     }
 
     private function seedStationeryProducts($category, $brands, $vendors): void

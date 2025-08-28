@@ -44,13 +44,14 @@ class QuizStart extends Component
 
     private function initializeQuiz(): void
     {
-        // Get questions with eager loading to prevent N+1 queries
+        // Get up to 20 random questions with eager loaded options
         $this->questions = $this->game->gameQuestions()
+            ->inRandomOrder()
+            ->limit(20)
             ->with(['options' => function ($query) {
                 $query->orderBy('sort_order');
             }])
-            ->get()
-            ->shuffle();
+            ->get();
 
         $this->totalQuestions = $this->questions->count();
 
