@@ -31,6 +31,19 @@ class GameQuestionSeeder extends Seeder
 
         // Create daily-use product based questions
         $this->createDailyUseProductQuestions($swadeshiGame);
+
+        // Find or create the "Brand Recognition" game
+        $brandRecognitionGame = Game::where('name', 'Brand Recognition')->first();
+
+        if (! $brandRecognitionGame) {
+            $brandRecognitionGame = Game::create([
+                'name' => 'Brand Recognition',
+                'description' => 'Identify whether brands are Indian or foreign',
+            ]);
+        }
+
+        // Create brand recognition questions
+        $this->createBrandRecognitionQuestions($brandRecognitionGame);
     }
 
     /**
@@ -1380,6 +1393,1060 @@ class GameQuestionSeeder extends Seeder
         ];
 
         foreach ($dailyUseQuestions as $questionData) {
+            $question = GameQuestion::create([
+                'game_id' => $game->id,
+                'question' => $questionData['question'],
+                'type' => $questionData['type'],
+                'difficulty' => $questionData['difficulty'],
+                'points' => $questionData['points'],
+            ]);
+
+            foreach ($questionData['options'] as $index => $optionData) {
+                GameOption::create([
+                    'question_id' => $question->id,
+                    'option_text' => $optionData['text'],
+                    'optionable_id' => null,
+                    'optionable_type' => null,
+                    'is_correct' => $optionData['correct'],
+                    'sort_order' => $index + 1,
+                ]);
+            }
+        }
+    }
+
+    /**
+     * Create brand recognition questions.
+     */
+    private function createBrandRecognitionQuestions(Game $game): void
+    {
+        $questions = [
+            [
+                'question' => 'Is Tata Motors an Indian automotive company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian FMCG company?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Unilever', 'correct' => false],
+                    ['text' => 'ITC Limited', 'correct' => true],
+                    ['text' => 'P&G', 'correct' => false],
+                    ['text' => 'Nestle', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian tech companies:',
+                'type' => 'multi_select',
+                'difficulty' => 'hard',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Infosys', 'correct' => true],
+                    ['text' => 'TCS', 'correct' => true],
+                    ['text' => 'Accenture', 'correct' => false],
+                    ['text' => 'Wipro', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is Samsung an Indian electronics brand?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => false],
+                    ['text' => 'False', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Which Indian company owns Jio?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Reliance Industries', 'correct' => true],
+                    ['text' => 'Tata Group', 'correct' => false],
+                    ['text' => 'Adani Group', 'correct' => false],
+                    ['text' => 'Mahindra Group', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian automobile manufacturers:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Maruti Suzuki', 'correct' => true],
+                    ['text' => 'Tata Motors', 'correct' => true],
+                    ['text' => 'Hyundai', 'correct' => false],
+                    ['text' => 'Mahindra', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is Haldiram\'s an Indian snacks brand?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian e-commerce company?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Flipkart', 'correct' => true],
+                    ['text' => 'Amazon', 'correct' => false],
+                    ['text' => 'eBay', 'correct' => false],
+                    ['text' => 'Alibaba', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Zara an Indian clothing brand?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => false],
+                    ['text' => 'False', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Which Indian company owns Taj Hotels?',
+                'type' => 'mcq',
+                'difficulty' => 'hard',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Tata Group', 'correct' => true],
+                    ['text' => 'Reliance Industries', 'correct' => false],
+                    ['text' => 'Aditya Birla Group', 'correct' => false],
+                    ['text' => 'Mahindra Group', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian pharmaceutical companies:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Sun Pharma', 'correct' => true],
+                    ['text' => 'Dr. Reddy\'s', 'correct' => true],
+                    ['text' => 'Pfizer', 'correct' => false],
+                    ['text' => 'Cipla', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is Patanjali an Indian FMCG company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian airline company?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'IndiGo', 'correct' => true],
+                    ['text' => 'Emirates', 'correct' => false],
+                    ['text' => 'Singapore Airlines', 'correct' => false],
+                    ['text' => 'Qatar Airways', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian banking institutions:',
+                'type' => 'multi_select',
+                'difficulty' => 'hard',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'SBI', 'correct' => true],
+                    ['text' => 'HDFC Bank', 'correct' => true],
+                    ['text' => 'Standard Chartered', 'correct' => false],
+                    ['text' => 'ICICI Bank', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is Bata an Indian footwear brand?',
+                'type' => 'true_false',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'True', 'correct' => false],
+                    ['text' => 'False', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian steel company?',
+                'type' => 'mcq',
+                'difficulty' => 'hard',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Tata Steel', 'correct' => true],
+                    ['text' => 'ArcelorMittal', 'correct' => false],
+                    ['text' => 'POSCO', 'correct' => false],
+                    ['text' => 'Nippon Steel', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Asian Paints an Indian company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian telecom operator?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Airtel', 'correct' => true],
+                    ['text' => 'Vodafone', 'correct' => false],
+                    ['text' => 'Verizon', 'correct' => false],
+                    ['text' => 'AT&T', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian media companies:',
+                'type' => 'multi_select',
+                'difficulty' => 'hard',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Zee Entertainment', 'correct' => true],
+                    ['text' => 'Sony Pictures', 'correct' => false],
+                    ['text' => 'Star India', 'correct' => true],
+                    ['text' => 'Disney', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Raymond an Indian textile brand?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Britannia an Indian FMCG company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian automobile company that owns Royal Enfield?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Eicher Motors', 'correct' => true],
+                    ['text' => 'Bajaj Auto', 'correct' => false],
+                    ['text' => 'TVS Motors', 'correct' => false],
+                    ['text' => 'Hero MotoCorp', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian jewelry brands:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Tanishq', 'correct' => true],
+                    ['text' => 'Kalyan Jewellers', 'correct' => true],
+                    ['text' => 'Tiffany & Co.', 'correct' => false],
+                    ['text' => 'Malabar Gold', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is MRF an Indian tire manufacturing company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian paint company?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Asian Paints', 'correct' => true],
+                    ['text' => 'Dulux', 'correct' => false],
+                    ['text' => 'Berger', 'correct' => false],
+                    ['text' => 'Nerolac', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is Dabur an Indian consumer goods company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian two-wheeler manufacturer?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Bajaj Auto', 'correct' => true],
+                    ['text' => 'Honda', 'correct' => false],
+                    ['text' => 'Yamaha', 'correct' => false],
+                    ['text' => 'Suzuki', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian watch brands:',
+                'type' => 'multi_select',
+                'difficulty' => 'hard',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Titan', 'correct' => true],
+                    ['text' => 'HMT', 'correct' => true],
+                    ['text' => 'Timex', 'correct' => false],
+                    ['text' => 'Fastrack', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is Godrej an Indian conglomerate?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian airline company?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'SpiceJet', 'correct' => true],
+                    ['text' => 'Emirates', 'correct' => false],
+                    ['text' => 'Singapore Airlines', 'correct' => false],
+                    ['text' => 'Qatar Airways', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian tea brands:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Taj Mahal', 'correct' => true],
+                    ['text' => 'Tetley', 'correct' => false],
+                    ['text' => 'Wagh Bakri', 'correct' => true],
+                    ['text' => 'Society Tea', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is Parle an Indian food products company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian IT services company?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'HCL Technologies', 'correct' => true],
+                    ['text' => 'Accenture', 'correct' => false],
+                    ['text' => 'IBM', 'correct' => false],
+                    ['text' => 'Capgemini', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Havells an Indian consumer electrical equipment company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian cement company?',
+                'type' => 'mcq',
+                'difficulty' => 'hard',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'UltraTech', 'correct' => true],
+                    ['text' => 'Lafarge', 'correct' => false],
+                    ['text' => 'Heidelberg', 'correct' => false],
+                    ['text' => 'Holcim', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian clothing brands:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Fabindia', 'correct' => true],
+                    ['text' => 'Biba', 'correct' => true],
+                    ['text' => 'Zara', 'correct' => false],
+                    ['text' => 'W for Woman', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is Apollo Tyres an Indian company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian insurance company?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'L&T Insurance', 'correct' => true],
+                    ['text' => 'Prudential', 'correct' => false],
+                    ['text' => 'AIA', 'correct' => false],
+                    ['text' => 'Axa', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian food delivery platforms:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Swiggy', 'correct' => true],
+                    ['text' => 'Zomato', 'correct' => true],
+                    ['text' => 'Uber Eats', 'correct' => false],
+                    ['text' => 'Foodpanda', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Titan an Indian watch and jewelry company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Amul an Indian dairy cooperative?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian e-commerce company?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Flipkart', 'correct' => true],
+                    ['text' => 'Amazon', 'correct' => false],
+                    ['text' => 'eBay', 'correct' => false],
+                    ['text' => 'Walmart', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian bicycle brands:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Hero Cycles', 'correct' => true],
+                    ['text' => 'Atlas Cycles', 'correct' => true],
+                    ['text' => 'Trek', 'correct' => false],
+                    ['text' => 'BSA', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is JCB an Indian construction equipment company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => false],
+                    ['text' => 'False', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian smartphone brand?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Micromax', 'correct' => true],
+                    ['text' => 'Samsung', 'correct' => false],
+                    ['text' => 'Xiaomi', 'correct' => false],
+                    ['text' => 'Oppo', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Nirma an Indian detergent brand?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian airline that operates international flights?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Air India', 'correct' => true],
+                    ['text' => 'IndiGo', 'correct' => true],
+                    ['text' => 'SpiceJet', 'correct' => true],
+                    ['text' => 'Vistara', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian chocolate brands:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Amul', 'correct' => true],
+                    ['text' => 'Cadbury', 'correct' => false],
+                    ['text' => 'Nestle', 'correct' => false],
+                    ['text' => 'Campco', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is LIC an Indian insurance company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian motorcycle brand?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Royal Enfield', 'correct' => true],
+                    ['text' => 'Honda', 'correct' => false],
+                    ['text' => 'Yamaha', 'correct' => false],
+                    ['text' => 'Suzuki', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian news channels:',
+                'type' => 'multi_select',
+                'difficulty' => 'hard',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Aaj Tak', 'correct' => true],
+                    ['text' => 'Republic TV', 'correct' => true],
+                    ['text' => 'BBC', 'correct' => false],
+                    ['text' => 'NDTV India', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is Patanjali an Indian FMCG company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian biscuit brand?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Parle-G', 'correct' => true],
+                    ['text' => 'Oreo', 'correct' => false],
+                    ['text' => 'McVitie\'s', 'correct' => false],
+                    ['text' => 'Hidustan Unilever', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Zoho an Indian software company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian watch brand?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Titan', 'correct' => true],
+                    ['text' => 'Rolex', 'correct' => false],
+                    ['text' => 'Casio', 'correct' => false],
+                    ['text' => 'Timex', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian automobile manufacturers:',
+                'type' => 'multi_select',
+                'difficulty' => 'hard',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Tata Motors', 'correct' => true],
+                    ['text' => 'Mahindra', 'correct' => true],
+                    ['text' => 'Maruti Suzuki', 'correct' => true],
+                    ['text' => 'Hyundai', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Big Bazaar an Indian retail chain?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian payment app?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'PhonePe', 'correct' => true],
+                    ['text' => 'PayPal', 'correct' => false],
+                    ['text' => 'Venmo', 'correct' => false],
+                    ['text' => 'WeChat Pay', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian telecom operators:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Airtel', 'correct' => true],
+                    ['text' => 'Jio', 'correct' => true],
+                    ['text' => 'Vodafone Idea', 'correct' => true],
+                    ['text' => 'Verizon', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Byju\'s an Indian edtech company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian spice brand?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'MDH', 'correct' => true],
+                    ['text' => 'McCormick', 'correct' => false],
+                    ['text' => 'Badia', 'correct' => false],
+                    ['text' => 'Schwartz', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Hindustan Unilever an Indian company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => false],
+                    ['text' => 'False', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian airline that operates only domestic flights?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'IndiGo', 'correct' => true],
+                    ['text' => 'Air India', 'correct' => false],
+                    ['text' => 'Vistara', 'correct' => false],
+                    ['text' => 'SpiceJet', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian home appliance brands:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Bajaj', 'correct' => true],
+                    ['text' => 'Havells', 'correct' => true],
+                    ['text' => 'Samsung', 'correct' => false],
+                    ['text' => 'Orient Electric', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is MakeMyTrip an Indian travel company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian payment gateway?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Razorpay', 'correct' => true],
+                    ['text' => 'PayPal', 'correct' => false],
+                    ['text' => 'Stripe', 'correct' => false],
+                    ['text' => 'Square', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian footwear brands:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Bata', 'correct' => false],
+                    ['text' => 'Liberty', 'correct' => true],
+                    ['text' => 'Paragon', 'correct' => true],
+                    ['text' => 'Nike', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Nykaa an Indian beauty e-commerce company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian food delivery company?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Zomato', 'correct' => true],
+                    ['text' => 'Uber Eats', 'correct' => false],
+                    ['text' => 'DoorDash', 'correct' => false],
+                    ['text' => 'Grubhub', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian news apps:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Inshorts', 'correct' => true],
+                    ['text' => 'Dailyhunt', 'correct' => true],
+                    ['text' => 'Google News', 'correct' => false],
+                    ['text' => 'NewsBreak', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Boat an Indian consumer electronics brand?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian online grocery store?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'BigBasket', 'correct' => true],
+                    ['text' => 'Amazon Fresh', 'correct' => false],
+                    ['text' => 'Instacart', 'correct' => false],
+                    ['text' => 'Walmart Grocery', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian furniture brands:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Pepperfry', 'correct' => true],
+                    ['text' => 'Urban Ladder', 'correct' => true],
+                    ['text' => 'IKEA', 'correct' => false],
+                    ['text' => 'Nilkamal', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is Crompton an Indian consumer electronics company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian online learning platform?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Unacademy', 'correct' => true],
+                    ['text' => 'Coursera', 'correct' => false],
+                    ['text' => 'Udemy', 'correct' => false],
+                    ['text' => 'edX', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian luggage brands:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'VIP', 'correct' => true],
+                    ['text' => 'Safari', 'correct' => true],
+                    ['text' => 'American Tourister', 'correct' => false],
+                    ['text' => 'Skybags', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is Paper Boat an Indian beverage brand?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian social media platform?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'ShareChat', 'correct' => true],
+                    ['text' => 'Facebook', 'correct' => false],
+                    ['text' => 'Twitter', 'correct' => false],
+                    ['text' => 'Instagram', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian bicycle manufacturers:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Hero Cycles', 'correct' => true],
+                    ['text' => 'Atlas Cycles', 'correct' => true],
+                    ['text' => 'Trek', 'correct' => false],
+                    ['text' => 'BSA', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is Lenskart an Indian eyewear brand?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian eyewear retailer?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Lenskart', 'correct' => true],
+                    ['text' => 'Specsavers', 'correct' => false],
+                    ['text' => 'Vision Express', 'correct' => false],
+                    ['text' => 'Pearle Vision', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian fashion e-commerce platforms:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Myntra', 'correct' => true],
+                    ['text' => 'Ajio', 'correct' => true],
+                    ['text' => 'ASOS', 'correct' => false],
+                    ['text' => 'Zivame', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is Ola an Indian ride-hailing company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian food delivery company?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Swiggy', 'correct' => true],
+                    ['text' => 'Uber Eats', 'correct' => false],
+                    ['text' => 'DoorDash', 'correct' => false],
+                    ['text' => 'Grubhub', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian jewelry brands:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Tanishq', 'correct' => true],
+                    ['text' => 'CaratLane', 'correct' => true],
+                    ['text' => 'Kay Jewelers', 'correct' => false],
+                    ['text' => 'Malabar Gold', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is FirstCry an Indian baby products company?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian fintech company?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Paytm', 'correct' => true],
+                    ['text' => 'PayPal', 'correct' => false],
+                    ['text' => 'Square', 'correct' => false],
+                    ['text' => 'Stripe', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian automobile manufacturers:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Tata Motors', 'correct' => true],
+                    ['text' => 'Mahindra', 'correct' => true],
+                    ['text' => 'Hyundai', 'correct' => false],
+                    ['text' => 'Maruti Suzuki', 'correct' => true],
+                ],
+            ],
+            [
+                'question' => 'Is Big Bazaar an Indian retail chain?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian online pharmacy?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => '1mg', 'correct' => true],
+                    ['text' => 'CVS', 'correct' => false],
+                    ['text' => 'Walgreens', 'correct' => false],
+                    ['text' => 'Boots', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian electronics brands:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 20,
+                'options' => [
+                    ['text' => 'Micromax', 'correct' => true],
+                    ['text' => 'Lava', 'correct' => true],
+                    ['text' => 'Samsung', 'correct' => false],
+                    ['text' => 'Intex', 'correct' => true],
+                ],
+            ],
+        ];
+
+        foreach ($questions as $questionData) {
             $question = GameQuestion::create([
                 'game_id' => $game->id,
                 'question' => $questionData['question'],
