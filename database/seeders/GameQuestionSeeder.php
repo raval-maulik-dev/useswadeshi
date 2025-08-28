@@ -1274,6 +1274,108 @@ class GameQuestionSeeder extends Seeder
                     ['text' => 'True', 'correct' => true],
                     ['text' => 'False', 'correct' => false],
                 ],
+            ],
+            [
+                'question' => 'Which of these is an Indian brand of kitchen storage containers?',
+                'type' => 'mcq',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'Tupperware', 'correct' => false],
+                    ['text' => 'Borosil', 'correct' => true],
+                    ['text' => 'Tupperware', 'correct' => false],
+                    ['text' => 'Lock & Lock', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian brands of tea:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Taj Mahal', 'correct' => true],
+                    ['text' => 'Red Label', 'correct' => true],
+                    ['text' => 'Lipton', 'correct' => false],
+                    ['text' => 'Tetley', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Amul an Indian dairy brand?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian brand of pressure cookers?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'Hawkins', 'correct' => true],
+                    ['text' => 'Instant Pot', 'correct' => false],
+                    ['text' => 'T-fal', 'correct' => false],
+                    ['text' => 'Crock-Pot', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian brands of spices:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'MDH', 'correct' => true],
+                    ['text' => 'Everest', 'correct' => true],
+                    ['text' => 'McCormick', 'correct' => false],
+                    ['text' => 'Badia', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Patanjali an Indian brand?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Which of these is an Indian brand of floor cleaners?',
+                'type' => 'mcq',
+                'difficulty' => 'medium',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'Lizol', 'correct' => false],
+                    ['text' => 'Harpic', 'correct' => false],
+                    ['text' => 'Nimyle', 'correct' => true],
+                    ['text' => 'Dettol', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Select all Indian brands of snacks:',
+                'type' => 'multi_select',
+                'difficulty' => 'medium',
+                'points' => 15,
+                'options' => [
+                    ['text' => 'Haldiram\'s', 'correct' => true],
+                    ['text' => 'Bikaji', 'correct' => true],
+                    ['text' => 'Lay\'s', 'correct' => false],
+                    ['text' => 'Pringles', 'correct' => false],
+                ],
+            ],
+            [
+                'question' => 'Is Nirma an Indian detergent brand?',
+                'type' => 'true_false',
+                'difficulty' => 'easy',
+                'points' => 10,
+                'options' => [
+                    ['text' => 'True', 'correct' => true],
+                    ['text' => 'False', 'correct' => false],
+                ],
             ]
         ];
 
