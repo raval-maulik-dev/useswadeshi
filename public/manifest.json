@@ -1,0 +1,27 @@
+{
+    "name": "Swadeshi Abhiyan - Mehsana 2025",
+    "short_name": "Swadeshi Quiz",
+    "description": "Interactive cultural quiz promoting Indian products and Vocal for Local initiative",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#FF6B35",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/asset/useswadeshi-icon.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/asset/useswadeshi-icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["education", "entertainment"],
+    "lang": "en",
+    "dir": "ltr"
+}
