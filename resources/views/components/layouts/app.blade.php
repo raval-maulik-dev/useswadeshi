@@ -10,28 +10,14 @@
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#FF6B35">
     <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'saffron': '#FF9933',
-                        'white': '#FFFFFF',
-                        'green': '#138808',
-                        'navy': '#000080'
-                    }
-                }
-            }
-        }
-    </script>
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
 
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -65,97 +51,97 @@
 </head>
 <body class="bg-gradient-to-br from-orange-50 via-white to-green-50 min-h-screen">
     <!-- Header -->
-    <header class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex items-center justify-between h-16">
-                <!-- Logo and Title -->
-                <div class="flex items-center space-x-4">
-                    <a href="{{ route('home') }}" wire:navigate class="block">
-                        <img src="{{ asset('asset/useswadeshi-remove-bg-logo.png') }}" alt="Swadeshi Abhiyan Logo" class="w-40 h-auto hover:opacity-90 transition-opacity">
-                    </a>
-                </div>
+{{--    <header class="bg-white shadow-lg sticky top-0 z-50">--}}
+{{--        <div class="max-w-7xl mx-auto px-4">--}}
+{{--            <div class="flex items-center justify-between h-16">--}}
+{{--                <!-- Logo and Title -->--}}
+{{--                <div class="flex items-center space-x-4">--}}
+{{--                    <a href="{{ route('home') }}" wire:navigate class="block">--}}
+{{--                        <img src="{{ asset('asset/useswadeshi-remove-bg-logo.png') }}" alt="Swadeshi Abhiyan Logo" class="w-40 h-auto hover:opacity-90 transition-opacity">--}}
+{{--                    </a>--}}
+{{--                </div>--}}
 
-                <!-- Navigation -->
-                <!-- Navigation -->
-                <nav class="hidden md:flex items-center space-x-6">
-                    <a href="{{ route('home') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Home</a>
-                    <a href="{{ route('quiz') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Quiz</a>
-                    <a href="{{ route('leaderboard') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Leaderboard</a>
-                    <a href="{{ route('products') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Products</a>
-                    <a href="{{ route('vendors') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Vendors</a>
-                    <a href="{{ route('articles') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Articles</a>
+{{--                <!-- Navigation -->--}}
+{{--                <!-- Navigation -->--}}
+{{--                <nav class="hidden md:flex items-center space-x-6">--}}
+{{--                    <a href="{{ route('home') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Home</a>--}}
+{{--                    <a href="{{ route('quiz') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Quiz</a>--}}
+{{--                    <a href="{{ route('leaderboard') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Leaderboard</a>--}}
+{{--                    <a href="{{ route('products') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Products</a>--}}
+{{--                    <a href="{{ route('vendors') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Vendors</a>--}}
+{{--                    <a href="{{ route('articles') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Articles</a>--}}
 
-                    @auth
-                        <!-- Profile Dropdown -->
-                        <div x-data="{ open: false }" class="relative">
-                            <!-- Avatar Button -->
-                            <button @click="open = !open" class="border border-2 border-danger w-10 h-10 flex items-center rounded-full justify-center text-gray-700 hover:text-orange-600 font-medium transition-colors">
-                                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                            </button>
+{{--                    @auth--}}
+{{--                        <!-- Profile Dropdown -->--}}
+{{--                        <div x-data="{ open: false }" class="relative">--}}
+{{--                            <!-- Avatar Button -->--}}
+{{--                            <button @click="open = !open" class="border border-2 border-danger w-10 h-10 flex items-center rounded-full justify-center text-gray-700 hover:text-orange-600 font-medium transition-colors">--}}
+{{--                                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}--}}
+{{--                            </button>--}}
 
-                            <!-- Dropdown Menu -->
-                            <div 
-                                x-show="open" 
-                                @click.away="open = false"
-                                class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50"
-                            >
-                                <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors">Dashboard</a>
-                                <a href="{{ route('user.profile') }}" class="block px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors">Profile</a>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit" class="w-full text-left block px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors">
-                                        Logout
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    @else
-                        <a href="{{ route('login') }}" wire:navigate class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-lg font-medium hover:from-orange-600 hover:to-red-700 transition-all">Login</a>
-                    @endauth
-                </nav>
-                
-                <!-- Language Switcher -->
-                <div class="flex items-center space-x-2">
-                    <div class="relative">
-                        <select id="languageSelector" class="bg-gray-100 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
-                            <option value="en" {{ session('locale', 'en') == 'en' ? 'selected' : '' }}>English</option>
-                            <option value="hi" {{ session('locale', 'en') == 'hi' ? 'selected' : '' }}>हिंदी</option>
-                            <option value="gu" {{ session('locale', 'en') == 'gu' ? 'selected' : '' }}>ગુજરાતી</option>
-                        </select>
-                    </div>
-                </div>
+{{--                            <!-- Dropdown Menu -->--}}
+{{--                            <div --}}
+{{--                                x-show="open" --}}
+{{--                                @click.away="open = false"--}}
+{{--                                class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50"--}}
+{{--                            >--}}
+{{--                                <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors">Dashboard</a>--}}
+{{--                                <a href="{{ route('user.profile') }}" class="block px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors">Profile</a>--}}
+{{--                                <form method="POST" action="{{ route('logout') }}">--}}
+{{--                                    @csrf--}}
+{{--                                    <button type="submit" class="w-full text-left block px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors">--}}
+{{--                                        Logout--}}
+{{--                                    </button>--}}
+{{--                                </form>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @else--}}
+{{--                        <a href="{{ route('login') }}" wire:navigate class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-lg font-medium hover:from-orange-600 hover:to-red-700 transition-all">Login</a>--}}
+{{--                    @endauth--}}
+{{--                </nav>--}}
+{{--                --}}
+{{--                <!-- Language Switcher -->--}}
+{{--                <div class="flex items-center space-x-2">--}}
+{{--                    <div class="relative">--}}
+{{--                        <select id="languageSelector" class="bg-gray-100 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500">--}}
+{{--                            <option value="en" {{ session('locale', 'en') == 'en' ? 'selected' : '' }}>English</option>--}}
+{{--                            <option value="hi" {{ session('locale', 'en') == 'hi' ? 'selected' : '' }}>हिंदी</option>--}}
+{{--                            <option value="gu" {{ session('locale', 'en') == 'gu' ? 'selected' : '' }}>ગુજરાતી</option>--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-                <!-- Mobile Menu Button -->
-                <button class="md:hidden p-2" id="mobileMenuBtn">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
+{{--                <!-- Mobile Menu Button -->--}}
+{{--                <button class="md:hidden p-2" id="mobileMenuBtn">--}}
+{{--                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">--}}
+{{--                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>--}}
+{{--                    </svg>--}}
+{{--                </button>--}}
+{{--            </div>--}}
 
-            <!-- Mobile Menu -->
-            <div class="md:hidden hidden" id="mobileMenu">
-                <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t">
-                    <a href="{{ route('home') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Home</a>
-                    <a href="{{ route('quiz') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Quiz</a>
-                    <a href="{{ route('leaderboard') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Leaderboard</a>
-                    <a href="{{ route('products') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Products</a>
-                    <a href="{{ route('vendors') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Vendors</a>
-                    <a href="{{ route('articles') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Articles</a>
-                    @auth
-                        <a href="{{ route('dashboard') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Dashboard</a>
-                        <a href="{{ route('user.profile') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Profile</a>
-                        <form method="POST" action="{{ route('logout') }}" class="w-full">
-                            @csrf
-                            <button type="submit" class="w-full text-left px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Logout</button>
-                        </form>
-                    @else
-                        <a href="{{ route('login') }}" class="block px-3 py-2 bg-orange-500 text-white rounded-md text-center">Login</a>
-                    @endauth
-                </div>
-            </div>
-        </div>
-    </header>
+{{--            <!-- Mobile Menu -->--}}
+{{--            <div class="md:hidden hidden" id="mobileMenu">--}}
+{{--                <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t">--}}
+{{--                    <a href="{{ route('home') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Home</a>--}}
+{{--                    <a href="{{ route('quiz') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Quiz</a>--}}
+{{--                    <a href="{{ route('leaderboard') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Leaderboard</a>--}}
+{{--                    <a href="{{ route('products') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Products</a>--}}
+{{--                    <a href="{{ route('vendors') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Vendors</a>--}}
+{{--                    <a href="{{ route('articles') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Articles</a>--}}
+{{--                    @auth--}}
+{{--                        <a href="{{ route('dashboard') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Dashboard</a>--}}
+{{--                        <a href="{{ route('user.profile') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Profile</a>--}}
+{{--                        <form method="POST" action="{{ route('logout') }}" class="w-full">--}}
+{{--                            @csrf--}}
+{{--                            <button type="submit" class="w-full text-left px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Logout</button>--}}
+{{--                        </form>--}}
+{{--                    @else--}}
+{{--                        <a href="{{ route('login') }}" class="block px-3 py-2 bg-orange-500 text-white rounded-md text-center">Login</a>--}}
+{{--                    @endauth--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </header>--}}
 
     <!-- Main Content -->
     <main>
@@ -307,7 +293,15 @@
         }
     </script>
 
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js"></script>
+    <!-- Alpine.js is now imported via Vite -->
+
+    <!-- Livewire Redirect Listener -->
+    <script>
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('redirect', (event) => {
+                window.location.href = event.url;
+            });
+        });
+    </script>
 </body>
 </html>
