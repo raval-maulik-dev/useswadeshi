@@ -1,5 +1,5 @@
 <div>
-    @section('title', 'Quiz Result - Swadeshi Abhiyan')
+    @section('title', __('messages.quiz_result_title'))
 
     <div class="min-h-screen bg-gradient-to-br from-orange-50 via-white to-green-50 py-12">
         <div class="max-w-4xl mx-auto px-4">
@@ -11,11 +11,11 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h1 class="text-4xl font-bold text-gray-800 mb-2">Quiz Complete!</h1>
-                    <p class="text-gray-600">Great job completing the {{ $game->name }} quiz</p>
+                    <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ __('messages.quiz_completed') }}</h1>
+                    <p class="text-gray-600">{{ __('messages.great_job_completing') }} {{ $game->name }} {{ __('messages.quiz') }}</p>
                     <div class="mt-2">
                         <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-{{ $this->performanceColor }}-100 text-{{ $this->performanceColor }}-800">
-                            Grade: {{ $this->performanceGrade }}
+                            {{ __('messages.grade') }}: {{ $this->performanceGrade }}
                         </span>
                     </div>
                 </div>
@@ -26,13 +26,13 @@
                     <div class="text-2xl mb-2">{{ $result->accuracy_percentage }}%</div>
                     <div class="text-lg opacity-90">
                         @if($result->accuracy_percentage >= 80)
-                            🏆 Excellent! You're a Swadeshi expert!
+                            🏆 {{ __('messages.excellent_swadeshi_expert') }}
                         @elseif($result->accuracy_percentage >= 60)
-                            🎯 Good job! You know your Indian products well!
+                            🎯 {{ __('messages.good_job_indian_products') }}
                         @elseif($result->accuracy_percentage >= 40)
-                            👍 Nice effort! Keep learning about local products!
+                            👍 {{ __('messages.nice_effort_keep_learning') }}
                         @else
-                            📚 Keep practicing! Learn more about Indian brands!
+                            📚 {{ __('messages.keep_practicing_learn_more') }}
                         @endif
                     </div>
                 </div>
@@ -41,19 +41,19 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                     <div class="bg-orange-50 rounded-2xl p-6 text-center">
                         <div class="text-3xl font-bold text-orange-600">{{ $userRank }}</div>
-                        <div class="text-gray-600">Your Rank</div>
+                        <div class="text-gray-600">{{ __('messages.your_rank') }}</div>
                     </div>
                     <div class="bg-green-50 rounded-2xl p-6 text-center">
                         <div class="text-3xl font-bold text-green-600">{{ $totalParticipants }}</div>
-                        <div class="text-gray-600">Total Participants</div>
+                        <div class="text-gray-600">{{ __('messages.total_participants') }}</div>
                     </div>
                     <div class="bg-blue-50 rounded-2xl p-6 text-center">
                         <div class="text-3xl font-bold text-blue-600">{{ $result->correct_answers }}</div>
-                        <div class="text-gray-600">Correct Answers</div>
+                        <div class="text-gray-600">{{ __('messages.correct_answers') }}</div>
                     </div>
                     <div class="bg-purple-50 rounded-2xl p-6 text-center">
                         <div class="text-3xl font-bold text-purple-600">{{ $result->total_points }}</div>
-                        <div class="text-gray-600">Points Earned</div>
+                        <div class="text-gray-600">{{ __('messages.points_earned') }}</div>
                     </div>
                 </div>
 
@@ -61,15 +61,15 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                     <div class="bg-yellow-50 rounded-2xl p-6 text-center">
                         <div class="text-2xl font-bold text-yellow-600">{{ $result->getFormattedTimeTaken() }}</div>
-                        <div class="text-gray-600">Time Taken</div>
+                        <div class="text-gray-600">{{ __('messages.time_taken') }}</div>
                     </div>
                     <div class="bg-indigo-50 rounded-2xl p-6 text-center">
                         <div class="text-2xl font-bold text-indigo-600">{{ $result->attempt_number }}</div>
-                        <div class="text-gray-600">Attempt #</div>
+                        <div class="text-gray-600">{{ __('messages.attempt_number') }}</div>
                     </div>
                     <div class="bg-pink-50 rounded-2xl p-6 text-center">
                         <div class="text-2xl font-bold text-pink-600">{{ $result->incorrect_answers }}</div>
-                        <div class="text-gray-600">Incorrect</div>
+                        <div class="text-gray-600">{{ __('messages.incorrect_answers') }}</div>
                     </div>
                 </div>
 

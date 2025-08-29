@@ -36,7 +36,7 @@ class Quiz extends Component
         if (! $this->selectedGame) {
             $this->dispatch('notify', [
                 'type' => 'error',
-                'message' => 'Game not found!',
+                'message' => __('messages.game_not_found'),
             ]);
 
             return;
@@ -87,7 +87,7 @@ class Quiz extends Component
         } else {
             $this->dispatch('notify', [
                 'type' => 'error',
-                'message' => 'Cannot replay this game!',
+                'message' => __('messages.cannot_replay'),
             ]);
         }
     }
@@ -150,15 +150,15 @@ class Quiz extends Component
 
         switch ($status) {
             case 'completed':
-                return 'Completed';
+                return __('messages.status_completed');
             case 'max_attempts_reached':
-                return 'Max Attempts Reached';
+                return __('messages.status_max_attempts');
             case 'attempted':
-                return 'Attempted';
+                return __('messages.status_attempted');
             case 'played':
-                return 'Already Played';
+                return __('messages.status_played');
             default:
-                return 'New Game';
+                return __('messages.status_new');
         }
     }
 
@@ -215,7 +215,6 @@ class Quiz extends Component
 
     public function render()
     {
-        return view('livewire.pages.quiz')
-            ->layout('components.layouts.app');
+        return view('livewire.pages.quiz');
     }
 }

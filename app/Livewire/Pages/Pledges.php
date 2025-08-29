@@ -40,7 +40,7 @@ class Pledges extends Component
 
         $this->reset(['pledgeText', 'selectedProducts', 'isCreatingPledge']);
 
-        session()->flash('message', 'Pledge created successfully! Thank you for supporting local products.');
+        session()->flash('message', __('messages.pledge_created_success'));
     }
 
     public function toggleProduct($productId)
@@ -66,6 +66,6 @@ class Pledges extends Component
         return view('livewire.pages.pledges', [
             'userPledges' => $userPledges,
             'allPledges' => $allPledges,
-        ])->layout('components.layouts.app');
+        ]);
     }
 }

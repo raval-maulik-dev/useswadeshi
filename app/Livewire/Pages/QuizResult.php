@@ -75,7 +75,7 @@ class QuizResult extends Component
         } else {
             $this->dispatch('notify', [
                 'type' => 'error',
-                'message' => 'Cannot replay this game!',
+                'message' => __('messages.cannot_replay'),
             ]);
         }
     }
@@ -132,8 +132,8 @@ class QuizResult extends Component
                 : [];
 
             // Handle case where user didn't answer
-            $userAnswered = !empty($userAnswerIds);
-            $userAnswerDisplay = $userAnswered ? $userAnswerTexts : ['No answer selected'];
+            $userAnswered = ! empty($userAnswerIds);
+            $userAnswerDisplay = $userAnswered ? $userAnswerTexts : [__('messages.no_answer_selected')];
 
             return [
                 'question_id' => (int) ($question['question_id'] ?? 0),
@@ -188,6 +188,7 @@ class QuizResult extends Component
                         if (empty($answer->option_text) && $answer->option) {
                             return $answer->option->display_text;
                         }
+
                         return $answer->option_text;
                     })->filter()->values()->all();
                 } else {
@@ -197,6 +198,7 @@ class QuizResult extends Component
                         if (empty($answer->option_text) && $answer->option) {
                             return $answer->option->display_text;
                         }
+
                         return $answer->option_text;
                     })->filter()->values()->all();
                 }

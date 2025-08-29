@@ -82,6 +82,12 @@ return [
 
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 
+    'available_locales' => [
+        'en' => 'English',
+        'hi' => 'हिंदी',
+        'gu' => 'ગુજરાતી',
+    ],
+
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
 
     /*

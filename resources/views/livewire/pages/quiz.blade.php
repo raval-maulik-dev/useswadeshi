@@ -1,5 +1,5 @@
 <div>
-    @section('title', 'Quiz Selection - Swadeshi Abhiyan')
+    @section('title', __('messages.quiz_selection'))
 
     <!-- Hero Section -->
     <section class="relative py-16 bg-gradient-to-br from-orange-50 via-white to-green-50">
@@ -8,10 +8,10 @@
             <!-- Header -->
             <div class="text-center mb-12">
                 <h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-green-600">
-                    Choose Your Quiz
+                    {{ __('messages.choose_quiz') }}
                 </h1>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Test your knowledge of Indian products and brands 🎯
+                    {{ __('messages.test_knowledge_indian') }}
                 </p>
             </div>
 
@@ -48,11 +48,11 @@
                     <div class="flex justify-center gap-8 text-center mb-6">
                         <div>
                             <div class="text-xl font-bold text-orange-600">{{ $this->getQuestionCount($game) }}</div>
-                            <div class="text-xs text-gray-500">Questions</div>
+                            <div class="text-xs text-gray-500">{{ __('messages.questions') }}</div>
                         </div>
                         <div>
                             <div class="text-xl font-bold text-green-600">{{ $game->per_question_time ?: '∞' }}s</div>
-                            <div class="text-xs text-gray-500">Per Q</div>
+                            <div class="text-xs text-gray-500">{{ __('messages.per_question') }}</div>
                         </div>
                     </div>
 
@@ -64,7 +64,7 @@
                                 class="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 
                                     text-white py-3 rounded-lg font-semibold text-center transition block"
                             >
-                                🚀 Start Quiz
+                                {{ __('messages.start_quiz') }}
                             </a>
                         @elseif($this->getUserGameStatus($game) === 'completed' || $this->getUserGameStatus($game) === 'max_attempts_reached')
                             <button 
