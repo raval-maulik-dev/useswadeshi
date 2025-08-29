@@ -71,6 +71,6 @@ class Vendors extends Component
 
         return view('livewire.pages.vendors', [
             'vendors' => $vendors,
-        ])->layout('components.layouts.app');
+        ]);
     }
 }

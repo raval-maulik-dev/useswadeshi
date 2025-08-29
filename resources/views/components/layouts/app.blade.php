@@ -62,14 +62,18 @@
                 </div>
 
                 <!-- Navigation -->
-                <!-- Navigation -->
                 <nav class="hidden md:flex items-center space-x-6">
-                    <a href="{{ route('home') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Home</a>
-                    <a href="{{ route('quiz') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Quiz</a>
-                    <a href="{{ route('leaderboard') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Leaderboard</a>
-                    <a href="{{ route('products') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Products</a>
-                    <a href="{{ route('vendors') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Vendors</a>
-                    <a href="{{ route('articles') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">Articles</a>
+                    <a href="{{ route('home') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">{{ __('messages.home') }}</a>
+                    <a href="{{ route('quiz') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">{{ __('messages.quiz') }}</a>
+                    <a href="{{ route('leaderboard') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">{{ __('messages.leaderboard') }}</a>
+                    <a href="{{ route('products') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">{{ __('messages.products') }}</a>
+                    <a href="{{ route('vendors') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">{{ __('messages.vendors') }}</a>
+                    <a href="{{ route('articles') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">{{ __('messages.articles') }}</a>
+
+                    <!-- Language Switcher -->
+                    <div class="ml-4">
+                        @livewire('language-switcher')
+                    </div>
 
                     @auth
                         <!-- Profile Dropdown -->
@@ -85,29 +89,25 @@
                                 @click.away="open = false"
                                 class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50"
                             >
-                                <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors">Dashboard</a>
-                                <a href="{{ route('user.profile') }}" class="block px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors">Profile</a>
+                                <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors">{{ __('messages.dashboard') }}</a>
+                                <a href="{{ route('user.profile') }}" class="block px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors">{{ __('messages.profile') }}</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit" class="w-full text-left block px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors">
-                                        Logout
+                                        {{ __('messages.logout') }}
                                     </button>
                                 </form>
                             </div>
                         </div>
                     @else
-                        <a href="{{ route('login') }}" wire:navigate class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-lg font-medium hover:from-orange-600 hover:to-red-700 transition-all">Login</a>
+                        <a href="{{ route('login') }}" wire:navigate class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-lg font-medium hover:from-orange-600 hover:to-red-700 transition-all">{{ __('messages.login') }}</a>
                     @endauth
                 </nav>
 
                 <!-- Language Switcher -->
                 <div class="flex items-center space-x-2">
                     <div class="relative">
-                        <select id="languageSelector" class="bg-gray-100 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
-                            <option value="en" {{ session('locale', 'en') == 'en' ? 'selected' : '' }}>English</option>
-                            <option value="hi" {{ session('locale', 'en') == 'hi' ? 'selected' : '' }}>हिंदी</option>
-                            <option value="gu" {{ session('locale', 'en') == 'gu' ? 'selected' : '' }}>ગુજરાતી</option>
-                        </select>
+                        @livewire('language-switcher')
                     </div>
                 </div>
 

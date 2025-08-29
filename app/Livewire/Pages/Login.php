@@ -22,12 +22,15 @@ class Login extends Component
         'phone' => 'required|string|min:10|max:15',
     ];
 
-    protected $messages = [
-        'name.required' => 'Please enter your name.',
-        'name.min' => 'Name must be at least 2 characters.',
-        'phone.required' => 'Please enter your phone number.',
-        'phone.min' => 'Phone number must be at least 10 digits.',
-    ];
+    protected function messages(): array
+    {
+        return [
+            'name.required' => __('messages.name_required'),
+            'name.min' => __('messages.name_min'),
+            'phone.required' => __('messages.phone_required'),
+            'phone.min' => __('messages.phone_min'),
+        ];
+    }
 
     public function login()
     {
@@ -61,20 +64,19 @@ class Login extends Component
             $this->isLoading = false;
 
             // Redirect to home page
-            return redirect()->route('home')->with('success', 'Welcome to Swadeshi Abhiyan!');
+            return redirect()->route('home')->with('success', __('messages.welcome_swadeshi'));
 
         } catch (ValidationException $e) {
             $this->isLoading = false;
-            $this->errorMessage = 'Please check your input and try again.';
+            $this->errorMessage = __('messages.please_check_input');
         } catch (\Exception $e) {
             $this->isLoading = false;
-            $this->errorMessage = 'Something went wrong. Please try again.';
+            $this->errorMessage = __('messages.something_went_wrong');
         }
     }
 
     public function render()
     {
-        return view('livewire.pages.login')
-            ->layout('components.layouts.app');
+        return view('livewire.pages.login');
     }
 }

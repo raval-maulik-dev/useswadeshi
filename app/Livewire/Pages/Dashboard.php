@@ -68,19 +68,19 @@ class Dashboard extends Component
         $pledgeCount = Pledge::where('user_id', $userId)->count();
 
         if ($quizCount >= 1) {
-            $achievements[] = ['name' => 'First Quiz', 'description' => 'Completed your first quiz', 'icon' => '🎯', 'unlocked' => true];
+            $achievements[] = ['name' => __('messages.first_quiz'), 'description' => __('messages.first_quiz_desc'), 'icon' => '🎯', 'unlocked' => true];
         }
 
         if ($quizCount >= 5) {
-            $achievements[] = ['name' => 'Quiz Enthusiast', 'description' => 'Completed 5 quizzes', 'icon' => '🏆', 'unlocked' => true];
+            $achievements[] = ['name' => __('messages.quiz_enthusiast'), 'description' => __('messages.quiz_enthusiast_desc'), 'icon' => '🏆', 'unlocked' => true];
         }
 
         if ($bestScore >= 15) {
-            $achievements[] = ['name' => 'High Scorer', 'description' => 'Scored 15+ in a quiz', 'icon' => '⭐', 'unlocked' => true];
+            $achievements[] = ['name' => __('messages.high_scorer'), 'description' => __('messages.high_scorer_desc'), 'icon' => '⭐', 'unlocked' => true];
         }
 
         if ($pledgeCount >= 1) {
-            $achievements[] = ['name' => 'Local Supporter', 'description' => 'Made your first pledge', 'icon' => '🤝', 'unlocked' => true];
+            $achievements[] = ['name' => __('messages.local_supporter'), 'description' => __('messages.local_supporter_desc'), 'icon' => '🤝', 'unlocked' => true];
         }
 
         return $achievements;
@@ -88,7 +88,6 @@ class Dashboard extends Component
 
     public function render()
     {
-        return view('livewire.pages.dashboard')
-            ->layout('components.layouts.app');
+        return view('livewire.pages.dashboard');
     }
 }

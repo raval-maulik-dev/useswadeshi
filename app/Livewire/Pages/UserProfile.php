@@ -91,7 +91,7 @@ class UserProfile extends Component
         $this->editMode = false;
         $this->dispatch('notify', [
             'type' => 'success',
-            'message' => 'Profile updated successfully!',
+            'message' => __('messages.profile_updated'),
         ]);
     }
 
@@ -213,7 +213,6 @@ class UserProfile extends Component
 
     public function render()
     {
-        return view('livewire.pages.user-profile')
-            ->layout('components.layouts.app');
+        return view('livewire.pages.user-profile');
     }
 }

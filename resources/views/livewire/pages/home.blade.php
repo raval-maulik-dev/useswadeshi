@@ -1,5 +1,6 @@
 <div>
-    @section('title', 'Welcome to Swadeshi Abhiyan')
+    @section('title', __('messages.welcome_title'))
+    
     <!-- Hero Section -->
         <section
             class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-100 via-white to-green-100 overflow-hidden">
@@ -15,19 +16,19 @@
                 <!-- Main Heading -->
                 @auth
                     <div class="mb-6 p-4 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg border border-orange-100" style="margin-top: 17% ;">
-                        <h3 class="text-2xl font-bold text-orange-600 mb-2">Welcome back, {{ auth()->user()->name }}! 👋</h3>
-                        <p class="text-gray-600">Ready to test your knowledge of Indian products?</p>
+                        <h3 class="text-2xl font-bold text-orange-600 mb-2">{{ __('messages.welcome_back', ['name' => auth()->user()->name]) }}</h3>
+                        <p class="text-gray-600">{{ __('messages.ready_to_test') }}</p>
                     </div>
                 @endauth
                 
                 <h1 class="text-4xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-orange-600 via-red-600 to-green-600">
-                    Use Swadeshi Abhiyan
+                    {{ __('messages.main_heading') }}
                 </h1>
                 <h2 class="text-1xl md:text-3xl font-semibold text-gray-700 mb-4">
-                    आपका हर Swadeshi Choice = मजबूत भारत
+                    {{ __('messages.sub_heading') }}
                 </h2>
                 <p class="text-lg md:text-xl mb-8 text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                    Test your knowledge of Indian products and brands
+                    {{ __('messages.main_description') }}
                 </p>
 
                 <!-- Action Buttons -->
@@ -35,17 +36,17 @@
                     @auth
                         <a href="{{ route('quiz') }}"
                            class="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 pulse-animation">
-                            🚀 Start Quiz Now
+                            {{ __('messages.start_quiz_now') }}
                         </a>
                     @else
                         <a href="{{ route('login') }}"
                            class="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-2">
-                            🚀 Register to Start Quiz
+                            {{ __('messages.register_to_start') }}
                         </a>
                     @endauth
                     <a href="{{ route('leaderboard') }}"
                        class="bg-white/90 backdrop-blur-md border-2 border-orange-300 text-orange-700 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-orange-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                        🏆 View Leaderboard
+                        {{ __('messages.view_leaderboard') }}
                     </a>
                 </div>
                 <!-- Stats -->
@@ -53,25 +54,25 @@
                     <div class="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-orange-100">
                         <div
                             class="text-2xl md:text-3xl font-bold text-orange-600">{{ number_format($stats['total_participants']) }}</div>
-                        <div class="text-sm text-gray-600">Participants</div>
+                        <div class="text-sm text-gray-600">{{ __('messages.participants') }}</div>
                     </div>
                     <div class="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-green-100">
                         <div
                             class="text-2xl md:text-3xl font-bold text-green-600">{{ number_format($stats['quizzes_completed']) }}</div>
-                        <div class="text-sm text-gray-600">Completed</div>
+                        <div class="text-sm text-gray-600">{{ __('messages.completed') }}</div>
                     </div>
                     <div class="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-red-100">
                         <div
                             class="text-2xl md:text-3xl font-bold text-red-600">{{ number_format($stats['certificates_generated']) }}</div>
-                        <div class="text-sm text-gray-600">Certificates</div>
+                        <div class="text-sm text-gray-600">{{ __('messages.certificates') }}</div>
                     </div>
                     <div class="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-blue-100">
                         <div class="text-2xl md:text-3xl font-bold text-blue-600">{{ $stats['top_score'] }}</div>
-                        <div class="text-sm text-gray-600">Top Score</div>
+                        <div class="text-sm text-gray-600">{{ __('messages.top_score') }}</div>
                     </div>
                     <div class="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-purple-100">
                         <div class="text-2xl md:text-3xl font-bold text-purple-600">{{ $stats['average_score'] }}</div>
-                        <div class="text-sm text-gray-600">Avg Score</div>
+                        <div class="text-sm text-gray-600">{{ __('messages.avg_score') }}</div>
                     </div>
                 </div>
 
@@ -83,10 +84,10 @@
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-5xl font-bold text-gray-800 mb-6">
-                        How It Works
+                        {{ __('messages.how_it_works') }}
                     </h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Simple steps to test your knowledge of Indian products and earn your certificate
+                        {{ __('messages.how_it_works_description') }}
                     </p>
                 </div>
 
@@ -98,8 +99,8 @@
                             class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
                             <span class="text-white font-bold text-2xl">1</span>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Register</h3>
-                        <p class="text-gray-600 text-center mb-6">Quick registration With name and mobile number</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">{{ __('messages.step_1_title') }}</h3>
+                        <p class="text-gray-600 text-center mb-6">{{ __('messages.step_1_description') }}</p>
                         <div class="flex justify-center">
                             <div class="bg-white rounded-lg p-3 shadow-md">
                                 <svg class="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,9 +118,8 @@
                             class="w-16 h-16 bg-gradient-to-r from-blue-500 to-green-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
                             <span class="text-white font-bold text-2xl">2</span>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Take Quiz</h3>
-                        <p class="text-gray-600 text-center mb-6">Answer 20 questions with 4 photo options each. 10-second
-                            timer per question. Identify Indian products!</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">{{ __('messages.step_2_title') }}</h3>
+                        <p class="text-gray-600 text-center mb-6">{{ __('messages.step_2_description') }}</p>
                         <div class="flex justify-center">
                             <div class="bg-white rounded-lg p-3 shadow-md">
                                 <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -137,9 +137,8 @@
                             class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
                             <span class="text-white font-bold text-2xl">3</span>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Get Certificate</h3>
-                        <p class="text-gray-600 text-center mb-6">Receive instant digital certificate with tricolor theme.
-                            Share on social media with hashtags!</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">{{ __('messages.step_3_title') }}</h3>
+                        <p class="text-gray-600 text-center mb-6">{{ __('messages.step_3_description') }}</p>
                         <div class="flex justify-center">
                             <div class="bg-white rounded-lg p-3 shadow-md">
                                 <svg class="w-8 h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">

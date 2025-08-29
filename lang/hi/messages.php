@@ -1,0 +1,201 @@
+<?php
+
+return [
+    // Navigation
+    'home' => 'होम',
+    'login' => 'लॉगिन',
+    'logout' => 'लॉगआउट',
+    'register' => 'रजिस्टर',
+    'profile' => 'प्रोफाइल',
+    'dashboard' => 'डैशबोर्ड',
+    'leaderboard' => 'लीडरबोर्ड',
+    'products' => 'उत्पाद',
+    'vendors' => 'विक्रेता',
+    'articles' => 'लेख',
+    'pledges' => 'प्रतिज्ञा',
+    'quiz' => 'क्विज',
+    
+    // Language Switcher
+    'language' => 'भाषा',
+    'english' => 'English',
+    'hindi' => 'हिंदी',
+    'gujarati' => 'ગુજરાતી',
+    
+    // Home Page
+    'welcome_title' => 'स्वदेशी अभियान में आपका स्वागत है',
+    'welcome_back' => 'वापसी पर स्वागत है, :name! 👋',
+    'ready_to_test' => 'भारतीय उत्पादों के बारे में अपना ज्ञान जांचने के लिए तैयार हैं?',
+    'main_heading' => 'स्वदेशी अभियान का उपयोग करें',
+    'sub_heading' => 'आपका हर Swadeshi Choice = मजबूत भारत',
+    'main_description' => 'भारतीय उत्पादों और ब्रांडों के बारे में अपना ज्ञान जांचें',
+    'start_quiz_now' => '🚀 अभी क्विज शुरू करें',
+    'register_to_start' => '🚀 क्विज शुरू करने के लिए रजिस्टर करें',
+    'view_leaderboard' => '🏆 लीडरबोर्ड देखें',
+    
+    // Stats
+    'participants' => 'प्रतिभागी',
+    'completed' => 'पूर्ण',
+    'certificates' => 'प्रमाणपत्र',
+    'top_score' => 'उच्चतम स्कोर',
+    'avg_score' => 'औसत स्कोर',
+    
+    // Features Section
+    'how_it_works' => 'यह कैसे काम करता है',
+    'how_it_works_description' => 'भारतीय उत्पादों के बारे में अपना ज्ञान जांचने और प्रमाणपत्र प्राप्त करने के सरल कदम',
+    'step_1_title' => 'रजिस्टर और लॉगिन',
+    'step_1_description' => 'अपना खाता बनाएं और स्वदेशी आंदोलन में शामिल हों',
+    'step_2_title' => 'क्विज दें',
+    'step_2_description' => 'भारतीय उत्पादों और ब्रांडों के बारे में प्रश्नों का उत्तर दें',
+    'step_3_title' => 'प्रमाणपत्र प्राप्त करें',
+    'step_3_description' => 'अपना डिजिटल प्रमाणपत्र प्राप्त करें और अपनी उपलब्धि साझा करें',
+    
+    // Quiz
+    'quiz_title' => 'स्वदेशी क्विज',
+    'quiz_description' => 'भारतीय उत्पादों और ब्रांडों के बारे में अपना ज्ञान जांचें',
+    'start_quiz' => 'क्विज शुरू करें',
+    'question' => 'प्रश्न',
+    'of' => 'का',
+    'next' => 'अगला',
+    'previous' => 'पिछला',
+    'submit' => 'जमा करें',
+    'time_remaining' => 'शेष समय',
+    'seconds' => 'सेकंड',
+    
+    // Quiz Results
+    'quiz_completed' => 'क्विज पूर्ण!',
+    'quiz_result_title' => 'क्विज परिणाम - स्वदेशी अभियान',
+    'great_job_completing' => 'बहुत अच्छा काम किया',
+    'grade' => 'ग्रेड',
+    'excellent_swadeshi_expert' => 'उत्कृष्ट! आप एक स्वदेशी विशेषज्ञ हैं!',
+    'good_job_indian_products' => 'बहुत अच्छा! आप भारतीय उत्पादों को अच्छी तरह जानते हैं!',
+    'nice_effort_keep_learning' => 'अच्छा प्रयास! स्थानीय उत्पादों के बारे में सीखते रहें!',
+    'keep_practicing_learn_more' => 'अभ्यास करते रहें! भारतीय ब्रांड्स के बारे में और जानें!',
+    'your_score' => 'आपका स्कोर',
+    'correct_answers' => 'सही उत्तर',
+    'total_questions' => 'कुल प्रश्न',
+    'percentage' => 'प्रतिशत',
+    'download_certificate' => 'प्रमाणपत्र डाउनलोड करें',
+    'share_certificate' => 'प्रमाणपत्र साझा करें',
+    'try_again' => 'फिर से कोशिश करें',
+    'back_to_home' => 'होम पर वापस जाएं',
+    'excellent' => 'उत्कृष्ट!',
+    'good_job' => 'बहुत अच्छा!',
+    'keep_learning' => 'सीखते रहें!',
+    'need_improvement' => 'सुधार की आवश्यकता',
+    'total_participants' => 'कुल प्रतिभागी',
+    'points_earned' => 'अर्जित अंक',
+    'time_taken' => 'लिया गया समय',
+    'attempt_number' => 'प्रयास संख्या',
+    'incorrect_answers' => 'गलत',
+    'no_answer_selected' => 'कोई उत्तर नहीं चुना गया',
+    
+    // Leaderboard
+    'leaderboard_title' => 'लीडरबोर्ड',
+    'rank' => 'रैंक',
+    'name' => 'नाम',
+    'score' => 'स्कोर',
+    'date' => 'तारीख',
+    'no_records' => 'कोई रिकॉर्ड नहीं मिला',
+    
+    // Authentication
+    'login_title' => 'लॉगिन',
+    'register_title' => 'रजिस्टर',
+    'email' => 'ईमेल',
+    'password' => 'पासवर्ड',
+    'confirm_password' => 'पासवर्ड की पुष्टि करें',
+    'remember_me' => 'मुझे याद रखें',
+    'forgot_password' => 'पासवर्ड भूल गए?',
+    'dont_have_account' => 'खाता नहीं है?',
+    'already_have_account' => 'पहले से ही खाता है?',
+    'sign_up' => 'साइन अप',
+    'sign_in' => 'साइन इन',
+    
+    // Profile
+    'profile_title' => 'उपयोगकर्ता प्रोफाइल',
+    'personal_info' => 'व्यक्तिगत जानकारी',
+    'quiz_history' => 'क्विज इतिहास',
+    'certificates' => 'प्रमाणपत्र',
+    'edit_profile' => 'प्रोफाइल संपादित करें',
+    'save_changes' => 'परिवर्तन सहेजें',
+    
+    // Products
+    'products_title' => 'उत्पाद',
+    'search_products' => 'उत्पाद खोजें',
+    'filter_by_category' => 'श्रेणी के अनुसार फ़िल्टर करें',
+    'all_categories' => 'सभी श्रेणियां',
+    'product_details' => 'उत्पाद विवरण',
+    'brand' => 'ब्रांड',
+    'category' => 'श्रेणी',
+    'price' => 'मूल्य',
+    'description' => 'विवरण',
+    
+    // Vendors
+    'vendors_title' => 'विक्रेता',
+    'search_vendors' => 'विक्रेता खोजें',
+    'vendor_details' => 'विक्रेता विवरण',
+    'contact_info' => 'संपर्क जानकारी',
+    'address' => 'पता',
+    'phone' => 'फोन',
+    'website' => 'वेबसाइट',
+    
+    // Articles
+    'articles_title' => 'लेख',
+    'read_more' => 'और पढ़ें',
+    'published_on' => 'प्रकाशित किया गया',
+    'author' => 'लेखक',
+    'related_articles' => 'संबंधित लेख',
+    
+    // Pledges
+    'pledges_title' => 'प्रतिज्ञा',
+    'take_pledge' => 'प्रतिज्ञा लें',
+    'my_pledges' => 'मेरी प्रतिज्ञा',
+    'pledge_text' => 'मैं भारतीय उत्पादों का समर्थन करने और हमारी स्थानीय अर्थव्यवस्था के विकास में योगदान देने की प्रतिज्ञा लेता हूं।',
+    'pledge_success' => 'प्रतिज्ञा सफलतापूर्वक जमा की गई!',
+    
+    // Common
+    'loading' => 'लोड हो रहा है...',
+    'error' => 'त्रुटि',
+    'success' => 'सफलता',
+    'warning' => 'चेतावनी',
+    'info' => 'जानकारी',
+    'cancel' => 'रद्द करें',
+    'delete' => 'हटाएं',
+    'edit' => 'संपादित करें',
+    'view' => 'देखें',
+    'back' => 'वापस',
+    'close' => 'बंद करें',
+    'save' => 'सहेजें',
+    'update' => 'अपडेट करें',
+    'create' => 'बनाएं',
+    'search' => 'खोजें',
+    'filter' => 'फ़िल्टर',
+    'sort' => 'क्रमबद्ध करें',
+    'actions' => 'कार्रवाई',
+    'no_data' => 'कोई डेटा उपलब्ध नहीं',
+    'are_you_sure' => 'क्या आप निश्चित हैं?',
+    'this_action_cannot_be_undone' => 'यह कार्रवाई पूर्ववत नहीं की जा सकती।',
+    
+    // Messages
+    'logout_success' => 'आप सफलतापूर्वक लॉगआउट हो गए हैं।',
+    'login_success' => 'वापसी पर स्वागत है!',
+    'registration_success' => 'पंजीकरण सफल! कृपया लॉगिन करें।',
+    'profile_updated' => 'प्रोफाइल सफलतापूर्वक अपडेट किया गया।',
+    'quiz_submitted' => 'क्विज सफलतापूर्वक जमा की गई!',
+    'certificate_downloaded' => 'प्रमाणपत्र सफलतापूर्वक डाउनलोड किया गया!',
+    'certificate_shared' => 'प्रमाणपत्र सफलतापूर्वक साझा किया गया!',
+    
+    // Errors
+    'invalid_credentials' => 'अमान्य ईमेल या पासवर्ड।',
+    'email_already_exists' => 'यह ईमेल पहले से ही पंजीकृत है।',
+    'password_mismatch' => 'पासवर्ड मेल नहीं खाते।',
+    'quiz_not_found' => 'क्विज नहीं मिली।',
+    'question_not_found' => 'प्रश्न नहीं मिला।',
+    'invalid_answer' => 'अमान्य उत्तर।',
+    'time_expired' => 'समय समाप्त हो गया है।',
+    'already_completed' => 'आपने पहले ही यह क्विज पूरी कर ली है।',
+    
+    // Footer
+    'footer_text' => 'स्थानीय व्यवसायों को बढ़ावा देने और विदेशी वस्तुओं पर निर्भरता कम करने के लिए ❤️ के साथ बनाया गया।',
+    'join_movement' => 'आंदोलन में शामिल हों - स्थानीय का समर्थन करें, वैश्विक सोचें! 🇮🇳',
+    'copyright' => '© 2024 स्वदेशी अभियान। सर्वाधिकार सुरक्षित।',
+];

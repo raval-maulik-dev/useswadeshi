@@ -50,6 +50,6 @@ class Articles extends Component
 
         return view('livewire.pages.articles', [
             'articles' => $articles,
-        ])->layout('components.layouts.app');
+        ]);
     }
 }
