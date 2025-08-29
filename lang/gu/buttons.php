@@ -27,7 +27,7 @@ return [
 
     // Quiz & Game
     'start_quiz' => 'ક્વિઝ શરૂ કરો',
-    'start_quiz_now' => 'હવે ક્વિઝ શરૂ કરો',
+    'start_quiz_now' => '🚀 હવે ક્વિઝ શરૂ કરો',
     'finish_quiz' => 'ક્વિઝ પૂર્ણ કરો',
     'next_question' => 'આગળનો પ્રશ્ન',
     'try_again' => 'ફરીથી પ્રયાસ કરો',
@@ -41,7 +41,7 @@ return [
     'back_to_home' => 'હોમ પર પાછળ જાઓ',
     'back_to_articles' => 'લેખો પર પાછળ જાઓ',
     'back_to_quiz' => 'ક્વિઝ પર પાછળ જાઓ',
-    'view_leaderboard' => 'લીડરબોર્ડ જુઓ',
+    'view_leaderboard' => '🏆 લીડરબોર્ડ જુઓ',
     'view_profile' => 'પ્રોફાઇલ જુઓ',
     'read_more' => 'વધુ વાંચો',
 

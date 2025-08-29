@@ -27,7 +27,7 @@ return [
 
     // Quiz & Game
     'start_quiz' => 'Start Quiz',
-    'start_quiz_now' => 'Start Quiz Now',
+    'start_quiz_now' => '🚀 Start Quiz Now',
     'finish_quiz' => 'Finish Quiz',
     'next_question' => 'Next Question',
     'try_again' => 'Try Again',
@@ -41,7 +41,7 @@ return [
     'back_to_home' => 'Back to Home',
     'back_to_articles' => 'Back to Articles',
     'back_to_quiz' => 'Back to Quiz',
-    'view_leaderboard' => 'View Leaderboard',
+    'view_leaderboard' => '🏆 View Leaderboard',
     'view_profile' => 'View Profile',
     'read_more' => 'Read More',
 
