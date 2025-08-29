@@ -70,11 +70,6 @@
                     <a href="{{ route('vendors') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">{{ __('messages.vendors') }}</a>
                     <a href="{{ route('articles') }}" class="text-gray-700 hover:text-orange-600 font-medium transition-colors">{{ __('messages.articles') }}</a>
 
-                    <!-- Language Switcher -->
-                    <div class="ml-4">
-                        @livewire('language-switcher')
-                    </div>
-
                     @auth
                         <!-- Profile Dropdown -->
                         <div x-data="{ open: false }" class="relative">
