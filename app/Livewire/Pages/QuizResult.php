@@ -241,17 +241,17 @@ class QuizResult extends Component
     public function getReplayButtonTextProperty(): string
     {
         if (! $this->game->allow_replay) {
-            return 'One-time Game';
+            return __('messages.one_time_game');
         }
 
         if ($this->game->max_attempts) {
             $attempts = $this->game->gameResults()->where('user_id', Auth::id())->count();
             $remaining = $this->game->max_attempts - $attempts;
 
-            return "Replay ({$remaining} attempts left)";
+            return __('messages.replay_attempts_left', ['attempts' => $remaining]);
         }
 
-        return 'Play Again';
+        return __('messages.play_again');
     }
 
     public function getReplayButtonDisabledProperty(): bool

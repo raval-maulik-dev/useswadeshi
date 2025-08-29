@@ -7,7 +7,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <h1 class="text-2xl font-bold text-gray-800">{{ $this->game->name }}</h1>
-                        <p class="text-gray-600">Question <span x-text="currentIndex + 1"></span> of {{ $this->totalQuestions }}</p>
+                        <p class="text-gray-600">{{ __('labels.question') }} <span x-text="currentIndex + 1"></span> {{ __('labels.of') }} {{ $this->totalQuestions }}</p>
                     </div>
 
                     <!-- Timer -->
@@ -15,7 +15,7 @@
                         <div class="text-3xl font-bold"
                              :class="timeLeft <= 10 ? 'text-red-600' : 'text-orange-600'"
                              x-text="formattedTime"></div>
-                        <div class="text-sm text-gray-600">Time Left</div>
+                        <div class="text-sm text-gray-600">{{ __('labels.time_left') }}</div>
                     </div>
 
                     <!-- Progress -->
@@ -47,17 +47,17 @@
                             @elseif($question->type === 'multi_select') bg-purple-100 text-purple-800
                             @else bg-green-100 text-green-800
                             @endif">
-                            {{ ucfirst(str_replace('_', ' ', $question->type)) }}
+                            {{ __('labels.question_type_' . $question->type) }}
                         </span>
                         <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
                             @if($question->difficulty === 'easy') bg-green-100 text-green-800
                             @elseif($question->difficulty === 'medium') bg-yellow-100 text-yellow-800
                             @else bg-red-100 text-red-800
                             @endif">
-                            {{ ucfirst($question->difficulty) }}
+                            {{ __('labels.difficulty_' . $question->difficulty) }}
                         </span>
                         <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
-                            {{ $question->points }} pts
+                            {{ $question->points }} {{ __('labels.points') }}
                         </span>
                     </div>
 
@@ -93,14 +93,14 @@
                                         {{ $option->option_text }}
                                     @elseif($option->optionable)
                                         @if($option->optionable_type === 'App\Models\Product')
-                                            {{ $option->optionable->name }} (Product)
+                                            {{ $option->optionable->name }} ({{ __('messages.product') }})
                                         @elseif($option->optionable_type === 'App\Models\Brand')
-                                            {{ $option->optionable->name }} (Brand)
+                                            {{ $option->optionable->name }} ({{ __('messages.brand') }})
                                         @else
-                                            {{ $option->optionable->name ?? 'Unknown' }}
+                                            {{ $option->optionable->name ?? __('messages.unknown') }}
                                         @endif
                                     @else
-                                        Option {{ $index + 1 }}
+                                        {{ __('messages.option') }} {{ $index + 1 }}
                                     @endif
                                 </div>
                             </div>
@@ -113,29 +113,29 @@
                         <button x-show="currentIndex > 0" @click="previousQuestion()"
                                 class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg transition-colors"
                                 :disabled="timerExpired">
-                            ← Previous
+                            ← {{ __('messages.previous') }}
                         </button>
 
                         <div class="text-center">
                             <button @click="nextQuestion()"
                                     class="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
                                     :disabled="timerExpired">
-                                <span x-show="currentIndex === {{ $this->totalQuestions - 1 }}">Finish Quiz →</span>
-                                <span x-show="currentIndex !== {{ $this->totalQuestions - 1 }}">Next Question →</span>
+                                <span x-show="currentIndex === {{ $this->totalQuestions - 1 }}">{{ __('messages.finish_quiz') }} →</span>
+                                <span x-show="currentIndex !== {{ $this->totalQuestions - 1 }}">{{ __('messages.next_question') }} →</span>
                             </button>
                         </div>
 
                         <button x-show="currentIndex < {{ $this->totalQuestions - 1 }}" @click="nextQuestion()"
                                 class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg transition-colors"
                                 :disabled="timerExpired">
-                            Next →
+                            {{ __('messages.next') }} →
                         </button>
                     </div>
                 </div>
 
                 <!-- Question Progress -->
                 <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-orange-100">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Question Progress</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">{{ __('messages.question_progress') }}</h3>
                     <div class="grid grid-cols-5 md:grid-cols-10 gap-2">
                         @for($i = 0; $i < $this->totalQuestions; $i++)
                             <div class="relative">
@@ -150,8 +150,8 @@
                         @endfor
                     </div>
                     <div class="mt-4 flex justify-between text-sm text-gray-600">
-                        <span>Answered: <span x-text="answeredCount"></span></span>
-                        <span>Remaining: <span x-text="remainingCount"></span></span>
+                        <span>{{ __('messages.answered') }}: <span x-text="answeredCount"></span></span>
+                        <span>{{ __('messages.remaining') }}: <span x-text="remainingCount"></span></span>
                     </div>
                 </div>
             </div>
@@ -163,8 +163,8 @@
         <div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
             <div class="bg-white rounded-3xl p-8 text-center">
                 <div class="animate-spin w-12 h-12 border-4 border-orange-500 border-t-transparent rounded-full mx-auto mb-4"></div>
-                <h3 class="text-xl font-bold text-gray-800">Processing Results...</h3>
-                <p class="text-gray-600 mt-2">Calculating your score and generating certificate...</p>
+                <h3 class="text-xl font-bold text-gray-800">{{ __('messages.processing_results') }}</h3>
+                <p class="text-gray-600 mt-2">{{ __('messages.calculating_score') }}</p>
             </div>
         </div>
         @endif

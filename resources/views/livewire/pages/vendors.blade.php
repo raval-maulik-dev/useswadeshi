@@ -1,15 +1,15 @@
 <div>
-    @section('title', 'Vendors - Swadeshi Abhiyan')
+    @section('title', __('labels.vendors_title') . ' - ' . __('labels.swadeshi_abhiyan'))
 
     <div class="min-h-screen bg-gradient-to-br from-orange-50 via-white to-green-50 py-12">
         <div class="max-w-7xl mx-auto px-4">
             <!-- Header -->
             <div class="text-center mb-12">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-orange-600 via-red-600 to-green-600">
-                    Local Vendors
+                    {{ __('labels.local_vendors') }}
                 </h1>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Connect with local businesses and support the community
+                    {{ __('labels.connect_local_businesses') }}
                 </p>
             </div>
 
@@ -17,23 +17,23 @@
             <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-orange-100 mb-8">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Search</label>
-                        <input wire:model.live="search" type="text" placeholder="Search vendors..."
+                        <label class="block text-sm font-medium text-gray-700 mb-2">{{ __('messages.search') }}</label>
+                        <input wire:model.live="search" type="text" placeholder="{{ __('labels.search_vendors_placeholder') }}"
                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">{{ __('labels.state') }}</label>
                         <select wire:model.live="selectedState" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
-                            <option value="">All States</option>
+                            <option value="">{{ __('labels.all_states') }}</option>
                             @foreach($states as $state)
                                 <option value="{{ $state->id }}">{{ $state->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">{{ __('labels.city') }}</label>
                         <select wire:model.live="selectedCity" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
-                            <option value="">All Cities</option>
+                            <option value="">{{ __('labels.all_cities') }}</option>
                             @foreach($cities as $city)
                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
                             @endforeach
@@ -73,7 +73,7 @@
                         </div>
 
                         <button class="w-full bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:from-orange-600 hover:to-red-700 transition-all">
-                            Contact Vendor
+                            {{ __('buttons.contact_vendor') }}
                         </button>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
             <div class="text-center mt-8">
                 <a href="{{ route('home') }}"
                    class="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
-                    🏠 Back to Home
+                    🏠 {{ __('buttons.back_to_home') }}
                 </a>
             </div>
         </div>

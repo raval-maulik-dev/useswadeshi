@@ -25,10 +25,10 @@ class Login extends Component
     protected function messages(): array
     {
         return [
-            'name.required' => __('messages.name_required'),
-            'name.min' => __('messages.name_min'),
-            'phone.required' => __('messages.phone_required'),
-            'phone.min' => __('messages.phone_min'),
+            'name.required' => __('validation.name_required'),
+            'name.min' => __('validation.name_min'),
+            'phone.required' => __('validation.phone_required'),
+            'phone.min' => __('validation.phone_min'),
         ];
     }
 
@@ -64,14 +64,14 @@ class Login extends Component
             $this->isLoading = false;
 
             // Redirect to home page
-            return redirect()->route('home')->with('success', __('messages.welcome_swadeshi'));
+            return redirect()->route('home')->with('success', __('alerts.welcome_swadeshi'));
 
         } catch (ValidationException $e) {
             $this->isLoading = false;
-            $this->errorMessage = __('messages.please_check_input');
+            $this->errorMessage = __('alerts.please_check_input');
         } catch (\Exception $e) {
             $this->isLoading = false;
-            $this->errorMessage = __('messages.something_went_wrong');
+            $this->errorMessage = __('alerts.something_went_wrong');
         }
     }
 

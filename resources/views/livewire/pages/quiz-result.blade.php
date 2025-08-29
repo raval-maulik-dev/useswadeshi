@@ -1,5 +1,5 @@
 <div>
-    @section('title', __('messages.quiz_result_title'))
+    @section('title', __('labels.quiz_result_title'))
 
     <div class="min-h-screen bg-gradient-to-br from-orange-50 via-white to-green-50 py-12">
         <div class="max-w-4xl mx-auto px-4">
@@ -11,11 +11,11 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ __('messages.quiz_completed') }}</h1>
-                    <p class="text-gray-600">{{ __('messages.great_job_completing') }} {{ $game->name }} {{ __('messages.quiz') }}</p>
+                    <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ __('alerts.quiz_completed') }}</h1>
+                    <p class="text-gray-600">{{ __('alerts.great_job_completing') }} {{ $game->name }} {{ __('labels.quiz') }}</p>
                     <div class="mt-2">
                         <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-{{ $this->performanceColor }}-100 text-{{ $this->performanceColor }}-800">
-                            {{ __('messages.grade') }}: {{ $this->performanceGrade }}
+                            {{ __('labels.grade') }}: {{ $this->performanceGrade }}
                         </span>
                     </div>
                 </div>
@@ -26,13 +26,13 @@
                     <div class="text-2xl mb-2">{{ $result->accuracy_percentage }}%</div>
                     <div class="text-lg opacity-90">
                         @if($result->accuracy_percentage >= 80)
-                            🏆 {{ __('messages.excellent_swadeshi_expert') }}
+                            🏆 {{ __('alerts.excellent_swadeshi_expert') }}
                         @elseif($result->accuracy_percentage >= 60)
-                            🎯 {{ __('messages.good_job_indian_products') }}
+                            🎯 {{ __('alerts.good_job_indian_products') }}
                         @elseif($result->accuracy_percentage >= 40)
-                            👍 {{ __('messages.nice_effort_keep_learning') }}
+                            👍 {{ __('alerts.nice_effort_keep_learning') }}
                         @else
-                            📚 {{ __('messages.keep_practicing_learn_more') }}
+                            📚 {{ __('alerts.keep_practicing_learn_more') }}
                         @endif
                     </div>
                 </div>

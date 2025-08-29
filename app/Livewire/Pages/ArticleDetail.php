@@ -25,7 +25,6 @@ class ArticleDetail extends Component
 
     public function render()
     {
-        return view('livewire.pages.article-detail')
-            ->layout('components.layouts.app');
+        return view('livewire.pages.article-detail');
     }
 }

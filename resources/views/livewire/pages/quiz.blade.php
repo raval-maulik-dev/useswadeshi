@@ -1,5 +1,5 @@
 <div>
-    @section('title', __('messages.quiz_selection'))
+    @section('title', __('labels.quiz_selection'))
 
     <!-- Hero Section -->
     <section class="relative py-16 bg-gradient-to-br from-orange-50 via-white to-green-50">
@@ -8,10 +8,10 @@
             <!-- Header -->
             <div class="text-center mb-12">
                 <h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-green-600">
-                    {{ __('messages.choose_quiz') }}
+                    {{ __('labels.choose_quiz') }}
                 </h1>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    {{ __('messages.test_knowledge_indian') }}
+                    {{ __('labels.test_knowledge_indian') }}
                 </p>
             </div>
 
@@ -48,11 +48,11 @@
                     <div class="flex justify-center gap-8 text-center mb-6">
                         <div>
                             <div class="text-xl font-bold text-orange-600">{{ $this->getQuestionCount($game) }}</div>
-                            <div class="text-xs text-gray-500">{{ __('messages.questions') }}</div>
+                            <div class="text-xs text-gray-500">{{ __('labels.questions') }}</div>
                         </div>
                         <div>
                             <div class="text-xl font-bold text-green-600">{{ $game->per_question_time ?: '∞' }}s</div>
-                            <div class="text-xs text-gray-500">{{ __('messages.per_question') }}</div>
+                            <div class="text-xs text-gray-500">{{ __('labels.per_question') }}</div>
                         </div>
                     </div>
 
@@ -64,20 +64,20 @@
                                 class="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 
                                     text-white py-3 rounded-lg font-semibold text-center transition block"
                             >
-                                {{ __('messages.start_quiz') }}
+                                {{ __('buttons.start_quiz') }}
                             </a>
                         @elseif($this->getUserGameStatus($game) === 'completed' || $this->getUserGameStatus($game) === 'max_attempts_reached')
                             <button 
                                 wire:click="selectGame({{ $game->id }})"
                                 class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition"
                             >
-                                📊 View Results
+                                📊 {{ __('buttons.view_results') }}
                             </button>
                             <button 
                                 wire:click="viewHistory({{ $game->id }})"
                                 class="w-full bg-gray-600 hover:bg-gray-700 text-white py-3 rounded-lg font-semibold transition"
                             >
-                                📋 View History
+                                📋 {{ __('buttons.view_history') }}
                             </button>
                         @elseif($this->getUserGameStatus($game) === 'played' || $this->getUserGameStatus($game) === 'attempted')
                             @if($this->canReplayGame($game))
@@ -85,14 +85,14 @@
                                     href="{{ route('quiz.start', ['game' => $game->id]) }}"
                                     class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition block flex justify-center items-center"
                                 >
-                                    🔄 Play Again
+                                    🔄 {{ __('buttons.play_again') }}
                                 </a>
                             @endif
                             <button 
                                 wire:click="viewHistory({{ $game->id }})"
                                 class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition"
                             >
-                                📊 View Results
+                                📊 {{ __('buttons.view_results') }}
                             </button>
                         @endif
                     </div>
@@ -103,28 +103,28 @@
 
             <!-- Instructions -->
             <div class="mt-16 bg-white rounded-xl p-8 border border-gray-100 shadow-md">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">How the Quiz Works</h3>
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">{{ __('labels.how_quiz_works') }}</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="text-center">
                         <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 text-base font-bold text-orange-600">
                             1
                         </div>
-                        <h4 class="font-semibold text-gray-800 mb-1">Select Category</h4>
-                        <p class="text-gray-600 text-sm">Choose a quiz category</p>
+                        <h4 class="font-semibold text-gray-800 mb-1">{{ __('labels.select_category') }}</h4>
+                        <p class="text-gray-600 text-sm">{{ __('labels.choose_quiz_category') }}</p>
                     </div>
                     <div class="text-center">
                         <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 text-base font-bold text-green-600">
                             2
                         </div>
-                        <h4 class="font-semibold text-gray-800 mb-1">Answer Questions</h4>
-                        <p class="text-gray-600 text-sm">Complete within time</p>
+                        <h4 class="font-semibold text-gray-800 mb-1">{{ __('labels.answer_questions') }}</h4>
+                        <p class="text-gray-600 text-sm">{{ __('labels.complete_within_time') }}</p>
                     </div>
                     <div class="text-center">
                         <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3 text-base font-bold text-red-600">
                             3
                         </div>
-                        <h4 class="font-semibold text-gray-800 mb-1">Get Certificate</h4>
-                        <p class="text-gray-600 text-sm">Download instantly</p>
+                        <h4 class="font-semibold text-gray-800 mb-1">{{ __('labels.get_certificate') }}</h4>
+                        <p class="text-gray-600 text-sm">{{ __('labels.download_instantly') }}</p>
                     </div>
                 </div>
             </div>

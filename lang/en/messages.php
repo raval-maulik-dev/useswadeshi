@@ -14,13 +14,13 @@ return [
     'articles' => 'Articles',
     'pledges' => 'Pledges',
     'quiz' => 'Quiz',
-    
+
     // Language Switcher
     'language' => 'Language',
     'english' => 'English',
     'hindi' => 'हिंदी',
     'gujarati' => 'ગુજરાતી',
-    
+
     // Home Page
     'welcome_title' => 'Welcome to Swadeshi Abhiyan',
     'welcome_back' => 'Welcome back, :name! 👋',
@@ -31,14 +31,14 @@ return [
     'start_quiz_now' => '🚀 Start Quiz Now',
     'register_to_start' => '🚀 Register to Start Quiz',
     'view_leaderboard' => '🏆 View Leaderboard',
-    
+
     // Stats
     'participants' => 'Participants',
     'completed' => 'Completed',
     'certificates' => 'Certificates',
     'top_score' => 'Top Score',
     'avg_score' => 'Avg Score',
-    
+
     // Features Section
     'how_it_works' => 'How It Works',
     'how_it_works_description' => 'Simple steps to test your knowledge of Indian products and earn your certificate',
@@ -48,7 +48,7 @@ return [
     'step_2_description' => 'Answer questions about Indian products and brands',
     'step_3_title' => 'Get Certificate',
     'step_3_description' => 'Receive your digital certificate and share your achievement',
-    
+
     // Quiz
     'quiz_title' => 'Swadeshi Quiz',
     'quiz_description' => 'Test your knowledge of Indian products and brands',
@@ -60,7 +60,7 @@ return [
     'submit' => 'Submit',
     'time_remaining' => 'Time Remaining',
     'seconds' => 'seconds',
-    
+
     // Quiz Results
     'quiz_completed' => 'Quiz Completed!',
     'quiz_result_title' => 'Quiz Result - Swadeshi Abhiyan',
@@ -88,7 +88,7 @@ return [
     'attempt_number' => 'Attempt #',
     'incorrect_answers' => 'Incorrect',
     'no_answer_selected' => 'No answer selected',
-    
+
     // Leaderboard
     'leaderboard_title' => 'Leaderboard',
     'rank' => 'Rank',
@@ -96,7 +96,7 @@ return [
     'score' => 'Score',
     'date' => 'Date',
     'no_records' => 'No records found',
-    
+
     // Authentication
     'login_title' => 'Login',
     'register_title' => 'Register',
@@ -109,7 +109,7 @@ return [
     'already_have_account' => 'Already have an account?',
     'sign_up' => 'Sign Up',
     'sign_in' => 'Sign In',
-    
+
     // Profile
     'profile_title' => 'User Profile',
     'personal_info' => 'Personal Information',
@@ -117,7 +117,7 @@ return [
     'certificates' => 'Certificates',
     'edit_profile' => 'Edit Profile',
     'save_changes' => 'Save Changes',
-    
+
     // Products
     'products_title' => 'Products',
     'search_products' => 'Search Products',
@@ -130,7 +130,16 @@ return [
     'description' => 'Description',
     'indian_products' => 'Indian Products',
     'local_alternatives' => 'Local Alternatives',
-    
+    'local_products' => 'Local Products',
+    'discover_indian_products' => 'Discover amazing Indian products and support local businesses',
+    'search_products_placeholder' => 'Search products...',
+    'all_brands' => 'All Brands',
+    'sort_by' => 'Sort By',
+    'name' => 'Name',
+    'newest' => 'Newest',
+    'local' => 'Local',
+    'view_details' => 'View Details',
+
     // Vendors
     'vendors_title' => 'Vendors',
     'search_vendors' => 'Search Vendors',
@@ -141,7 +150,7 @@ return [
     'website' => 'Website',
     'local_vendors' => 'Local Vendors',
     'support_local' => 'Support Local',
-    
+
     // Articles
     'articles_title' => 'Articles',
     'read_more' => 'Read More',
@@ -150,7 +159,7 @@ return [
     'related_articles' => 'Related Articles',
     'latest_articles' => 'Latest Articles',
     'swadeshi_articles' => 'Swadeshi Articles',
-    
+
     // Pledges
     'pledges_title' => 'Pledges',
     'take_pledge' => 'Take Pledge',
@@ -160,7 +169,7 @@ return [
     'pledge_count' => 'Total Pledges',
     'join_movement' => 'Join the Movement',
     'pledge_created_success' => 'Pledge created successfully! Thank you for supporting local products.',
-    
+
     // Common
     'loading' => 'Loading...',
     'error' => 'Error',
@@ -189,7 +198,7 @@ return [
     'continue' => 'Continue',
     'finish' => 'Finish',
     'skip' => 'Skip',
-    
+
     // Messages
     'logout_success' => 'You have been logged out successfully.',
     'login_success' => 'Welcome back!',
@@ -201,7 +210,7 @@ return [
     'welcome_swadeshi' => 'Welcome to Swadeshi Abhiyan!',
     'please_check_input' => 'Please check your input and try again.',
     'something_went_wrong' => 'Something went wrong. Please try again.',
-    
+
     // Validation Messages
     'name_required' => 'Please enter your name.',
     'name_min' => 'Name must be at least 2 characters.',
@@ -209,7 +218,7 @@ return [
     'phone_min' => 'Phone number must be at least 10 digits.',
     'required_field' => 'This field is required.',
     'invalid_format' => 'Invalid format.',
-    
+
     // Errors
     'invalid_credentials' => 'Invalid email or password.',
     'email_already_exists' => 'This email is already registered.',
@@ -221,12 +230,19 @@ return [
     'already_completed' => 'You have already completed this quiz.',
     'session_expired' => 'Your session has expired.',
     'permission_denied' => 'Permission denied.',
-    
+
     // Footer
     'footer_text' => 'Made with ❤️ for promoting local businesses and reducing dependency on foreign goods.',
     'join_movement' => 'Join the movement - Support Local, Think Global! 🇮🇳',
     'copyright' => '© 2024 Swadeshi Abhiyan. All rights reserved.',
-    
+    'copyright_text' => '© :year Use Swadeshi Abhiyan. All rights reserved by VELLAXY TECH PRIVATE LIMITED',
+    'result_not_found' => 'Result not found!',
+    'cannot_replay_game' => 'Cannot replay this game!',
+    'one_time_game' => 'One-time Game',
+    'replay_attempts_left' => 'Replay (:attempts attempts left)',
+    'play_again' => 'Play Again',
+    'cannot_replay' => 'You cannot replay this game.',
+
     // Achievements
     'first_quiz' => 'First Quiz',
     'first_quiz_desc' => 'Completed your first quiz',
@@ -236,4 +252,50 @@ return [
     'high_scorer_desc' => 'Scored 15+ in a quiz',
     'local_supporter' => 'Local Supporter',
     'local_supporter_desc' => 'Made your first pledge',
+
+    // Quiz Start
+    'time_left' => 'Time Left',
+    'question_type_mcq' => 'Multiple Choice',
+    'question_type_multi_select' => 'Multi Select',
+    'difficulty_easy' => 'Easy',
+    'difficulty_medium' => 'Medium',
+    'difficulty_hard' => 'Hard',
+    'points' => 'pts',
+    'product' => 'Product',
+    'brand' => 'Brand',
+    'unknown' => 'Unknown',
+    'option' => 'Option',
+    'previous' => 'Previous',
+    'next' => 'Next',
+    'finish_quiz' => 'Finish Quiz',
+    'next_question' => 'Next Question',
+    'question_progress' => 'Question Progress',
+    'answered' => 'Answered',
+    'remaining' => 'Remaining',
+    'processing_results' => 'Processing Results...',
+    'calculating_score' => 'Calculating your score and generating certificate...',
+    'quiz_processing_error' => 'An error occurred while processing your results. Please try again.',
+
+    // Articles
+    'articles_and_blog' => 'Articles & Blog',
+    'learn_more_swadeshi' => 'Learn more about Indian products and the Swadeshi movement',
+    'featured_articles' => 'Featured Articles',
+    'search_articles' => 'Search Articles',
+    'search_articles_placeholder' => 'Search articles...',
+    'swadeshi_movement' => 'Swadeshi Movement',
+    'indian_products' => 'Indian Products',
+    'local_business' => 'Local Business',
+    'back_to_articles' => 'Back to Articles',
+    'back_to_home' => 'Back to Home',
+    'swadeshi_abhiyan' => 'Swadeshi Abhiyan',
+
+    // Leaderboard
+    'leaderboard_description' => 'Track top performers and recent results in the Swadeshi Abhiyan quiz competition.',
+    'quizzes_completed' => 'Quizzes Completed',
+    'average_score' => 'Average Score',
+    'highest_score' => 'Highest Score',
+    'top_performers' => 'Top Performers',
+    'attempts' => 'attempts',
+    'best_score' => 'Best Score',
+    'recent_results' => 'Recent Results',
 ];
