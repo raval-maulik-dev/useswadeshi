@@ -298,4 +298,10 @@ return [
     'attempts' => 'પ્રયાસો',
     'best_score' => 'સર્વશ્રેષ્ઠ સ્કોર',
     'recent_results' => 'તાજા પરિણામો',
+
+    // missing values
+    'features' => 'વિશેષતાઓ',
+    'interactive_quiz' => 'ઇન્ટરેક્ટિવ ક્વિઝ',
+    'digital_certificates' => 'ડિજિટલ પ્રમાણપત્રો',
+    'real_time_leaderboard' => 'રિયલ-ટાઇમ લીડરબોર્ડ',
 ];

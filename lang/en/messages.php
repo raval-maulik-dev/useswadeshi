@@ -298,4 +298,10 @@ return [
     'attempts' => 'attempts',
     'best_score' => 'Best Score',
     'recent_results' => 'Recent Results',
+
+    // missing values
+    'features' => 'Features',
+    'interactive_quiz' => 'Interactive Quiz',
+    'digital_certificates' => 'Digital Certificates',
+    'real_time_leaderboard' => 'Real-Time Leaderboard',
 ];

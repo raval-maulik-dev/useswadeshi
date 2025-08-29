@@ -298,4 +298,10 @@ return [
     'attempts' => 'प्रयास',
     'best_score' => 'सर्वश्रेष्ठ स्कोर',
     'recent_results' => 'हाल के परिणाम',
+
+    //miising values
+    'features' => 'विशेषताएँ',
+    'interactive_quiz' => 'इंटरैक्टिव क्विज़',
+    'digital_certificates' => 'डिजिटल प्रमाणपत्र',
+    'real_time_leaderboard' => 'रीयल-टाइम लीडरबोर्ड',
 ];
