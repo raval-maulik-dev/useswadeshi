@@ -1,5 +1,5 @@
 <div>
-    @section('title', $article->title . ' - Swadeshi Abhiyan')
+    @section('title', $article->title . ' - ' . __('messages.swadeshi_abhiyan'))
     
     <div class="min-h-screen bg-gradient-to-br from-orange-50 via-white to-green-50 py-12">
         <div class="max-w-4xl mx-auto px-4">
@@ -26,13 +26,13 @@
             <!-- Related Articles -->
             @if($relatedArticles->count() > 0)
             <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-orange-100 mb-8">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6">Related Articles</h3>
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">{{ __('messages.related_articles') }}</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     @foreach($relatedArticles as $relatedArticle)
                     <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                         <h4 class="font-bold text-gray-800 mb-2">{{ $relatedArticle->title }}</h4>
                         <p class="text-gray-600 text-sm mb-4">{{ Str::limit($relatedArticle->content, 80) }}</p>
-                        <a href="{{ route('articles.show', $relatedArticle) }}" class="text-orange-600 font-semibold hover:text-orange-700">Read More →</a>
+                        <a href="{{ route('articles.show', $relatedArticle) }}" class="text-orange-600 font-semibold hover:text-orange-700">{{ __('messages.read_more') }} →</a>
                     </div>
                     @endforeach
                 </div>
@@ -43,7 +43,7 @@
             <div class="text-center">
                 <a href="{{ route('articles') }}" 
                    class="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
-                    ← Back to Articles
+                    ← {{ __('messages.back_to_articles') }}
                 </a>
             </div>
         </div>

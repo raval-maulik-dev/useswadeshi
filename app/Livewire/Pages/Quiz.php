@@ -36,7 +36,7 @@ class Quiz extends Component
         if (! $this->selectedGame) {
             $this->dispatch('notify', [
                 'type' => 'error',
-                'message' => __('messages.game_not_found'),
+                'message' => __('validation.game_not_found'),
             ]);
 
             return;
@@ -87,7 +87,7 @@ class Quiz extends Component
         } else {
             $this->dispatch('notify', [
                 'type' => 'error',
-                'message' => __('messages.cannot_replay'),
+                'message' => __('validation.cannot_replay'),
             ]);
         }
     }
@@ -150,15 +150,15 @@ class Quiz extends Component
 
         switch ($status) {
             case 'completed':
-                return __('messages.status_completed');
+                return __('labels.status_completed');
             case 'max_attempts_reached':
-                return __('messages.status_max_attempts');
+                return __('labels.status_max_attempts');
             case 'attempted':
-                return __('messages.status_attempted');
+                return __('labels.status_attempted');
             case 'played':
-                return __('messages.status_played');
+                return __('labels.status_played');
             default:
-                return __('messages.status_new');
+                return __('labels.status_new');
         }
     }
 

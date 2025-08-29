@@ -1,22 +1,22 @@
 <div>
-    @section('title', 'Articles - Swadeshi Abhiyan')
+    @section('title', __('messages.articles_title') . ' - ' . __('messages.swadeshi_abhiyan'))
     
     <div class="min-h-screen bg-gradient-to-br from-orange-50 via-white to-green-50 py-12">
         <div class="max-w-7xl mx-auto px-4">
             <!-- Header -->
             <div class="text-center mb-12">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-orange-600 via-red-600 to-green-600">
-                    Articles & Blog
+                    {{ __('messages.articles_and_blog') }}
                 </h1>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Learn more about Indian products and the Swadeshi movement
+                    {{ __('messages.learn_more_swadeshi') }}
                 </p>
             </div>
 
             <!-- Featured Articles -->
             @if($featuredArticles->count() > 0)
             <div class="mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">🌟 Featured Articles</h2>
+                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">🌟 {{ __('messages.featured_articles') }}</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     @foreach($featuredArticles as $article)
                     <div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-orange-100 overflow-hidden">
@@ -28,7 +28,7 @@
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-gray-800 mb-2">{{ $article->title }}</h3>
                             <p class="text-gray-600 text-sm mb-4">{{ Str::limit($article->content, 100) }}</p>
-                            <a href="{{ route('articles.show', $article) }}" class="text-orange-600 font-semibold hover:text-orange-700">Read More →</a>
+                            <a href="{{ route('articles.show', $article) }}" class="text-orange-600 font-semibold hover:text-orange-700">{{ __('messages.read_more') }} →</a>
                         </div>
                     </div>
                     @endforeach
@@ -40,17 +40,17 @@
             <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-orange-100 mb-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Search Articles</label>
-                        <input wire:model.live="search" type="text" placeholder="Search articles..." 
+                        <label class="block text-sm font-medium text-gray-700 mb-2">{{ __('messages.search_articles') }}</label>
+                        <input wire:model.live="search" type="text" placeholder="{{ __('messages.search_articles_placeholder') }}" 
                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">{{ __('messages.category') }}</label>
                         <select wire:model.live="selectedCategory" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
-                            <option value="">All Categories</option>
-                            <option value="swadeshi">Swadeshi Movement</option>
-                            <option value="products">Indian Products</option>
-                            <option value="business">Local Business</option>
+                            <option value="">{{ __('messages.all_categories') }}</option>
+                            <option value="swadeshi">{{ __('messages.swadeshi_movement') }}</option>
+                            <option value="products">{{ __('messages.indian_products') }}</option>
+                            <option value="business">{{ __('messages.local_business') }}</option>
                         </select>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                         <p class="text-gray-600 text-sm mb-4">{{ Str::limit($article->content, 100) }}</p>
                         <div class="flex items-center justify-between">
                             <span class="text-xs text-gray-500">{{ $article->created_at->format('M d, Y') }}</span>
-                            <a href="{{ route('articles.show', $article) }}" class="text-orange-600 font-semibold hover:text-orange-700">Read More →</a>
+                            <a href="{{ route('articles.show', $article) }}" class="text-orange-600 font-semibold hover:text-orange-700">{{ __('messages.read_more') }} →</a>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
             <div class="text-center mt-8">
                 <a href="{{ route('home') }}" 
                    class="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
-                    🏠 Back to Home
+                    🏠 {{ __('messages.back_to_home') }}
                 </a>
             </div>
         </div>

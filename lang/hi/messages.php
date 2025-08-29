@@ -5,101 +5,101 @@ return [
     'home' => 'होम',
     'login' => 'लॉगिन',
     'logout' => 'लॉगआउट',
-    'register' => 'रजिस्टर',
+    'register' => 'पंजीकरण',
     'profile' => 'प्रोफाइल',
     'dashboard' => 'डैशबोर्ड',
     'leaderboard' => 'लीडरबोर्ड',
     'products' => 'उत्पाद',
     'vendors' => 'विक्रेता',
     'articles' => 'लेख',
-    'pledges' => 'प्रतिज्ञा',
+    'pledges' => 'प्रतिज्ञाएं',
     'quiz' => 'क्विज',
-    
+
     // Language Switcher
     'language' => 'भाषा',
     'english' => 'English',
     'hindi' => 'हिंदी',
     'gujarati' => 'ગુજરાતી',
-    
+
     // Home Page
     'welcome_title' => 'स्वदेशी अभियान में आपका स्वागत है',
-    'welcome_back' => 'वापसी पर स्वागत है, :name! 👋',
-    'ready_to_test' => 'भारतीय उत्पादों के बारे में अपना ज्ञान जांचने के लिए तैयार हैं?',
+    'welcome_back' => 'वापस आने पर स्वागत है, :name! 👋',
+    'ready_to_test' => 'भारतीय उत्पादों के बारे में अपने ज्ञान का परीक्षण करने के लिए तैयार हैं?',
     'main_heading' => 'स्वदेशी अभियान का उपयोग करें',
-    'sub_heading' => 'आपका हर Swadeshi Choice = मजबूत भारत',
-    'main_description' => 'भारतीय उत्पादों और ब्रांडों के बारे में अपना ज्ञान जांचें',
+    'sub_heading' => 'आपका हर स्वदेशी चॉइस = मजबूत भारत',
+    'main_description' => 'भारतीय उत्पादों और ब्रांड्स के बारे में अपने ज्ञान का परीक्षण करें',
     'start_quiz_now' => '🚀 अभी क्विज शुरू करें',
-    'register_to_start' => '🚀 क्विज शुरू करने के लिए रजिस्टर करें',
+    'register_to_start' => '🚀 क्विज शुरू करने के लिए पंजीकरण करें',
     'view_leaderboard' => '🏆 लीडरबोर्ड देखें',
-    
+
     // Stats
     'participants' => 'प्रतिभागी',
     'completed' => 'पूर्ण',
     'certificates' => 'प्रमाणपत्र',
-    'top_score' => 'उच्चतम स्कोर',
+    'top_score' => 'शीर्ष स्कोर',
     'avg_score' => 'औसत स्कोर',
-    
+
     // Features Section
     'how_it_works' => 'यह कैसे काम करता है',
-    'how_it_works_description' => 'भारतीय उत्पादों के बारे में अपना ज्ञान जांचने और प्रमाणपत्र प्राप्त करने के सरल कदम',
-    'step_1_title' => 'रजिस्टर और लॉगिन',
+    'how_it_works_description' => 'भारतीय उत्पादों के बारे में अपने ज्ञान का परीक्षण करने और अपना प्रमाणपत्र प्राप्त करने के लिए सरल चरण',
+    'step_1_title' => 'पंजीकरण और लॉगिन',
     'step_1_description' => 'अपना खाता बनाएं और स्वदेशी आंदोलन में शामिल हों',
-    'step_2_title' => 'क्विज दें',
-    'step_2_description' => 'भारतीय उत्पादों और ब्रांडों के बारे में प्रश्नों का उत्तर दें',
+    'step_2_title' => 'क्विज लें',
+    'step_2_description' => 'भारतीय उत्पादों और ब्रांड्स के बारे में प्रश्नों का उत्तर दें',
     'step_3_title' => 'प्रमाणपत्र प्राप्त करें',
     'step_3_description' => 'अपना डिजिटल प्रमाणपत्र प्राप्त करें और अपनी उपलब्धि साझा करें',
-    
+
     // Quiz
     'quiz_title' => 'स्वदेशी क्विज',
-    'quiz_description' => 'भारतीय उत्पादों और ब्रांडों के बारे में अपना ज्ञान जांचें',
+    'quiz_description' => 'भारतीय उत्पादों और ब्रांड्स के बारे में अपने ज्ञान का परीक्षण करें',
     'start_quiz' => 'क्विज शुरू करें',
     'question' => 'प्रश्न',
-    'of' => 'का',
+    'of' => 'में से',
     'next' => 'अगला',
     'previous' => 'पिछला',
-    'submit' => 'जमा करें',
+    'submit' => 'सबमिट करें',
     'time_remaining' => 'शेष समय',
     'seconds' => 'सेकंड',
-    
+
     // Quiz Results
     'quiz_completed' => 'क्विज पूर्ण!',
     'quiz_result_title' => 'क्विज परिणाम - स्वदेशी अभियान',
-    'great_job_completing' => 'बहुत अच्छा काम किया',
+    'great_job_completing' => 'पूरा करने के लिए बहुत अच्छा काम',
     'grade' => 'ग्रेड',
     'excellent_swadeshi_expert' => 'उत्कृष्ट! आप एक स्वदेशी विशेषज्ञ हैं!',
-    'good_job_indian_products' => 'बहुत अच्छा! आप भारतीय उत्पादों को अच्छी तरह जानते हैं!',
-    'nice_effort_keep_learning' => 'अच्छा प्रयास! स्थानीय उत्पादों के बारे में सीखते रहें!',
-    'keep_practicing_learn_more' => 'अभ्यास करते रहें! भारतीय ब्रांड्स के बारे में और जानें!',
+    'good_job_indian_products' => 'अच्छा काम! आप अपने भारतीय उत्पादों के बारे में अच्छी तरह जानते हैं!',
+    'nice_effort_keep_learning' => 'अच्छा प्रयास! स्थानीय उत्पादों के बारे में सीखना जारी रखें!',
+    'keep_practicing_learn_more' => 'अभ्यास जारी रखें! भारतीय ब्रांड्स के बारे में और जानें!',
     'your_score' => 'आपका स्कोर',
     'correct_answers' => 'सही उत्तर',
     'total_questions' => 'कुल प्रश्न',
     'percentage' => 'प्रतिशत',
     'download_certificate' => 'प्रमाणपत्र डाउनलोड करें',
-    'share_certificate' => 'प्रमाणपत्र साझा करें',
-    'try_again' => 'फिर से कोशिश करें',
+    'share_certificate' => 'प्रमाणपत्र शेयर करें',
+    'try_again' => 'पुनः प्रयास करें',
     'back_to_home' => 'होम पर वापस जाएं',
     'excellent' => 'उत्कृष्ट!',
-    'good_job' => 'बहुत अच्छा!',
-    'keep_learning' => 'सीखते रहें!',
+    'good_job' => 'अच्छा काम!',
+    'keep_learning' => 'सीखना जारी रखें!',
     'need_improvement' => 'सुधार की आवश्यकता',
     'total_participants' => 'कुल प्रतिभागी',
     'points_earned' => 'अर्जित अंक',
     'time_taken' => 'लिया गया समय',
-    'attempt_number' => 'प्रयास संख्या',
+    'attempt_number' => 'प्रयास #',
     'incorrect_answers' => 'गलत',
-    'no_answer_selected' => 'कोई उत्तर नहीं चुना गया',
-    
+    'no_answer_selected' => 'कोई उत्तर चयनित नहीं किया गया',
+
     // Leaderboard
     'leaderboard_title' => 'लीडरबोर्ड',
     'rank' => 'रैंक',
     'name' => 'नाम',
     'score' => 'स्कोर',
-    'date' => 'तारीख',
+    'date' => 'तिथि',
     'no_records' => 'कोई रिकॉर्ड नहीं मिला',
-    
+
     // Authentication
     'login_title' => 'लॉगिन',
-    'register_title' => 'रजिस्टर',
+    'register_title' => 'पंजीकरण',
     'email' => 'ईमेल',
     'password' => 'पासवर्ड',
     'confirm_password' => 'पासवर्ड की पुष्टि करें',
@@ -109,7 +109,7 @@ return [
     'already_have_account' => 'पहले से ही खाता है?',
     'sign_up' => 'साइन अप',
     'sign_in' => 'साइन इन',
-    
+
     // Profile
     'profile_title' => 'उपयोगकर्ता प्रोफाइल',
     'personal_info' => 'व्यक्तिगत जानकारी',
@@ -117,18 +117,29 @@ return [
     'certificates' => 'प्रमाणपत्र',
     'edit_profile' => 'प्रोफाइल संपादित करें',
     'save_changes' => 'परिवर्तन सहेजें',
-    
+
     // Products
     'products_title' => 'उत्पाद',
     'search_products' => 'उत्पाद खोजें',
-    'filter_by_category' => 'श्रेणी के अनुसार फ़िल्टर करें',
+    'filter_by_category' => 'श्रेणी द्वारा फ़िल्टर करें',
     'all_categories' => 'सभी श्रेणियां',
     'product_details' => 'उत्पाद विवरण',
     'brand' => 'ब्रांड',
     'category' => 'श्रेणी',
     'price' => 'मूल्य',
     'description' => 'विवरण',
-    
+    'indian_products' => 'भारतीय उत्पाद',
+    'local_alternatives' => 'स्थानीय विकल्प',
+    'local_products' => 'स्थानीय उत्पाद',
+    'discover_indian_products' => 'अद्भुत भारतीय उत्पादों को खोजें और स्थानीय व्यवसायों का समर्थन करें',
+    'search_products_placeholder' => 'उत्पाद खोजें...',
+    'all_brands' => 'सभी ब्रांड',
+    'sort_by' => 'द्वारा क्रमबद्ध करें',
+    'name' => 'नाम',
+    'newest' => 'नवीनतम',
+    'local' => 'स्थानीय',
+    'view_details' => 'विवरण देखें',
+
     // Vendors
     'vendors_title' => 'विक्रेता',
     'search_vendors' => 'विक्रेता खोजें',
@@ -137,21 +148,28 @@ return [
     'address' => 'पता',
     'phone' => 'फोन',
     'website' => 'वेबसाइट',
-    
+    'local_vendors' => 'स्थानीय विक्रेता',
+    'support_local' => 'स्थानीय का समर्थन करें',
+
     // Articles
     'articles_title' => 'लेख',
     'read_more' => 'और पढ़ें',
-    'published_on' => 'प्रकाशित किया गया',
+    'published_on' => 'प्रकाशित तिथि',
     'author' => 'लेखक',
     'related_articles' => 'संबंधित लेख',
-    
+    'latest_articles' => 'नवीनतम लेख',
+    'swadeshi_articles' => 'स्वदेशी लेख',
+
     // Pledges
-    'pledges_title' => 'प्रतिज्ञा',
+    'pledges_title' => 'प्रतिज्ञाएं',
     'take_pledge' => 'प्रतिज्ञा लें',
-    'my_pledges' => 'मेरी प्रतिज्ञा',
-    'pledge_text' => 'मैं भारतीय उत्पादों का समर्थन करने और हमारी स्थानीय अर्थव्यवस्था के विकास में योगदान देने की प्रतिज्ञा लेता हूं।',
-    'pledge_success' => 'प्रतिज्ञा सफलतापूर्वक जमा की गई!',
-    
+    'my_pledges' => 'मेरी प्रतिज्ञाएं',
+    'pledge_text' => 'मैं भारतीय उत्पादों का समर्थन करने और हमारे स्थानीय अर्थव्यवस्था के विकास में योगदान देने की प्रतिज्ञा लेता हूं।',
+    'pledge_success' => 'प्रतिज्ञा सफलतापूर्वक सबमिट की गई!',
+    'pledge_count' => 'कुल प्रतिज्ञाएं',
+    'join_movement' => 'आंदोलन में शामिल हों',
+    'pledge_created_success' => 'प्रतिज्ञा सफलतापूर्वक बनाई गई! स्थानीय उत्पादों का समर्थन करने के लिए धन्यवाद।',
+
     // Common
     'loading' => 'लोड हो रहा है...',
     'error' => 'त्रुटि',
@@ -165,7 +183,7 @@ return [
     'back' => 'वापस',
     'close' => 'बंद करें',
     'save' => 'सहेजें',
-    'update' => 'अपडेट करें',
+    'update' => 'अपडेट',
     'create' => 'बनाएं',
     'search' => 'खोजें',
     'filter' => 'फ़िल्टर',
@@ -174,16 +192,33 @@ return [
     'no_data' => 'कोई डेटा उपलब्ध नहीं',
     'are_you_sure' => 'क्या आप निश्चित हैं?',
     'this_action_cannot_be_undone' => 'यह कार्रवाई पूर्ववत नहीं की जा सकती।',
-    
+    'yes' => 'हाँ',
+    'no' => 'नहीं',
+    'ok' => 'ठीक है',
+    'continue' => 'जारी रखें',
+    'finish' => 'समाप्त करें',
+    'skip' => 'छोड़ें',
+
     // Messages
     'logout_success' => 'आप सफलतापूर्वक लॉगआउट हो गए हैं।',
-    'login_success' => 'वापसी पर स्वागत है!',
+    'login_success' => 'वापस आने पर स्वागत है!',
     'registration_success' => 'पंजीकरण सफल! कृपया लॉगिन करें।',
     'profile_updated' => 'प्रोफाइल सफलतापूर्वक अपडेट किया गया।',
-    'quiz_submitted' => 'क्विज सफलतापूर्वक जमा की गई!',
+    'quiz_submitted' => 'क्विज सफलतापूर्वक सबमिट की गई!',
     'certificate_downloaded' => 'प्रमाणपत्र सफलतापूर्वक डाउनलोड किया गया!',
-    'certificate_shared' => 'प्रमाणपत्र सफलतापूर्वक साझा किया गया!',
-    
+    'certificate_shared' => 'प्रमाणपत्र सफलतापूर्वक शेयर किया गया!',
+    'welcome_swadeshi' => 'स्वदेशी अभियान में आपका स्वागत है!',
+    'please_check_input' => 'कृपया अपना इनपुट जांचें और पुनः प्रयास करें।',
+    'something_went_wrong' => 'कुछ गलत हो गया। कृपया पुनः प्रयास करें।',
+
+    // Validation Messages
+    'name_required' => 'कृपया अपना नाम दर्ज करें।',
+    'name_min' => 'नाम कम से कम 2 अक्षर का होना चाहिए।',
+    'phone_required' => 'कृपया अपना फोन नंबर दर्ज करें।',
+    'phone_min' => 'फोन नंबर कम से कम 10 अंक का होना चाहिए।',
+    'required_field' => 'यह फील्ड आवश्यक है।',
+    'invalid_format' => 'अमान्य प्रारूप।',
+
     // Errors
     'invalid_credentials' => 'अमान्य ईमेल या पासवर्ड।',
     'email_already_exists' => 'यह ईमेल पहले से ही पंजीकृत है।',
@@ -193,9 +228,74 @@ return [
     'invalid_answer' => 'अमान्य उत्तर।',
     'time_expired' => 'समय समाप्त हो गया है।',
     'already_completed' => 'आपने पहले ही यह क्विज पूरी कर ली है।',
-    
+    'session_expired' => 'आपका सेशन समाप्त हो गया है।',
+    'permission_denied' => 'अनुमति अस्वीकृत।',
+
     // Footer
     'footer_text' => 'स्थानीय व्यवसायों को बढ़ावा देने और विदेशी वस्तुओं पर निर्भरता कम करने के लिए ❤️ के साथ बनाया गया।',
     'join_movement' => 'आंदोलन में शामिल हों - स्थानीय का समर्थन करें, वैश्विक सोचें! 🇮🇳',
     'copyright' => '© 2024 स्वदेशी अभियान। सर्वाधिकार सुरक्षित।',
+    'copyright_text' => '© :year स्वदेशी अभियान का उपयोग करें। सर्वाधिकार VELLAXY TECH PRIVATE LIMITED द्वारा सुरक्षित',
+    'result_not_found' => 'परिणाम नहीं मिला!',
+    'cannot_replay_game' => 'इस खेल को फिर से नहीं खेला जा सकता!',
+    'one_time_game' => 'एक बार का खेल',
+    'replay_attempts_left' => 'फिर से खेलें (:attempts प्रयास बाकी)',
+    'play_again' => 'फिर से खेलें',
+    'cannot_replay' => 'आप इस खेल को फिर से नहीं खेल सकते।',
+
+    // Achievements
+    'first_quiz' => 'पहली क्विज',
+    'first_quiz_desc' => 'अपनी पहली क्विज पूरी की',
+    'quiz_enthusiast' => 'क्विज उत्साही',
+    'quiz_enthusiast_desc' => '5 क्विज पूरी की',
+    'high_scorer' => 'उच्च स्कोरर',
+    'high_scorer_desc' => 'क्विज में 15+ स्कोर किया',
+    'local_supporter' => 'स्थानीय समर्थक',
+    'local_supporter_desc' => 'अपनी पहली प्रतिज्ञा की',
+
+    // Quiz Start
+    'time_left' => 'शेष समय',
+    'question_type_mcq' => 'बहुविकल्पी',
+    'question_type_multi_select' => 'बहु चयन',
+    'difficulty_easy' => 'आसान',
+    'difficulty_medium' => 'मध्यम',
+    'difficulty_hard' => 'कठिन',
+    'points' => 'अंक',
+    'product' => 'उत्पाद',
+    'brand' => 'ब्रांड',
+    'unknown' => 'अज्ञात',
+    'option' => 'विकल्प',
+    'previous' => 'पिछला',
+    'next' => 'अगला',
+    'finish_quiz' => 'क्विज समाप्त करें',
+    'next_question' => 'अगला प्रश्न',
+    'question_progress' => 'प्रश्न प्रगति',
+    'answered' => 'उत्तर दिए',
+    'remaining' => 'शेष',
+    'processing_results' => 'परिणाम प्रोसेस कर रहे हैं...',
+    'calculating_score' => 'आपका स्कोर गणना कर रहे हैं और प्रमाणपत्र जनरेट कर रहे हैं...',
+    'quiz_processing_error' => 'आपके परिणामों को प्रोसेस करते समय एक त्रुटि हुई। कृपया पुनः प्रयास करें।',
+
+    // Articles
+    'articles_and_blog' => 'लेख और ब्लॉग',
+    'learn_more_swadeshi' => 'भारतीय उत्पादों और स्वदेशी आंदोलन के बारे में और जानें',
+    'featured_articles' => 'विशेष लेख',
+    'search_articles' => 'लेख खोजें',
+    'search_articles_placeholder' => 'लेख खोजें...',
+    'swadeshi_movement' => 'स्वदेशी आंदोलन',
+    'indian_products' => 'भारतीय उत्पाद',
+    'local_business' => 'स्थानीय व्यवसाय',
+    'back_to_articles' => 'लेखों पर वापस जाएं',
+    'back_to_home' => 'होम पर वापस जाएं',
+    'swadeshi_abhiyan' => 'स्वदेशी अभियान',
+
+    // Leaderboard
+    'leaderboard_description' => 'स्वदेशी अभियान क्विज प्रतियोगिता में शीर्ष प्रदर्शनकर्ताओं और हाल के परिणामों को ट्रैक करें।',
+    'quizzes_completed' => 'पूर्ण की गई क्विज',
+    'average_score' => 'औसत स्कोर',
+    'highest_score' => 'उच्चतम स्कोर',
+    'top_performers' => 'शीर्ष प्रदर्शनकर्ता',
+    'attempts' => 'प्रयास',
+    'best_score' => 'सर्वश्रेष्ठ स्कोर',
+    'recent_results' => 'हाल के परिणाम',
 ];

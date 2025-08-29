@@ -15,16 +15,16 @@
                     <div class="flex justify-center -my-20">
                         <img src="{{ asset('asset/useswadeshi-remove-bg-logo.png') }}" alt="Swadeshi Abhiyan Logo" class="w-48 h-auto">
                     </div>
-                    <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ __('messages.login_title') }}</h1>
-                    <p class="text-gray-600">{{ __('messages.login_subtitle') }}</p>
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ __('labels.login_title') }}</h1>
+                    <p class="text-gray-600">{{ __('labels.login_subtitle') }}</p>
                 </div>
 
                 <!-- Login Form Card -->
                 <div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl p-8 border border-white/20">
                     <!-- Form Header -->
                     <div class="text-center mb-6">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ __('messages.quick_login') }}</h2>
-                        <p class="text-gray-600 text-sm">{{ __('messages.enter_details') }}</p>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ __('labels.quick_login') }}</h2>
+                        <p class="text-gray-600 text-sm">{{ __('labels.enter_details') }}</p>
                     </div>
 
                     <!-- Error Message -->
@@ -44,7 +44,7 @@
                         <!-- Name Field -->
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
-                                {{ __('messages.full_name') }} <span class="text-red-500">*</span>
+                                {{ __('labels.full_name') }} <span class="text-red-500">*</span>
                             </label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -57,7 +57,7 @@
                                     type="text"
                                     id="name"
                                     class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
-                                    placeholder="{{ __('messages.enter_full_name') }}"
+                                    placeholder="{{ __('labels.enter_full_name') }}"
                                     autocomplete="name"
                                 >
                             </div>
@@ -69,7 +69,7 @@
                         <!-- Phone Field -->
                         <div>
                             <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
-                                {{ __('messages.phone_number') }} <span class="text-red-500">*</span>
+                                {{ __('labels.phone_number') }} <span class="text-red-500">*</span>
                             </label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -82,7 +82,7 @@
                                     type="tel"
                                     id="phone"
                                     class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
-                                    placeholder="{{ __('messages.enter_phone_number') }}"
+                                    placeholder="{{ __('labels.enter_phone_number') }}"
                                     autocomplete="tel"
                                 >
                             </div>
@@ -100,14 +100,14 @@
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
                                 </svg>
-                                {{ __('messages.get_started') }}
+                                {{ __('buttons.get_started') }}
                             </div>
                             <div wire:loading wire:target="login" class="flex items-center justify-center">
                                 <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
-                                {{ __('messages.processing') }}
+                                {{ __('alerts.processing') }}
                             </div>
                         </button>
                     </form>
@@ -115,10 +115,10 @@
                     <!-- Additional Info -->
                     <div class="mt-6 text-center">
                         <p class="text-sm text-gray-600">
-                            {{ __('messages.agree_terms') }}
-                            <a href="#" class="text-orange-600 hover:text-orange-700 font-medium">{{ __('messages.terms_of_service') }}</a>
-                            {{ __('messages.and') }}
-                            <a href="#" class="text-orange-600 hover:text-orange-700 font-medium">{{ __('messages.privacy_policy') }}</a>
+                            {{ __('alerts.agree_terms') }}
+                            <a href="#" class="text-orange-600 hover:text-orange-700 font-medium">{{ __('alerts.terms_of_service') }}</a>
+                            {{ __('alerts.and') }}
+                            <a href="#" class="text-orange-600 hover:text-orange-700 font-medium">{{ __('alerts.privacy_policy') }}</a>
                         </p>
                     </div>
                 </div>
@@ -131,8 +131,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        <h3 class="font-semibold text-gray-800 text-sm">{{ __('messages.quick_access') }}</h3>
-                        <p class="text-gray-600 text-xs">{{ __('messages.no_complex_registration') }}</p>
+                        <h3 class="font-semibold text-gray-800 text-sm">{{ __('labels.quick_access') }}</h3>
+                        <p class="text-gray-600 text-xs">{{ __('labels.no_complex_registration') }}</p>
                     </div>
 
                     <div class="text-center p-4 bg-white/60 backdrop-blur-sm rounded-lg">
@@ -141,8 +141,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                             </svg>
                         </div>
-                        <h3 class="font-semibold text-gray-800 text-sm">{{ __('messages.learn_quiz') }}</h3>
-                        <p class="text-gray-600 text-xs">{{ __('messages.test_knowledge') }}</p>
+                        <h3 class="font-semibold text-gray-800 text-sm">{{ __('labels.learn_quiz') }}</h3>
+                        <p class="text-gray-600 text-xs">{{ __('labels.test_knowledge') }}</p>
                     </div>
 
                     <div class="text-center p-4 bg-white/60 backdrop-blur-sm rounded-lg">
@@ -151,8 +151,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                             </svg>
                         </div>
-                        <h3 class="font-semibold text-gray-800 text-sm">{{ __('messages.secure') }}</h3>
-                        <p class="text-gray-600 text-xs">{{ __('messages.data_safe') }}</p>
+                        <h3 class="font-semibold text-gray-800 text-sm">{{ __('labels.secure') }}</h3>
+                        <p class="text-gray-600 text-xs">{{ __('labels.data_safe') }}</p>
                     </div>
                 </div>
             </div>

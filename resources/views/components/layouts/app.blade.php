@@ -117,21 +117,21 @@
             <!-- Mobile Menu -->
             <div class="md:hidden hidden" id="mobileMenu">
                 <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t">
-                    <a href="{{ route('home') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Home</a>
-                    <a href="{{ route('quiz') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Quiz</a>
-                    <a href="{{ route('leaderboard') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Leaderboard</a>
-                    <a href="{{ route('products') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Products</a>
-                    <a href="{{ route('vendors') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Vendors</a>
-                    <a href="{{ route('articles') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Articles</a>
+                    <a href="{{ route('home') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">{{ __('messages.home') }}</a>
+                    <a href="{{ route('quiz') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">{{ __('messages.quiz') }}</a>
+                    <a href="{{ route('leaderboard') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">{{ __('messages.leaderboard') }}</a>
+                    <a href="{{ route('products') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">{{ __('messages.products') }}</a>
+                    <a href="{{ route('vendors') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">{{ __('messages.vendors') }}</a>
+                    <a href="{{ route('articles') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">{{ __('messages.articles') }}</a>
                     @auth
-                        <a href="{{ route('dashboard') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Dashboard</a>
-                        <a href="{{ route('user.profile') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Profile</a>
+                        <a href="{{ route('dashboard') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">{{ __('messages.dashboard') }}</a>
+                        <a href="{{ route('user.profile') }}" class="block px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">{{ __('messages.profile') }}</a>
                         <form method="POST" action="{{ route('logout') }}" class="w-full">
                             @csrf
-                            <button type="submit" class="w-full text-left px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">Logout</button>
+                            <button type="submit" class="w-full text-left px-3 py-2 text-gray-700 hover:bg-orange-50 rounded-md">{{ __('messages.logout') }}</button>
                         </form>
                     @else
-                        <a href="{{ route('login') }}" class="block px-3 py-2 bg-orange-500 text-white rounded-md text-center">Login</a>
+                        <a href="{{ route('login') }}" class="block px-3 py-2 bg-orange-500 text-white rounded-md text-center">{{ __('messages.login') }}</a>
                     @endauth
                 </div>
             </div>
@@ -178,28 +178,28 @@
 
                 <!-- Column 2: Quick Links -->
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <h3 class="text-lg font-semibold mb-4">{{ __('messages.quick_links') }}</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm">Home</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm">Register</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm">Leaderboard</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm">{{ __('messages.home') }}</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm">{{ __('messages.register') }}</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm">{{ __('messages.leaderboard') }}</a></li>
                         <!-- <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm">Lucky Draw</a></li> -->
                     </ul>
                 </div>
 
                 <!-- Column 3: Features -->
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Features</h3>
+                    <h3 class="text-lg font-semibold mb-4">{{ __('messages.features') }}</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm">Interactive Quiz</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm">Digital Certificates</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm">Real-time Leaderboard</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm">{{ __('messages.interactive_quiz') }}</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm">{{ __('messages.digital_certificates') }}</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm">{{ __('messages.real_time_leaderboard') }}</a></li>
                     </ul>
                 </div>
 
                 <!-- Column 4: Contact Info -->
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Event Contact</h3>
+                    <h3 class="text-lg font-semibold mb-4">{{ __('messages.event_contact') }}</h3>
                     <div class="space-y-3">
                         <div class="flex items-start space-x-3">
                             <svg class="w-5 h-5 text-gray-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -225,15 +225,15 @@
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <!-- Left: Copyright -->
                     <div class="text-sm text-gray-400 mb-4 md:mb-0">
-                        &copy; {{ date('Y') }} Use Swadeshi Abhiyan. All rights reserved by VELLAXY TECH PRIVATE LIMITED
+                        {{ __('messages.copyright_text', ['year' => date('Y')]) }}
                     </div>
 
                     <!-- Center: Hashtags -->
                     <div class="flex space-x-4 mb-4 md:mb-0">
 
-                        <span class="text-gray-400 text-sm">#UseSwadeshi</span>
-                        <span class="text-gray-400 text-sm">#SwadeshiAbhiyan</span>
-                        <span class="text-gray-400 text-sm">#VocalForLocal</span>
+                        <span class="text-gray-400 text-sm">{{ __('labels.hashtag_useswadeshi') }}</span>
+                        <span class="text-gray-400 text-sm">{{ __('labels.hashtag_swadeshiabhiyan') }}</span>
+                        <span class="text-gray-400 text-sm">{{ __('labels.hashtag_vocalforlocal') }}</span>
                         <!-- <span class="text-gray-400 text-sm">#MadeInIndia</span> -->
                     </div>
                 </div>

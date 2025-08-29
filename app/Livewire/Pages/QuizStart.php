@@ -108,7 +108,7 @@ class QuizStart extends Component
             $this->isLoading = false;
             $this->dispatch('notify', [
                 'type' => 'error',
-                'message' => 'An error occurred while processing your results. Please try again.',
+                'message' => __('messages.quiz_processing_error'),
             ]);
         }
     }

@@ -114,7 +114,7 @@ class UserProfile extends Component
         if (! $result) {
             $this->dispatch('notify', [
                 'type' => 'error',
-                'message' => 'Result not found!',
+                'message' => __('messages.result_not_found'),
             ]);
 
             return;
@@ -137,7 +137,7 @@ class UserProfile extends Component
         if (! $result) {
             $this->dispatch('notify', [
                 'type' => 'error',
-                'message' => 'Result not found!',
+                'message' => __('messages.result_not_found'),
             ]);
 
             return;
@@ -159,7 +159,7 @@ class UserProfile extends Component
         if (! $game || ! $game->canUserPlay($this->user->id)) {
             $this->dispatch('notify', [
                 'type' => 'error',
-                'message' => 'Cannot replay this game!',
+                'message' => __('messages.cannot_replay_game'),
             ]);
 
             return;

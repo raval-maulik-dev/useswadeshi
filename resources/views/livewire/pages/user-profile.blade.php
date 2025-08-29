@@ -2,8 +2,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
         <div class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900">My Profile</h1>
-            <p class="mt-2 text-gray-600">Manage your profile and view your quiz history</p>
+            <h1 class="text-3xl font-bold text-gray-900">{{ __('labels.my_profile') }}</h1>
+            <p class="mt-2 text-gray-600">{{ __('labels.manage_profile_history') }}</p>
         </div>
 
         <!-- Stats Cards -->
@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-500">Total Attempts</p>
+                        <p class="text-sm font-medium text-gray-500">{{ __('labels.total_attempts') }}</p>
                         <p class="text-2xl font-semibold text-gray-900">{{ $this->userStats['total_attempts'] }}</p>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-500">Games Played</p>
+                        <p class="text-sm font-medium text-gray-500">{{ __('labels.games_played') }}</p>
                         <p class="text-2xl font-semibold text-gray-900">{{ $this->userStats['total_games_played'] }}</p>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-500">Avg. Accuracy</p>
+                        <p class="text-sm font-medium text-gray-500">{{ __('labels.avg_accuracy') }}</p>
                         <p class="text-2xl font-semibold text-gray-900">{{ $this->userStats['average_accuracy'] }}%</p>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-500">Certificates</p>
+                        <p class="text-sm font-medium text-gray-500">{{ __('labels.certificates') }}</p>
                         <p class="text-2xl font-semibold text-gray-900">{{ $this->userStats['certificates_earned'] }}</p>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-500">Total Points</p>
+                        <p class="text-sm font-medium text-gray-500">{{ __('labels.total_points') }}</p>
                         <p class="text-2xl font-semibold text-gray-900">{{ $this->userStats['total_points_earned'] }}</p>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                         </div>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-500">Best Score</p>
+                        <p class="text-sm font-medium text-gray-500">{{ __('labels.best_score') }}</p>
                         <p class="text-2xl font-semibold text-gray-900">{{ $this->userStats['best_score'] ?? 0 }}</p>
                     </div>
                 </div>
@@ -110,13 +110,13 @@
             <div class="border-b border-gray-200">
                 <nav class="-mb-px flex space-x-8 px-6" aria-label="Tabs">
                     <button wire:click="setActiveTab('profile')" class="py-4 px-1 border-b-2 font-medium text-sm {{ $activeTab === 'profile' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
-                        Profile
+                        {{ __('labels.profile') }}
                     </button>
                     <button wire:click="setActiveTab('history')" class="py-4 px-1 border-b-2 font-medium text-sm {{ $activeTab === 'history' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
-                        Quiz History
+                        {{ __('labels.quiz_history') }}
                     </button>
                     <button wire:click="setActiveTab('certificates')" class="py-4 px-1 border-b-2 font-medium text-sm {{ $activeTab === 'certificates' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
-                        Certificates
+                        {{ __('labels.certificates') }}
                     </button>
                 </nav>
             </div>
@@ -126,9 +126,9 @@
                 @if($activeTab === 'profile')
                 <div>
                     <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-medium text-gray-900">Profile Information</h3>
+                        <h3 class="text-lg font-medium text-gray-900">{{ __('labels.profile_information') }}</h3>
                         <button wire:click="toggleEditMode" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
-                            {{ $editMode ? 'Cancel' : 'Edit Profile' }}
+                            {{ $editMode ? __('buttons.cancel') : __('buttons.edit_profile') }}
                         </button>
                     </div>
 
@@ -136,37 +136,37 @@
                     <form wire:submit.prevent="updateProfile" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Name</label>
+                                <label class="block text-sm font-medium text-gray-700">{{ __('labels.name') }}</label>
                                 <input type="text" wire:model="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
                                 @error('name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Email</label>
+                                <label class="block text-sm font-medium text-gray-700">{{ __('labels.email') }}</label>
                                 <input type="email" wire:model="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
                                 @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Phone</label>
+                                <label class="block text-sm font-medium text-gray-700">{{ __('labels.phone') }}</label>
                                 <input type="text" wire:model="phone" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
                                 @error('phone') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">City</label>
+                                <label class="block text-sm font-medium text-gray-700">{{ __('labels.city') }}</label>
                                 <input type="text" wire:model="city" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
                                 @error('city') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">State</label>
+                                <label class="block text-sm font-medium text-gray-700">{{ __('labels.state') }}</label>
                                 <input type="text" wire:model="state" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
                                 @error('state') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Country</label>
+                                <label class="block text-sm font-medium text-gray-700">{{ __('labels.country') }}</label>
                                 <input type="text" wire:model="country" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
                                 @error('country') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                             </div>
@@ -174,7 +174,7 @@
 
                         <div class="flex justify-end">
                             <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700">
-                                Save Changes
+                                {{ __('buttons.save_changes') }}
                             </button>
                         </div>
                     </form>
@@ -192,22 +192,22 @@
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Phone</label>
-                            <p class="mt-1 text-sm text-gray-900">{{ $phone ?: 'Not provided' }}</p>
+                            <p class="mt-1 text-sm text-gray-900">{{ $phone ?: __('labels.not_provided') }}</p>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700">City</label>
-                            <p class="mt-1 text-sm text-gray-900">{{ $city ?: 'Not provided' }}</p>
+                            <p class="mt-1 text-sm text-gray-900">{{ $city ?: __('labels.not_provided') }}</p>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700">State</label>
-                            <p class="mt-1 text-sm text-gray-900">{{ $state ?: 'Not provided' }}</p>
+                            <p class="mt-1 text-sm text-gray-900">{{ $state ?: __('labels.not_provided') }}</p>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Country</label>
-                            <p class="mt-1 text-sm text-gray-900">{{ $country ?: 'Not provided' }}</p>
+                            <p class="mt-1 text-sm text-gray-900">{{ $country ?: __('labels.not_provided') }}</p>
                         </div>
                     </div>
                     @endif
@@ -224,12 +224,12 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Game</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Accuracy</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('labels.game') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('labels.score') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('labels.accuracy') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('labels.time') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('labels.date') }}</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('labels.actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
@@ -237,11 +237,11 @@
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm font-medium text-gray-900">{{ $result->game->name }}</div>
-                                        <div class="text-sm text-gray-500">Attempt #{{ $result->attempt_number }}</div>
+                                        <div class="text-sm text-gray-500">{{ __('labels.attempt') }} #{{ $result->attempt_number }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-900">{{ $result->score }}/{{ $result->total_questions }}</div>
-                                        <div class="text-sm text-gray-500">{{ $result->total_points }} pts</div>
+                                        <div class="text-sm text-gray-500">{{ $result->total_points }} {{ __('labels.points') }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-{{ $result->getPerformanceColor() }}-100 text-{{ $result->getPerformanceColor() }}-800">
@@ -256,9 +256,9 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <div class="flex space-x-2">
-                                            <button wire:click="showCertificate({{ $result->id }})" class="text-blue-600 hover:text-blue-900">View</button>
-                                            <button wire:click="downloadCertificate({{ $result->id }})" class="text-green-600 hover:text-green-900">Download</button>
-                                            <button wire:click="shareResult({{ $result->id }})" class="text-purple-600 hover:text-purple-900">Share</button>
+                                            <button wire:click="showCertificate({{ $result->id }})" class="text-blue-600 hover:text-blue-900">{{ __('buttons.view') }}</button>
+                                            <button wire:click="downloadCertificate({{ $result->id }})" class="text-green-600 hover:text-green-900">{{ __('buttons.download') }}</button>
+                                            <button wire:click="shareResult({{ $result->id }})" class="text-purple-600 hover:text-purple-900">{{ __('buttons.share') }}</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -275,8 +275,8 @@
                         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
-                        <h3 class="mt-2 text-sm font-medium text-gray-900">No quiz history</h3>
-                        <p class="mt-1 text-sm text-gray-500">Start playing quizzes to see your history here.</p>
+                        <h3 class="mt-2 text-sm font-medium text-gray-900">{{ __('labels.no_quiz_history') }}</h3>
+                        <p class="mt-1 text-sm text-gray-500">{{ __('labels.start_playing_quizzes') }}</p>
                         <div class="mt-6">
                             <a href="{{ route('quiz') }}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
                                 Start Playing
