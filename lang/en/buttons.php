@@ -5,6 +5,7 @@ return [
     'get_started' => 'Get Started',
     'login' => 'Login',
     'register' => 'Register',
+    'register_to_start' => '🚀 Register to start',
     'sign_in' => 'Sign In',
     'sign_up' => 'Sign Up',
     'logout' => 'Logout',
