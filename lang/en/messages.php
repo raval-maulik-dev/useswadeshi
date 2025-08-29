@@ -304,4 +304,11 @@ return [
     'interactive_quiz' => 'Interactive Quiz',
     'digital_certificates' => 'Digital Certificates',
     'real_time_leaderboard' => 'Real-Time Leaderboard',
+
+    'quick_links' => 'Quick Links',
+    'footer_tagline' => 'Promoting Indian products and supporting Vocal for Local initiative through interactive cultural quiz.',
+    'company_name' => 'VELLAXY TECH PRIVATE LIMITED',
+    'company_address' => 'E-709, Ganesh Glory 11, Jagatpur, Ahmedabad, Gujarat, India, 382470',
+
+
 ];
