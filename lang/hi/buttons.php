@@ -5,6 +5,7 @@ return [
     'get_started' => 'शुरू करें',
     'login' => 'लॉगिन',
     'register' => 'पंजीकरण',
+    'register_to_start' => '🚀 शुरू करने के लिए पंजीकरण करें',
     'sign_in' => 'साइन इन',
     'sign_up' => 'साइन अप',
     'logout' => 'लॉगआउट',
