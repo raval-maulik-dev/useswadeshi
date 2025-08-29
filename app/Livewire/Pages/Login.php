@@ -19,7 +19,7 @@ class Login extends Component
 
     protected $rules = [
         'name' => 'required|string|min:2|max:255',
-        'phone' => 'required|string|min:10|max:15',
+        'phone' => 'required|string|digits:10',
     ];
 
     protected function messages(): array
@@ -37,8 +37,8 @@ class Login extends Component
         $this->isLoading = true;
         $this->errorMessage = '';
 
+        $this->validate();
         try {
-            $this->validate();
 
             // Check if user exists with this phone number
             $user = User::where('phone', $this->phone)->first();
