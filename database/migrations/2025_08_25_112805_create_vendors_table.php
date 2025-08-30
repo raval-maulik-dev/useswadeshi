@@ -11,12 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('brands', function (Blueprint $table) {
+        Schema::create('vendors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('logo')->nullable();
-            $table->unsignedBigInteger('country_id')->nullable();
+            $table->string('website')->nullable();
+            $table->string('contact_email')->nullable();
+            $table->string('contact_phone')->nullable();
+            $table->string('business_type')->nullable();
+            $table->foreignId('city_id')->nullable()->constrained()->onDelete('set null');
+            $table->string('address')->nullable();
+            $table->boolean('verified')->default(false);
+
             $table->softDeletes();
             $table->timestamps();
         });
@@ -27,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('brands');
+        Schema::dropIfExists('vendors');
     }
 };

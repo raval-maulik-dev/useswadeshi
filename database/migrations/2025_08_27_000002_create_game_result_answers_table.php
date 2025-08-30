@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('option_id')->constrained('game_options');
             $table->string('option_text');
             $table->boolean('is_correct_option')->default(false);
+            $table->boolean('selected')->default(false);
             $table->timestamps();
 
             $table->index(['game_result_question_id']);
