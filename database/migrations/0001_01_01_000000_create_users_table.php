@@ -16,6 +16,14 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique()->nullable();
             $table->string('phone', 20)->nullable();
+
+            // @todo in future we have to link this to a country,state and city table
+            $table->string('address')->nullable();
+            $table->string('zip_code')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('country')->nullable();
+
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('role', ['user', 'vendor', 'admin'])->default('user');
             $table->string('password')->nullable();

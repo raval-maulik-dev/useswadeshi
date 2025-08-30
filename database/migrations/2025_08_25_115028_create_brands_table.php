@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vendors', function (Blueprint $table) {
+        Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('logo')->nullable();
-            $table->string('website')->nullable();
-            $table->string('contact_email')->nullable();
-            $table->string('contact_phone')->nullable();
+            $table->unsignedBigInteger('country_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('country_id')->references('id')->on('countries')->nullOnDelete();
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vendors');
+        Schema::dropIfExists('brands');
     }
 };
