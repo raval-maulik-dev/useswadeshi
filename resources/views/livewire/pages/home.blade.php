@@ -11,11 +11,11 @@
                 <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-orange-300 rounded-full opacity-25 animate-ping"></div>
             </div>
 
-            <div class="relative z-10 text-center max-w-6xl mx-auto -mt-20">
+            <div class="relative z-10 text-center max-w-6xl mx-auto mt-20">
 
                 <!-- Main Heading -->
                 @auth
-                    <div class="mb-6 p-4 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg border border-orange-100" style="margin-top: 17% ;">
+                    <div class="mb-6 p-4 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg border border-orange-100" style="margin-top: 3% ;">
                         <h3 class="text-2xl font-bold text-orange-600 mb-2">{{ __('alerts.welcome_back', ['name' => auth()->user()->name]) }}</h3>
                         <p class="text-gray-600">{{ __('alerts.ready_to_test') }}</p>
                     </div>
