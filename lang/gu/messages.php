@@ -310,5 +310,20 @@ return [
     'company_name' => 'વેલેક્સી ટેક પ્રાઇવેટ લિમિટેડ',
     'company_address' => 'E-709, ગણેશ ગ્લોરી 11, જગતપુર, અમદાવાદ, ગુજરાત, ભારત, 382470',
 
+    // Game-specific translations
+    'game_language' => 'રમત ભાષા',
+    'select_language' => 'ભાષા પસંદ કરો',
+    'game_available_languages' => 'ઉપલબ્ધ ભાષાઓ',
+    'game_content_language' => 'સામગ્રી ભાષા',
+    'game_translation_missing' => 'પસંદ કરેલી ભાષામાં અનુવાદ ઉપલબ્ધ નથી',
+    'game_fallback_language' => 'અંગ્રેજીમાં સામગ્રી બતાવી રહ્યા છીએ',
+    'game_language_english' => 'English',
+    'game_language_hindi' => 'हिंदी',
+    'game_language_gujarati' => 'ગુજરાતી',
+    'game_question_translation' => 'પ્રશ્ન અનુવાદ',
+    'game_option_translation' => 'વિકલ્પ અનુવાદ',
+    'game_name_translation' => 'રમત નામ અનુવાદ',
+    'game_description_translation' => 'રમત વર્ણન અનુવાદ',
+    'game_translation_help' => 'જો અનુવાદ પ્રદાન કરવામાં આવ્યો નથી, તો અંગ્રેજી સંસ્કરણનો ઉપયોગ કરવામાં આવશે',
 
 ];

@@ -18,7 +18,12 @@ class Game extends Model
      */
     protected $fillable = [
         'name',
+        'name_hi',
+        'name_gu',
         'description',
+        'description_hi',
+        'description_gu',
+        'locale',
         'total_questions',
         'per_question_time',
         'allow_replay',
@@ -39,6 +44,34 @@ class Game extends Model
         'is_active' => 'boolean',
         'certificate_template' => 'array',
     ];
+
+    /**
+     * Get the localized name based on current locale
+     */
+    public function getLocalizedNameAttribute(): string
+    {
+        $locale = app()->getLocale();
+
+        return match ($locale) {
+            'hi' => $this->name_hi ?? $this->name,
+            'gu' => $this->name_gu ?? $this->name,
+            default => $this->name,
+        };
+    }
+
+    /**
+     * Get the localized description based on current locale
+     */
+    public function getLocalizedDescriptionAttribute(): ?string
+    {
+        $locale = app()->getLocale();
+
+        return match ($locale) {
+            'hi' => $this->description_hi ?? $this->description,
+            'gu' => $this->description_gu ?? $this->description,
+            default => $this->description,
+        };
+    }
 
     /**
      * Get the game questions for the game.
@@ -62,6 +95,16 @@ class Game extends Model
     public function scopeActive($query)
     {
         return $query->where('is_active', true);
+    }
+
+    /**
+     * Scope to get games for current locale
+     */
+    public function scopeForLocale($query, ?string $locale = null)
+    {
+        $locale = $locale ?? app()->getLocale();
+
+        return $query->where('locale', $locale);
     }
 
     /**

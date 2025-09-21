@@ -20,6 +20,8 @@ class GameQuestion extends Model
     protected $fillable = [
         'game_id',
         'question',
+        'question_hi',
+        'question_gu',
         'type',
         'difficulty',
         'points',
@@ -33,6 +35,20 @@ class GameQuestion extends Model
     protected $casts = [
         'points' => 'integer',
     ];
+
+    /**
+     * Get the localized question text based on current locale
+     */
+    public function getLocalizedQuestionAttribute(): string
+    {
+        $locale = app()->getLocale();
+
+        return match ($locale) {
+            'hi' => $this->question_hi ?? $this->question,
+            'gu' => $this->question_gu ?? $this->question,
+            default => $this->question,
+        };
+    }
 
     /**
      * Get the game that owns the question.

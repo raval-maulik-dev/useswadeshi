@@ -299,7 +299,7 @@ return [
     'best_score' => 'सर्वश्रेष्ठ स्कोर',
     'recent_results' => 'हाल के परिणाम',
 
-    //miising values
+    // miising values
     'features' => 'विशेषताएँ',
     'interactive_quiz' => 'इंटरैक्टिव क्विज़',
     'digital_certificates' => 'डिजिटल प्रमाणपत्र',
@@ -310,6 +310,20 @@ return [
     'company_name' => 'वेलैक्सी टेक प्राइवेट लिमिटेड',
     'company_address' => 'E-709, गणेश ग्लोरी 11, जगतपुर, अहमदाबाद, गुजरात, भारत, 382470',
 
-
+    // Game-specific translations
+    'game_language' => 'खेल भाषा',
+    'select_language' => 'भाषा चुनें',
+    'game_available_languages' => 'उपलब्ध भाषाएं',
+    'game_content_language' => 'सामग्री भाषा',
+    'game_translation_missing' => 'चयनित भाषा में अनुवाद उपलब्ध नहीं है',
+    'game_fallback_language' => 'अंग्रेजी में सामग्री दिखा रहा है',
+    'game_language_english' => 'English',
+    'game_language_hindi' => 'हिंदी',
+    'game_language_gujarati' => 'ગુજરાતી',
+    'game_question_translation' => 'प्रश्न अनुवाद',
+    'game_option_translation' => 'विकल्प अनुवाद',
+    'game_name_translation' => 'खेल नाम अनुवाद',
+    'game_description_translation' => 'खेल विवरण अनुवाद',
+    'game_translation_help' => 'यदि अनुवाद प्रदान नहीं किया गया है, तो अंग्रेजी संस्करण का उपयोग किया जाएगा',
 
 ];

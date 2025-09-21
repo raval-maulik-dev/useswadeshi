@@ -21,6 +21,8 @@ class GameOption extends Model
     protected $fillable = [
         'question_id',
         'option_text',
+        'option_text_hi',
+        'option_text_gu',
         'optionable_id',
         'optionable_type',
         'is_correct',
@@ -30,15 +32,15 @@ class GameOption extends Model
     protected function optionableType(): Attribute
     {
         return Attribute::make(
-//            get: fn ($value) => match ($value) {
-//                \App\Models\Product::class => 'product',
-//                \App\Models\Brand::class   => 'brand',
-//                default                    => $value,
-//            },
+            //            get: fn ($value) => match ($value) {
+            //                \App\Models\Product::class => 'product',
+            //                \App\Models\Brand::class   => 'brand',
+            //                default                    => $value,
+            //            },
             set: fn ($value) => match ($value) {
                 'product' => \App\Models\Product::class,
-                'brand'   => \App\Models\Brand::class,
-                default   => $value,
+                'brand' => \App\Models\Brand::class,
+                default => $value,
             },
         );
     }
@@ -52,6 +54,20 @@ class GameOption extends Model
         'is_correct' => 'boolean',
         'sort_order' => 'integer',
     ];
+
+    /**
+     * Get the localized option text based on current locale
+     */
+    public function getLocalizedOptionTextAttribute(): string
+    {
+        $locale = app()->getLocale();
+
+        return match ($locale) {
+            'hi' => $this->option_text_hi ?? $this->option_text,
+            'gu' => $this->option_text_gu ?? $this->option_text,
+            default => $this->option_text,
+        };
+    }
 
     /**
      * Get the question that owns the option.
@@ -74,9 +90,9 @@ class GameOption extends Model
      */
     public function getDisplayTextAttribute(): string
     {
-        // If option_text is provided, use it
-        if (! empty($this->option_text)) {
-            return $this->option_text;
+        // If localized option_text is provided, use it
+        if (! empty($this->localized_option_text)) {
+            return $this->localized_option_text;
         }
 
         // If optionable relationship exists, get its name
@@ -92,7 +108,7 @@ class GameOption extends Model
      */
     public function getOptionTypeAttribute(): string
     {
-        if (! empty($this->option_text)) {
+        if (! empty($this->localized_option_text)) {
             return 'text';
         }
 

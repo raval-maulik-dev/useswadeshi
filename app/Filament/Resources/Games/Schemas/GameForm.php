@@ -3,11 +3,13 @@
 namespace App\Filament\Resources\Games\Schemas;
 
 use Filament\Forms\Components\KeyValue;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Schema;
 
 class GameForm
@@ -19,14 +21,62 @@ class GameForm
                 Section::make('Basic Information')
                     ->description('Basic game details and description')
                     ->components([
-                        TextInput::make('name')
+                        Select::make('locale')
+                            ->label('Game Language')
+                            ->options([
+                                'en' => 'English',
+                                'hi' => 'हिंदी (Hindi)',
+                                'gu' => 'ગુજરાતી (Gujarati)',
+                            ])
+                            ->default('en')
                             ->required()
-                            ->maxLength(255)
-                            ->placeholder('Enter game name'),
-                        Textarea::make('description')
-                            ->rows(3)
-                            ->placeholder('Enter game description')
-                            ->columnSpanFull(),
+                            ->helperText('Select the primary language for this game content'),
+                    ]),
+
+                Tabs::make('Game Content')
+                    ->tabs([
+                        Tabs\Tab::make('English')
+                            ->icon('heroicon-o-flag')
+                            ->components([
+                                TextInput::make('name')
+                                    ->label('Game Name (English)')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->placeholder('Enter game name in English'),
+                                Textarea::make('description')
+                                    ->label('Game Description (English)')
+                                    ->rows(3)
+                                    ->placeholder('Enter game description in English')
+                                    ->columnSpanFull(),
+                            ]),
+
+                        Tabs\Tab::make('Hindi')
+                            ->icon('heroicon-o-flag')
+                            ->components([
+                                TextInput::make('name_hi')
+                                    ->label('Game Name (Hindi)')
+                                    ->maxLength(255)
+                                    ->placeholder('खेल का नाम हिंदी में दर्ज करें'),
+                                Textarea::make('description_hi')
+                                    ->label('Game Description (Hindi)')
+                                    ->rows(3)
+                                    ->placeholder('खेल का विवरण हिंदी में दर्ज करें')
+                                    ->columnSpanFull(),
+                            ]),
+
+                        Tabs\Tab::make('Gujarati')
+                            ->icon('heroicon-o-flag')
+                            ->components([
+                                TextInput::make('name_gu')
+                                    ->label('Game Name (Gujarati)')
+                                    ->maxLength(255)
+                                    ->placeholder('રમતનું નામ ગુજરાતીમાં દાખલ કરો'),
+                                Textarea::make('description_gu')
+                                    ->label('Game Description (Gujarati)')
+                                    ->rows(3)
+                                    ->placeholder('રમતનું વર્ણન ગુજરાતીમાં દાખલ કરો')
+                                    ->columnSpanFull(),
+                            ]),
                     ]),
 
                 Section::make('Game Configuration')

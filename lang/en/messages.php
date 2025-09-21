@@ -310,5 +310,20 @@ return [
     'company_name' => 'VELLAXY TECH PRIVATE LIMITED',
     'company_address' => 'E-709, Ganesh Glory 11, Jagatpur, Ahmedabad, Gujarat, India, 382470',
 
+    // Game-specific translations
+    'game_language' => 'Game Language',
+    'select_language' => 'Select Language',
+    'game_available_languages' => 'Available Languages',
+    'game_content_language' => 'Content Language',
+    'game_translation_missing' => 'Translation not available in selected language',
+    'game_fallback_language' => 'Showing content in English',
+    'game_language_english' => 'English',
+    'game_language_hindi' => 'हिंदी',
+    'game_language_gujarati' => 'ગુજરાતી',
+    'game_question_translation' => 'Question Translation',
+    'game_option_translation' => 'Option Translation',
+    'game_name_translation' => 'Game Name Translation',
+    'game_description_translation' => 'Game Description Translation',
+    'game_translation_help' => 'If translation is not provided, the English version will be used as fallback',
 
 ];
